@@ -142,7 +142,7 @@ td{
 /* আইটেম ৩০% */
 .main-table th:nth-child(1),
 .main-table td:nth-child(1){
-  width:30%;
+  width:20%;
 }
 
 /* পরিমাণ একটু বড় */
@@ -1321,6 +1321,7 @@ document.getElementById(
 
 
 /* Clear */
+
 document.getElementById(
   "clearBtn"
 ).onclick=()=>{
@@ -1331,23 +1332,32 @@ document.getElementById(
     )
   ){
 
+    /* বর্তমান Shopping List মুছে যাবে */
     rows=[];
 
+    /* Members আবার 1 হবে */
     members=1;
 
     document.getElementById(
       "members"
     ).value="1";
 
+    /* Item Dropdown-এর সব পুরোনো ডাটা মুছে যাবে */
+    itemMaster=[];
+
+    localStorage.removeItem(
+      ITEMS_KEY
+    );
+
+    /* Shopping List-ও মুছে সেভ হবে */
     saveData();
 
+    /* Dropdown এবং টেবিল নতুন করে খালি হবে */
     render();
 
   }
 
 };
-
-
 /* Backup */
 document.getElementById(
   "backupBtn"
