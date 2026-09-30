@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0f766e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Shopping List">
+
+<link rel="manifest" href="manifest.json">
+
+<title>Shopping List</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    background:#f3f7f6;
+    color:#17211f;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:12px 10px 30px;
+}
+
+.header{
+    background:#0f766e;
+    color:white;
+    border-radius:18px;
+    padding:18px 16px;
+    margin-bottom:12px;
+    box-shadow:0 4px 14px rgba(0,0,0,.08);
+}
+
+.header h1{
+    margin:0;
+    font-size:27px;
+}
+
+.header p{
+    margin:5px 0 0;
+    font-size:14px;
+    opacity:.92;
+}
+
+.summary{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:8px;
+    margin-bottom:12px;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    padding:11px 10px;
+    border:1px solid #dfe9e7;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+
+.card label{
+    display:block;
+    font-size:13px;
+    color:#63706d;
+    margin-bottom:5px;
+}
+
+.card input{
+    width:100%;
+    border:0;
+    outline:0;
+    font-size:21px;
+    font-weight:700;
+    background:transparent;
+    color:#17211f;
+}
+
+.total input{
+    color:#0f766e;
+}
+
+.average input{
+    color:#7c3aed;
+}
+
+.toolbar{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin:10px 0 12px;
+}
+
+button{
+    border:0;
+    border-radius:11px;
+    padding:11px 14px;
+    font-size:15px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.add{
+    background:#0f766e;
+    color:white;
+}
+
+.backup{
+    background:#2563eb;
+    color:white;
+}
+
+.restore{
+    background:#475569;
+    color:white;
+}
+
+.clear{
+    background:#dc2626;
+    color:white;
+}
+
+.table-wrap{
+    background:white;
+    border-radius:16px;
+    border:1px solid #dfe9e7;
+    overflow-x:auto;
+    box-shadow:0 2px 10px rgba(0,0,0,.04);
+}
+
+table{
+    width:100%;
+    min-width:720px;
+    border-collapse:collapse;
+}
+
+th{
+    background:#e8f2f0;
+    color:#30413d;
+    font-size:13px;
+    padding:10px 7px;
+    text-align:left;
+    white-space:nowrap;
+}
+
+td{
+    border-top:1px solid #edf1f0;
+    padding:7px;
+}
+
+td input{
+    width:100%;
+    min-height:42px;
+    border:1px solid #ccd8d5;
+    border-radius:9px;
+    padding:8px;
+    font-size:15px;
+    background:white;
+}
+
+td.amount{
+    font-weight:700;
+    color:#0f766e;
+    white-space:nowrap;
+}
+
+.remove{
+    background:#fee2e2;
+    color:#b91c1c;
+    padding:8px 10px;
+}
+
+.note{
+    font-size:12px;
+    color:#687571;
+    margin-top:10px;
+    line-height:1.5;
+}
+
+@media(max-width:650px){
+
+    .summary{
+        grid-template-columns:1fr;
+    }
+
+    .container{
+        padding:10px 8px 24px;
+    }
+
+    button{
+        flex:1;
+        min-width:130px;
+    }
+
+    .header h1{
+        font-size:24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Shopping List</h1>
+        <p>Event shopping list and automatic cost calculator</p>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="summary">
+
+        <div class="card">
+            <label>Members / People</label>
+            <input
+                id="members"
+                type="number"
+                min="1"
+                inputmode="numeric"
+                placeholder="20">
+        </div>
+
+        <div class="card total">
+            <label>Total Cost (৳)</label>
+            <input
+                id="grandTotal"
+                type="text"
+                readonly
+                value="0">
+        </div>
+
+        <div class="card average">
+            <label>Average per Person (৳)</label>
+            <input
+                id="average"
+                type="text"
+                readonly
+                value="0">
+        </div>
+
+    </div>
+
+
+    <!-- BUTTONS -->
+    <div class="toolbar">
+
+        <button
+            class="add"
+            id="addBtn">
+            ＋ Add Item
+        </button>
+
+        <button
+            class="backup"
+            id="backupBtn">
+            💾 Backup
+        </button>
+
+        <button
+            class="restore"
+            id="restoreBtn">
+            📂 Restore
+        </button>
+
+        <button
+            class="clear"
+            id="clearBtn">
+            🗑 Clear
+        </button>
+
+        <input
+            id="fileInput"
+            type="file"
+            accept=".json,application/json"
+            hidden>
+
+    </div>
+
+
+    <!-- SHOPPING TABLE -->
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Unit</th>
+                    <th>Rate (৳)</th>
+                    <th>Total (৳)</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+
+            <tbody id="itemsBody"></tbody>
+
+        </table>
+
+    </div>
+
+
+    <div class="note">
+        Choose an item from the list or type a new one.
+        New item names and their units are remembered automatically.
+    </div>
+
+</div>
+
+
+<script>
+
+const DATA_KEY = "shoppingListDataV1";
+const ITEMS_KEY = "shoppingListItemsV1";
+
+
+/* DEFAULT ITEMS */
+
+const defaultItems = [
+
+    ["Rice","kg"],
+    ["Lentil","kg"],
+    ["Oil","liter"],
+    ["Salt","kg"],
+    ["Potato","kg"],
+    ["Onion","kg"],
+    ["Garlic","kg"],
+    ["Ginger","kg"],
+    ["Beef","kg"],
+    ["Chicken","kg"],
+    ["Fish","kg"],
+    ["Egg","piece"],
+    ["Vegetables","kg"],
+    ["Spice","kg"],
+    ["Water","liter"],
+    ["Soft Drink","liter"],
+    ["Sugar","kg"],
+    ["Milk","liter"],
+    ["Tea","kg"],
+    ["Other","piece"]
+
+];
+
+
+let itemMaster = loadItems();
+
+let rows = [];
+
+
+/* LOAD ITEM MASTER */
+
+function loadItems(){
+
+    try{
+
+        const saved =
+            JSON.parse(
+                localStorage.getItem(ITEMS_KEY)
+            );
+
+        if(
+            Array.isArray(saved) &&
+            saved.length
+        ){
+
+            return saved;
+
+        }
+
+    }catch(error){}
+
+    return defaultItems.map(
+        item => ({
+            name:item[0],
+            unit:item[1]
+        })
+    );
+
+}
+
+
+/* SAVE ITEM MASTER */
+
+function saveItems(){
+
+    localStorage.setItem(
+        ITEMS_KEY,
+        JSON.stringify(itemMaster)
+    );
+
+}
+
+
+/* LOAD CURRENT DATA */
+
+function loadData(){
+
+    try{
+
+        const saved =
+            JSON.parse(
+                localStorage.getItem(DATA_KEY)
+            );
+
+        if(
+            saved &&
+            Array.isArray(saved.rows)
+        ){
+
+            document.getElementById("members").value =
+                saved.members || "";
+
+            rows = saved.rows;
+
+            return;
+
+        }
+
+    }catch(error){}
+
+    rows = [
+        {
+            item:"",
+            qty:"",
+            unit:"",
+            rate:""
+        }
+    ];
+
+}
+
+
+/* SAVE CURRENT DATA */
+
+function saveData(){
+
+    const data = {
+
+        version:1,
+
+        savedAt:
+            new Date().toISOString(),
+
+        members:
+            document.getElementById("members").value,
+
+        rows:rows
+
+    };
+
+    localStorage.setItem(
+        DATA_KEY,
+        JSON.stringify(data)
+    );
+
+}
+
+
+/* MONEY FORMAT */
+
+function money(value){
+
+    return Number(value || 0)
+        .toLocaleString(
+            "en-US",
+            {
+                minimumFractionDigits:0,
+                maximumFractionDigits:2
+            }
+        );
+
+}
+
+
+/* RENDER TABLE */
+
+function render(){
+
+    const body =
+        document.getElementById("itemsBody");
+
+    body.innerHTML = "";
+
+
+    rows.forEach((row,index)=>{
+
+        const tr =
+            document.createElement("tr");
+
+
+        /* ITEM */
+
+        const itemTd =
+            document.createElement("td");
+
+        const item =
+            document.createElement("input");
+
+        item.setAttribute(
+            "list",
+            "itemList"
+        );
+
+        item.placeholder =
+            "Select or type item";
+
+        item.value =
+            row.item || "";
+
+
+        item.addEventListener(
+            "input",
+            ()=>{
+                rows[index].item =
+                    item.value;
+
+                saveData();
+            }
+        );
+
+
+        item.addEventListener(
+            "change",
+            ()=>{
+                itemChanged(
+                    index,
+                    item.value
+                );
+            }
+        );
+
+
+        itemTd.appendChild(item);
+
+
+        /* QUANTITY */
+
+        const qtyTd =
+            document.createElement("td");
+
+        const qty =
+            document.createElement("input");
+
+        qty.type = "number";
+        qty.min = "0";
+        qty.step = "any";
+        qty.inputMode = "decimal";
+        qty.placeholder = "0";
+
+        qty.value =
+            row.qty ?? "";
+
+
+        qty.addEventListener(
+            "input",
+            ()=>{
+                rows[index].qty =
+                    qty.value;
+
+                saveData();
+                recalc();
+            }
+        );
+
+
+        qtyTd.appendChild(qty);
+
+
+        /* UNIT */
+
+        const unitTd =
+            document.createElement("td");
+
+        const unit =
+            document.createElement("input");
+
+        unit.value =
+            row.unit || "";
+
+        unit.placeholder =
+            "kg / liter / piece";
+
+
+        unit.addEventListener(
+            "input",
+            ()=>{
+                rows[index].unit =
+                    unit.value;
+
+                saveData();
+            }
+        );
+
+
+        unitTd.appendChild(unit);
+
+
+        /* RATE */
+
+        const rateTd =
+            document.createElement("td");
+
+        const rate =
+            document.createElement("input");
+
+        rate.type = "number";
+        rate.min = "0";
+        rate.step = "any";
+        rate.inputMode = "decimal";
+        rate.placeholder = "0";
+
+        rate.value =
+            row.rate ?? "";
+
+
+        rate.addEventListener(
+            "input",
+            ()=>{
+                rows[index].rate =
+                    rate.value;
+
+                saveData();
+                recalc();
+            }
+        );
+
+
+        rateTd.appendChild(rate);
+
+
+        /* AMOUNT */
+
+        const amountTd =
+            document.createElement("td");
+
+        amountTd.className =
+            "amount";
+
+        amountTd.id =
+            "amount-" + index;
+
+
+        /* REMOVE */
+
+        const removeTd =
+            document.createElement("td");
+
+        const remove =
+            document.createElement("button");
+
+        remove.className =
+            "remove";
+
+        remove.textContent =
+            "✕";
+
+        remove.title =
+            "Remove";
+
+
+        remove.addEventListener(
+            "click",
+            ()=>{
+                removeRow(index);
+            }
+        );
+
+
+        removeTd.appendChild(remove);
+
+
+        tr.append(
+            itemTd,
+            qtyTd,
+            unitTd,
+            rateTd,
+            amountTd,
+            removeTd
+        );
+
+
+        body.appendChild(tr);
+
+    });
+
+
+    /* DATALIST */
+
+    const oldList =
+        document.getElementById("itemList");
+
+    if(oldList){
+
+        oldList.remove();
+
+    }
+
+
+    const dataList =
+        document.createElement("datalist");
+
+    dataList.id =
+        "itemList";
+
+
+    itemMaster.forEach(item=>{
+
+        const option =
+            document.createElement("option");
+
+        option.value =
+            item.name;
+
+        option.label =
+            item.name +
+            " — " +
+            item.unit;
+
+        dataList.appendChild(option);
+
+    });
+
+
+    document.body.appendChild(
+        dataList
+    );
+
+
+    recalc();
+
+}
+
+
+/* ITEM CHANGE */
+
+function itemChanged(index,value){
+
+    rows[index].item =
+        value;
+
+
+    const found =
+        itemMaster.find(
+            item =>
+                item.name.toLowerCase() ===
+                value.trim().toLowerCase()
+        );
+
+
+    if(found){
+
+        rows[index].unit =
+            found.unit;
+
+    }
+
+    else if(value.trim()){
+
+        const exists =
+            itemMaster.some(
+                item =>
+                    item.name.toLowerCase() ===
+                    value.trim().toLowerCase()
+            );
+
+
+        if(!exists){
+
+            itemMaster.push({
+
+                name:value.trim(),
+
+                unit:
+                    rows[index].unit ||
+                    "piece"
+
+            });
+
+            saveItems();
+
+        }
+
+    }
+
+
+    saveData();
+
+    render();
+
+}
+
+
+/* ADD ROW */
+
+function addRow(){
+
+    rows.push({
+
+        item:"",
+        qty:"",
+        unit:"",
+        rate:""
+
+    });
+
+
+    saveData();
+
+    render();
+
+
+    setTimeout(()=>{
+
+        const input =
+            document.querySelector(
+                "#itemsBody tr:last-child input"
+            );
+
+        if(input){
+
+            input.focus();
+
+        }
+
+    },50);
+
+}
+
+
+/* REMOVE ROW */
+
+function removeRow(index){
+
+    rows.splice(
+        index,
+        1
+    );
+
+
+    if(rows.length === 0){
+
+        rows.push({
+
+            item:"",
+            qty:"",
+            unit:"",
+            rate:""
+
+        });
+
+    }
+
+
+    saveData();
+
+    render();
+
+}
+
+
+/* CALCULATE */
+
+function recalc(){
+
+    let total = 0;
+
+
+    rows.forEach(
+        (row,index)=>{
+
+            const amount =
+                (Number(row.qty) || 0) *
+                (Number(row.rate) || 0);
+
+
+            total += amount;
+
+
+            const element =
+                document.getElementById(
+                    "amount-" + index
+                );
+
+
+            if(element){
+
+                element.textContent =
+                    "৳ " +
+                    money(amount);
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "grandTotal"
+    ).value =
+        money(total);
+
+
+    const members =
+        Number(
+            document.getElementById(
+                "members"
+            ).value
+        ) || 0;
+
+
+    document.getElementById(
+        "average"
+    ).value =
+        members > 0
+        ? money(total / members)
+        : "0";
+
+}
+
+
+/* MEMBERS */
+
+document.getElementById(
+    "members"
+).addEventListener(
+    "input",
+    ()=>{
+        saveData();
+        recalc();
+    }
+);
+
+
+/* ADD BUTTON */
+
+document.getElementById(
+    "addBtn"
+).addEventListener(
+    "click",
+    addRow
+);
+
+
+/* CLEAR BUTTON */
+
+document.getElementById(
+    "clearBtn"
+).addEventListener(
+    "click",
+    ()=>{
+
+        if(
+            confirm(
+                "Are you sure you want to clear this shopping list?"
+            )
+        ){
+
+            rows = [
+                {
+                    item:"",
+                    qty:"",
+                    unit:"",
+                    rate:""
+                }
+            ];
+
+
+            document.getElementById(
+                "members"
+            ).value = "";
+
+
+            saveData();
+
+            render();
+
+        }
+
+    }
+);
+
+
+/* BACKUP */
+
+document.getElementById(
+    "backupBtn"
+).addEventListener(
+    "click",
+    ()=>{
+
+        saveData();
+
+
+        const backup = {
+
+            app:"Shopping List",
+
+            version:1,
+
+            exportedAt:
+                new Date().toISOString(),
+
+            itemMaster:itemMaster,
+
+            data:
+                JSON.parse(
+                    localStorage.getItem(
+                        DATA_KEY
+                    )
+                )
+
+        };
+
+
+        const blob =
+            new Blob(
+                [
+                    JSON.stringify(
+                        backup,
+                        null,
+                        2
+                    )
+                ],
+                {
+                    type:
+                        "application/json"
+                }
+            );
+
+
+        const url =
+            URL.createObjectURL(blob);
+
+
+        const link =
+            document.createElement("a");
+
+
+        const date =
+            new Date();
+
+
+        const fileName =
+            "Shopping-List-Backup-" +
+            date.getFullYear() +
+            "-" +
+            String(
+                date.getMonth()+1
+            ).padStart(2,"0") +
+            "-" +
+            String(
+                date.getDate()
+            ).padStart(2,"0") +
+            ".json";
+
+
+        link.href = url;
+
+        link.download =
+            fileName;
+
+
+        link.click();
+
+
+        URL.revokeObjectURL(url);
+
+    }
+);
+
+
+/* RESTORE BUTTON */
+
+document.getElementById(
+    "restoreBtn"
+).addEventListener(
+    "click",
+    ()=>{
+
+        document.getElementById(
+            "fileInput"
+        ).click();
+
+    }
+);
+
+
+/* RESTORE FILE */
+
+document.getElementById(
+    "fileInput"
+).addEventListener(
+    "change",
+    event =>{
+
+        const file =
+            event.target.files[0];
+
+
+        if(!file){
+
+            return;
+
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload = ()=>{
+
+            try{
+
+                const backup =
+                    JSON.parse(
+                        reader.result
+                    );
+
+
+                if(
+                    !backup.data ||
+                    !Array.isArray(
+                        backup.data.rows
+                    )
+                ){
+
+                    throw new Error();
+
+                }
+
+
+                if(
+                    confirm(
+                        "Restore this backup? The current working list will be replaced."
+                    )
+                ){
+
+                    if(
+                        Array.isArray(
+                            backup.itemMaster
+                        ) &&
+                        backup.itemMaster.length
+                    ){
+
+                        itemMaster =
+                            backup.itemMaster;
+
+                    }
+
+
+                    saveItems();
+
+
+                    localStorage.setItem(
+                        DATA_KEY,
+                        JSON.stringify(
+                            backup.data
+                        )
+                    );
+
+
+                    loadData();
+
+                    render();
+
+
+                    alert(
+                        "Backup restored successfully."
+                    );
+
+                }
+
+            }
+
+            catch(error){
+
+                alert(
+                    "This is not a valid Shopping List backup file."
+                );
+
+            }
+
+
+            event.target.value = "";
+
+        };
+
+
+        reader.readAsText(file);
+
+    }
+);
+
+
+/* START */
+
+loadData();
+
+render();
+
+
+/* SERVICE WORKER */
+
+if(
+    "serviceWorker" in navigator
+){
+
+    window.addEventListener(
+        "load",
+        ()=>{
+            navigator.serviceWorker.register(
+                "./service-worker.js"
+            ).catch(
+                ()=>{}
+            );
+        }
+    );
+
+}
+
+</script>
+
+</body>
+</html>
