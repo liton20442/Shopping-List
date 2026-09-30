@@ -14,305 +14,352 @@ body{
   margin:0;
   font-family:Arial,"Noto Sans Bengali",sans-serif;
   background:#f3f7f6;
-  color:#17312d
+  color:#17312d;
+  font-size:16px;
 }
 
 .page{
   max-width:900px;
   margin:auto;
-  padding:14px
+  padding:14px;
 }
 
 h1{
-  font-size:24px;
-  margin:4px 0 14px
+  font-size:27px;
+  margin:4px 0 16px;
 }
 
 .card{
   background:#fff;
   border-radius:14px;
-  padding:14px;
-  margin-bottom:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,.08)
+  padding:15px;
+  margin-bottom:13px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
 .summary{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:8px
+  gap:9px;
 }
 
 .summary-item{
   background:#e8f5f2;
   border-radius:10px;
-  padding:10px;
-  text-align:center
+  padding:11px;
+  text-align:center;
 }
 
 .summary-item span{
   display:block;
-  font-size:12px
+  font-size:14px;
 }
 
 .summary-item strong{
   display:block;
-  font-size:17px;
-  margin-top:4px
+  font-size:19px;
+  margin-top:5px;
 }
 
 .actions{
   display:flex;
   flex-wrap:wrap;
-  gap:8px
+  gap:9px;
 }
 
 button{
   border:0;
   border-radius:9px;
-  padding:10px 13px;
+  padding:11px 14px;
   cursor:pointer;
   background:#0f766e;
-  color:white
+  color:white;
+  font-size:15px;
 }
 
 button.secondary{
-  background:#64748b
+  background:#64748b;
 }
 
 button.danger{
-  background:#dc2626
+  background:#dc2626;
 }
 
 button.light{
   background:#e2e8f0;
-  color:#17312d
+  color:#17312d;
 }
 
 input{
   width:100%;
   border:1px solid #cbd5e1;
   border-radius:7px;
-  padding:8px;
-  background:#fff
+  padding:9px 8px;
+  background:#fff;
+  font-size:16px;
 }
 
 .people{
-  max-width:180px
+  max-width:180px;
 }
 
 .table-wrap{
-  overflow-x:auto
+  overflow-x:auto;
 }
 
 table{
   width:100%;
   border-collapse:collapse;
-  background:#fff
+  background:#fff;
 }
 
 th,td{
   border:1px solid #d8e2df;
-  padding:8px 6px;
-  text-align:left
+  padding:9px 7px;
+  text-align:left;
 }
 
 th{
   background:#e7f3f0;
-  font-size:14px
+  font-size:16px;
 }
 
 td{
-  font-size:14px
+  font-size:16px;
 }
 
-/* মূল টেবিল */
+
+/* =========================
+   MAIN TABLE
+   ========================= */
+
 .main-table{
-  min-width:650px
+  width:100%;
+  min-width:650px;
+  table-layout:fixed;
 }
 
-/* আইটেম = ৩০% */
+/* আইটেম ৩০% */
 .main-table th:nth-child(1),
 .main-table td:nth-child(1){
-  width:30%
+  width:30%;
 }
 
-/* পরিমাণ ছোট */
+/* পরিমাণ একটু বড় */
 .main-table th:nth-child(2),
 .main-table td:nth-child(2){
-  width:10%
+  width:12%;
 }
 
-/* একক ছোট */
+/* একক একটু বড় */
 .main-table th:nth-child(3),
 .main-table td:nth-child(3){
-  width:9%
+  width:11%;
 }
 
-/* দর ছোট */
+/* দর একটু বড় */
 .main-table th:nth-child(4),
 .main-table td:nth-child(4){
-  width:13%
+  width:15%;
 }
 
 /* মোট */
 .main-table th:nth-child(5),
 .main-table td:nth-child(5){
-  width:28%
+  width:22%;
 }
 
 /* বাদ দিন */
 .main-table th:nth-child(6),
 .main-table td:nth-child(6){
   width:10%;
-  text-align:center
+  text-align:center;
 }
 
 .main-table input{
-  padding:8px 6px
+  width:100%;
+  padding:9px 7px;
+  font-size:16px;
 }
 
 .main-table td:nth-child(5){
   white-space:nowrap;
-  font-weight:600
+  font-weight:600;
 }
 
 .main-table td:last-child{
-  text-align:center
+  text-align:center;
 }
 
 .remove{
   background:#dc2626;
-  padding:6px 9px
+  padding:7px 10px;
+  font-size:15px;
 }
 
 .total-box{
   display:flex;
   justify-content:flex-end;
-  margin-top:12px;
-  font-size:18px;
-  font-weight:bold
+  margin-top:13px;
+  font-size:21px;
+  font-weight:bold;
 }
 
-/* View Page */
+
+/* =========================
+   VIEW PAGE
+   ========================= */
+
 .view-page{
-  display:none
+  display:none;
 }
 
 .view-header{
   display:flex;
   align-items:center;
-  gap:10px;
-  margin-bottom:12px
+  gap:11px;
+  margin-bottom:13px;
 }
 
 .back{
-  background:#475569
+  background:#475569;
 }
 
 .view-title{
   margin:0;
-  font-size:21px
+  font-size:24px;
 }
 
 .view-table{
   width:100%;
   min-width:0;
-  table-layout:fixed
+  table-layout:fixed;
 }
 
+/* View-এ আইটেম একটু ছোট */
 .view-table th:nth-child(1),
 .view-table td:nth-child(1){
-  width:42%
+  width:34%;
 }
 
+/* পরিমাণ */
 .view-table th:nth-child(2),
 .view-table td:nth-child(2){
-  width:13%
+  width:16%;
 }
 
+/* একক */
 .view-table th:nth-child(3),
 .view-table td:nth-child(3){
-  width:12%
+  width:14%;
 }
 
+/* দর */
 .view-table th:nth-child(4),
 .view-table td:nth-child(4){
-  width:15%
+  width:17%;
 }
 
+/* মোট */
 .view-table th:nth-child(5),
 .view-table td:nth-child(5){
-  width:18%
+  width:19%;
 }
 
 .view-table td,
 .view-table th{
-  padding:8px 5px;
-  font-size:13px
+  padding:9px 6px;
+  font-size:15px;
 }
 
 .view-table td:nth-child(n+2),
 .view-table th:nth-child(n+2){
-  white-space:nowrap
+  white-space:nowrap;
 }
 
 .view-table td:first-child{
-  overflow-wrap:anywhere
+  overflow-wrap:anywhere;
 }
 
 .empty{
   text-align:center;
-  padding:18px;
-  color:#64748b
+  padding:20px;
+  color:#64748b;
+  font-size:16px;
 }
+
+
+/* =========================
+   MOBILE
+   ========================= */
 
 @media(max-width:520px){
 
   .page{
-    padding:10px
+    padding:10px;
   }
 
   h1{
-    font-size:22px
+    font-size:25px;
+  }
+
+  .card{
+    padding:12px;
   }
 
   .summary{
-    gap:5px
+    gap:6px;
+  }
+
+  .summary-item{
+    padding:9px 5px;
   }
 
   .summary-item span{
-    font-size:10px
+    font-size:12px;
   }
 
   .summary-item strong{
-    font-size:15px
+    font-size:17px;
   }
 
   .actions button{
     flex:1 1 30%;
-    padding:9px 7px;
-    font-size:13px
+    padding:10px 7px;
+    font-size:14px;
   }
 
   .main-table{
-    min-width:0
+    min-width:650px;
   }
 
-  .main-table th,
+  .main-table th{
+    font-size:15px;
+    padding:9px 6px;
+  }
+
   .main-table td{
-    font-size:12px;
-    padding:7px 4px
+    font-size:16px;
+    padding:8px 5px;
   }
 
   .main-table input{
-    font-size:12px;
-    padding:7px 4px
+    font-size:16px;
+    padding:9px 6px;
   }
 
-  .view-table td,
-  .view-table th{
-    font-size:12px;
-    padding:7px 4px
+  .view-title{
+    font-size:21px;
+  }
+
+  .view-table th,
+  .view-table td{
+    font-size:15px;
+    padding:9px 5px;
+  }
+
+  .total-box{
+    font-size:20px;
   }
 }
 </style>
@@ -325,6 +372,7 @@ td{
 <h1>Shopping List</h1>
 
 <div class="card">
+
 <div class="summary">
 
 <div class="summary-item">
@@ -352,29 +400,20 @@ value="1">
 </div>
 </div>
 
+
 <div class="card">
 
 <div class="actions">
 
-<button id="addBtn">
-Add Item
-</button>
+<button id="addBtn">Add Item</button>
 
-<button id="viewBtn" class="secondary">
-View
-</button>
+<button id="viewBtn" class="secondary">View</button>
 
-<button id="backupBtn" class="light">
-Backup
-</button>
+<button id="backupBtn" class="light">Backup</button>
 
-<button id="restoreBtn" class="light">
-Restore
-</button>
+<button id="restoreBtn" class="light">Restore</button>
 
-<button id="clearBtn" class="danger">
-Clear
-</button>
+<button id="clearBtn" class="danger">Clear</button>
 
 <input
 id="restoreFile"
@@ -385,6 +424,7 @@ hidden>
 </div>
 
 </div>
+
 
 <div class="card">
 
@@ -475,29 +515,35 @@ let rows=saved.rows;
 let members=saved.members;
 
 
-/* বাংলা/আরবি সংখ্যা থেকে ইংরেজি সংখ্যা */
+/* সংখ্যা ঠিক করা */
 function normalizeNumber(v){
 
   return String(v??"")
-    .replace(/[০-৯]/g,d=>"০১২৩৪৫৬৭৮৯".indexOf(d))
-    .replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d))
+    .replace(/[০-৯]/g,d=>
+      "০১২৩৪৫৬৭৮৯".indexOf(d)
+    )
+    .replace(/[٠-٩]/g,d=>
+      "٠١٢٣٤٥٦٧٨٩".indexOf(d)
+    )
     .replace(/,/g,"")
     .trim();
 
 }
 
 
-/* সংখ্যা */
+/* Number */
 function num(v){
 
-  let n=parseFloat(normalizeNumber(v));
+  let n=parseFloat(
+    normalizeNumber(v)
+  );
 
   return Number.isFinite(n)?n:0;
 
 }
 
 
-/* টাকা বাংলা অঙ্কে */
+/* বাংলা টাকার সংখ্যা */
 function money(v){
 
   return Number(v||0).toLocaleString(
@@ -511,7 +557,7 @@ function money(v){
 }
 
 
-/* Item sorting */
+/* Item Sort */
 function sortItems(a){
 
   return [...a].sort(
@@ -519,25 +565,31 @@ function sortItems(a){
       String(x.name).localeCompare(
         String(y.name),
         "bn",
-        {sensitivity:"base"}
+        {
+          sensitivity:"base"
+        }
       )
   );
 
 }
 
 
-/* Item Master Load */
+/* Load Items */
 function loadItems(){
 
   try{
 
     let x=JSON.parse(
-      localStorage.getItem(ITEMS_KEY)
+      localStorage.getItem(
+        ITEMS_KEY
+      )
     );
 
     return Array.isArray(x)
       ?sortItems(
-        x.filter(a=>a&&a.name)
+        x.filter(
+          a=>a&&a.name
+        )
       )
       :[];
 
@@ -550,10 +602,11 @@ function loadItems(){
 }
 
 
-/* Item Master Save */
+/* Save Items */
 function saveItems(){
 
-  itemMaster=sortItems(itemMaster);
+  itemMaster=
+    sortItems(itemMaster);
 
   localStorage.setItem(
     ITEMS_KEY,
@@ -563,16 +616,21 @@ function saveItems(){
 }
 
 
-/* Shopping Data Load */
+/* Load Data */
 function loadData(){
 
   try{
 
     let x=JSON.parse(
-      localStorage.getItem(DATA_KEY)
+      localStorage.getItem(
+        DATA_KEY
+      )
     );
 
-    if(x&&Array.isArray(x.rows)){
+    if(
+      x&&
+      Array.isArray(x.rows)
+    ){
 
       return{
         members:x.members||1,
@@ -591,7 +649,7 @@ function loadData(){
 }
 
 
-/* Shopping Data Save */
+/* Save Data */
 function saveData(){
 
   localStorage.setItem(
@@ -606,16 +664,24 @@ function saveData(){
 }
 
 
-/* Item list */
+/* Item List */
 function updateList(){
 
-  let d=document.getElementById("itemList");
+  let d=
+    document.getElementById(
+      "itemList"
+    );
 
   d.innerHTML="";
 
-  sortItems(itemMaster).forEach(x=>{
+  sortItems(
+    itemMaster
+  ).forEach(x=>{
 
-    let o=document.createElement("option");
+    let o=
+      document.createElement(
+        "option"
+      );
 
     o.value=x.name;
 
@@ -626,12 +692,15 @@ function updateList(){
 }
 
 
-/* Save new item */
+/* Save New Item */
 function saveNewItem(i){
 
   let r=rows[i];
 
-  let n=String(r.item||"").trim();
+  let n=
+    String(
+      r.item||""
+    ).trim();
 
   if(!n)return;
 
@@ -648,7 +717,9 @@ function saveNewItem(i){
 
     itemMaster.push({
       name:n,
-      unit:String(r.unit||"").trim()
+      unit:String(
+        r.unit||""
+      ).trim()
     });
 
     saveItems();
@@ -670,6 +741,7 @@ function addRow(){
   });
 
   saveData();
+
   render();
 
   focusCell(
@@ -695,21 +767,27 @@ function removeRow(i){
 /* Recalculate */
 function recalc(){
 
-  let t=rows.reduce(
-    (s,r)=>
-      s+
-      num(r.qty)*
-      num(r.rate),
-    0
-  );
+  let t=
+    rows.reduce(
+      (s,r)=>
+        s+
+        num(r.qty)*
+        num(r.rate),
+      0
+    );
+
 
   document.getElementById(
     "grandTotal"
-  ).textContent=money(t);
+  ).textContent=
+    money(t);
+
 
   document.getElementById(
     "bottomTotal"
-  ).textContent=money(t);
+  ).textContent=
+    money(t);
+
 
   document.getElementById(
     "average"
@@ -722,24 +800,29 @@ function recalc(){
 }
 
 
-/* নির্দিষ্ট সেলে কার্সর */
-function focusCell(rowIndex,colIndex){
+/* Focus Cell */
+function focusCell(
+  rowIndex,
+  colIndex
+){
 
   setTimeout(()=>{
 
-    let row=document.querySelector(
-      '#tableBody tr[data-row-index="'+
-      rowIndex+
-      '"]'
-    );
+    let row=
+      document.querySelector(
+        '#tableBody tr[data-row-index="'+
+        rowIndex+
+        '"]'
+      );
 
     if(!row)return;
 
-    let input=row.querySelector(
-      'input[data-col-index="'+
-      colIndex+
-      '"]'
-    );
+    let input=
+      row.querySelector(
+        'input[data-col-index="'+
+        colIndex+
+        '"]'
+      );
 
     if(input){
 
@@ -753,28 +836,25 @@ function focusCell(rowIndex,colIndex){
 }
 
 
-/*
-Enter Navigation
-
-আইটেম → পরিমাণ
-পরিমাণ → একক
-একক → দর
-দর → পরের সারির আইটেম
-
-শেষ সারির দর → নতুন সারি
-*/
+/* Enter Navigation */
 function handleEnter(
   e,
   rowIndex,
   colIndex
 ){
 
-  if(e.key!=="Enter")return;
+  if(
+    e.key!=="Enter"
+  )return;
 
   e.preventDefault();
+
   e.stopPropagation();
 
-  if(colIndex<3){
+
+  if(
+    colIndex<3
+  ){
 
     focusCell(
       rowIndex,
@@ -783,7 +863,10 @@ function handleEnter(
 
   }else{
 
-    if(rowIndex===rows.length-1){
+    if(
+      rowIndex===
+      rows.length-1
+    ){
 
       rows.push({
         item:"",
@@ -815,16 +898,18 @@ function handleEnter(
 }
 
 
-/* Render Main Table */
+/* Render */
 function render(){
 
   updateList();
 
-  let b=document.getElementById(
-    "tableBody"
-  );
+  let b=
+    document.getElementById(
+      "tableBody"
+    );
 
   b.innerHTML="";
+
 
   if(!rows.length){
 
@@ -838,193 +923,233 @@ function render(){
   }
 
 
-  rows.forEach((r,i)=>{
+  rows.forEach(
+    (r,i)=>{
 
-    let tr=document.createElement("tr");
+      let tr=
+        document.createElement(
+          "tr"
+        );
 
-    tr.dataset.rowIndex=i;
-
-
-    /* Item */
-    let a=document.createElement("input");
-
-    a.type="text";
-    a.setAttribute(
-      "list",
-      "itemList"
-    );
-
-    a.placeholder="আইটেম লিখুন";
-    a.value=r.item||"";
-
-    a.dataset.colIndex="0";
-
-    a.oninput=e=>{
-
-      r.item=e.target.value;
-
-      saveNewItem(i);
-
-      saveData();
-
-    };
+      tr.dataset.rowIndex=i;
 
 
-    /* Quantity */
-    let q=document.createElement("input");
+      /* Item */
 
-    q.type="text";
-    q.inputMode="decimal";
+      let a=
+        document.createElement(
+          "input"
+        );
 
-    q.value=r.qty||"";
+      a.type="text";
 
-    q.dataset.colIndex="1";
-
-    q.oninput=e=>{
-
-      r.qty=e.target.value;
-
-      saveData();
-
-      recalc();
-
-      updateRowTotal(i);
-
-    };
-
-
-    /* Unit */
-    let u=document.createElement("input");
-
-    u.type="text";
-
-    u.value=r.unit||"";
-
-    u.dataset.colIndex="2";
-
-    u.oninput=e=>{
-
-      r.unit=e.target.value;
-
-      saveNewItem(i);
-
-      saveData();
-
-    };
-
-
-    /* Rate */
-    let rate=document.createElement("input");
-
-    rate.type="text";
-    rate.inputMode="decimal";
-
-    rate.value=r.rate||"";
-
-    rate.dataset.colIndex="3";
-
-    rate.oninput=e=>{
-
-      r.rate=e.target.value;
-
-      saveData();
-
-      recalc();
-
-      updateRowTotal(i);
-
-    };
-
-
-    /* Enter navigation */
-
-    a.onkeydown=e=>
-      handleEnter(
-        e,i,0
+      a.setAttribute(
+        "list",
+        "itemList"
       );
 
-    q.onkeydown=e=>
-      handleEnter(
-        e,i,1
-      );
+      a.placeholder=
+        "আইটেম লিখুন";
 
-    u.onkeydown=e=>
-      handleEnter(
-        e,i,2
-      );
+      a.value=
+        r.item||"";
 
-    rate.onkeydown=e=>
-      handleEnter(
-        e,i,3
-      );
+      a.dataset.colIndex="0";
 
 
-    /* Cells */
+      a.oninput=e=>{
 
-    let cells=[
-      a,
-      q,
-      u,
-      rate
-    ];
+        r.item=
+          e.target.value;
 
+        saveNewItem(i);
 
-    cells.forEach(
-      (el,j)=>{
+        saveData();
 
-        let td=
-          document.createElement("td");
-
-        td.appendChild(el);
-
-        tr.appendChild(td);
+      };
 
 
-        if(j===3){
+      /* Quantity */
 
-          let td2=
-            document.createElement("td");
+      let q=
+        document.createElement(
+          "input"
+        );
 
-          td2.id=
-            "rowTotal-"+i;
+      q.type="text";
 
-          td2.textContent=
-            "৳ "+
-            money(
-              num(r.qty)*
-              num(r.rate)
+      q.inputMode=
+        "decimal";
+
+      q.value=
+        r.qty||"";
+
+      q.dataset.colIndex="1";
+
+
+      q.oninput=e=>{
+
+        r.qty=
+          e.target.value;
+
+        saveData();
+
+        recalc();
+
+        updateRowTotal(i);
+
+      };
+
+
+      /* Unit */
+
+      let u=
+        document.createElement(
+          "input"
+        );
+
+      u.type="text";
+
+      u.value=
+        r.unit||"";
+
+      u.dataset.colIndex="2";
+
+
+      u.oninput=e=>{
+
+        r.unit=
+          e.target.value;
+
+        saveNewItem(i);
+
+        saveData();
+
+      };
+
+
+      /* Rate */
+
+      let rate=
+        document.createElement(
+          "input"
+        );
+
+      rate.type="text";
+
+      rate.inputMode=
+        "decimal";
+
+      rate.value=
+        r.rate||"";
+
+      rate.dataset.colIndex="3";
+
+
+      rate.oninput=e=>{
+
+        r.rate=
+          e.target.value;
+
+        saveData();
+
+        recalc();
+
+        updateRowTotal(i);
+
+      };
+
+
+      /* Enter */
+
+      a.onkeydown=e=>
+        handleEnter(e,i,0);
+
+      q.onkeydown=e=>
+        handleEnter(e,i,1);
+
+      u.onkeydown=e=>
+        handleEnter(e,i,2);
+
+      rate.onkeydown=e=>
+        handleEnter(e,i,3);
+
+
+      /* Cells */
+
+      let cells=[
+        a,
+        q,
+        u,
+        rate
+      ];
+
+
+      cells.forEach(
+        (el,j)=>{
+
+          let td=
+            document.createElement(
+              "td"
             );
 
-          tr.appendChild(td2);
+          td.appendChild(el);
+
+          tr.appendChild(td);
+
+
+          if(j===3){
+
+            let td2=
+              document.createElement(
+                "td"
+              );
+
+            td2.id=
+              "rowTotal-"+i;
+
+            td2.textContent=
+              "৳ "+
+              money(
+                num(r.qty)*
+                num(r.rate)
+              );
+
+            tr.appendChild(td2);
+
+          }
 
         }
-
-      }
-    );
+      );
 
 
-    /* Remove button */
+      /* Remove */
 
-    let td=
-      document.createElement("td");
+      let td=
+        document.createElement(
+          "td"
+        );
 
-    let bt=
-      document.createElement("button");
+      let bt=
+        document.createElement(
+          "button"
+        );
 
-    bt.className="remove";
+      bt.className="remove";
 
-    bt.textContent="✕";
+      bt.textContent="✕";
 
-    bt.onclick=()=>
-      removeRow(i);
+      bt.onclick=()=>
+        removeRow(i);
 
-    td.appendChild(bt);
+      td.appendChild(bt);
 
-    tr.appendChild(td);
+      tr.appendChild(td);
 
-    b.appendChild(tr);
+      b.appendChild(tr);
 
-  });
+    }
+  );
 
 
   recalc();
@@ -1032,7 +1157,7 @@ function render(){
 }
 
 
-/* Update only row total */
+/* Row Total */
 function updateRowTotal(i){
 
   let cell=
@@ -1054,7 +1179,7 @@ function updateRowTotal(i){
 }
 
 
-/* Escape HTML */
+/* Escape */
 function esc(v){
 
   return String(v).replace(
@@ -1083,9 +1208,10 @@ function showView(){
   ).style.display="block";
 
 
-  let b=document.getElementById(
-    "viewBody"
-  );
+  let b=
+    document.getElementById(
+      "viewBody"
+    );
 
   b.innerHTML="";
 
@@ -1107,7 +1233,10 @@ function showView(){
   rows.forEach(r=>{
 
     let tr=
-      document.createElement("tr");
+      document.createElement(
+        "tr"
+      );
+
 
     tr.innerHTML=
       "<td>"+
@@ -1133,6 +1262,7 @@ function showView(){
       )+
       "</td>";
 
+
     b.appendChild(tr);
 
   });
@@ -1140,7 +1270,7 @@ function showView(){
 }
 
 
-/* Back */
+/* Hide View */
 function hideView(){
 
   document.getElementById(
@@ -1159,7 +1289,8 @@ document.getElementById(
   "members"
 ).oninput=e=>{
 
-  members=e.target.value;
+  members=
+    e.target.value;
 
   saveData();
 
@@ -1168,25 +1299,28 @@ document.getElementById(
 };
 
 
-/* Buttons */
-
+/* Add */
 document.getElementById(
   "addBtn"
-).onclick=addRow;
+).onclick=
+  addRow;
 
 
+/* View */
 document.getElementById(
   "viewBtn"
-).onclick=showView;
+).onclick=
+  showView;
 
 
+/* Back */
 document.getElementById(
   "backBtn"
-).onclick=hideView;
+).onclick=
+  hideView;
 
 
 /* Clear */
-
 document.getElementById(
   "clearBtn"
 ).onclick=()=>{
@@ -1215,7 +1349,6 @@ document.getElementById(
 
 
 /* Backup */
-
 document.getElementById(
   "backupBtn"
 ).onclick=()=>{
@@ -1247,16 +1380,22 @@ document.getElementById(
         )
       ],
       {
-        type:"application/json"
+        type:
+          "application/json"
       }
     );
 
 
   let url=
-    URL.createObjectURL(blob);
+    URL.createObjectURL(
+      blob
+    );
+
 
   let a=
-    document.createElement("a");
+    document.createElement(
+      "a"
+    );
 
   a.href=url;
 
@@ -1276,7 +1415,6 @@ document.getElementById(
 
 
 /* Restore */
-
 document.getElementById(
   "restoreBtn"
 ).onclick=()=>
@@ -1289,7 +1427,8 @@ document.getElementById(
   "restoreFile"
 ).onchange=e=>{
 
-  let f=e.target.files[0];
+  let f=
+    e.target.files[0];
 
   if(!f)return;
 
@@ -1333,7 +1472,8 @@ document.getElementById(
         )
       ){
 
-        rows=x.data.rows;
+        rows=
+          x.data.rows;
 
         members=
           x.data.members||1;
@@ -1341,7 +1481,8 @@ document.getElementById(
 
         document.getElementById(
           "members"
-        ).value=members;
+        ).value=
+          members;
 
 
         saveData();
@@ -1360,7 +1501,6 @@ document.getElementById(
         );
 
       }
-
 
     }catch(err){
 
@@ -1381,15 +1521,18 @@ document.getElementById(
 };
 
 
-/* Initial */
+/* Start */
+
 document.getElementById(
   "members"
-).value=members||1;
+).value=
+  members||1;
 
 render();
 
 
 /* Service Worker */
+
 if(
   "serviceWorker" in navigator
 ){
