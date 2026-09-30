@@ -4,45 +4,118 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0f766e">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Shopping List">
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="./manifest.json">
 <title>Shopping List</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#f3f7f6;color:#17211f}.container{max-width:900px;margin:auto;padding:12px 10px 30px}.header{background:#0f766e;color:#fff;border-radius:18px;padding:18px 16px;margin-bottom:12px;box-shadow:0 4px 14px rgba(0,0,0,.08)}.header h1{margin:0;font-size:27px}.header p{margin:5px 0 0;font-size:14px;opacity:.92}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}.card{background:#fff;border-radius:14px;padding:11px 10px;border:1px solid #dfe9e7;box-shadow:0 2px 8px rgba(0,0,0,.04);min-width:0}.card label{display:block;font-size:13px;color:#63706d;margin-bottom:5px;line-height:1.2}.card input{width:100%;border:0;outline:0;font-size:20px;font-weight:700;background:transparent;color:#17211f;padding:0}.total input{color:#0f766e}.average input{color:#7c3aed}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 12px}button{border:0;border-radius:11px;padding:11px 14px;font-size:15px;font-weight:700;cursor:pointer}.add{background:#0f766e;color:#fff}.view{background:#7c3aed;color:#fff}.backup{background:#2563eb;color:#fff}.restore{background:#475569;color:#fff}.clear{background:#dc2626;color:#fff}.table-wrap{background:#fff;border-radius:16px;border:1px solid #dfe9e7;overflow-x:auto;box-shadow:0 2px 10px rgba(0,0,0,.04)}table{width:100%;min-width:720px;border-collapse:collapse}th{background:#e8f2f0;color:#30413d;font-size:13px;padding:10px 7px;text-align:left;white-space:nowrap}td{border-top:1px solid #edf1f0;padding:7px}td input{width:100%;min-height:42px;border:1px solid #ccd8d5;border-radius:9px;padding:8px;font-size:15px;background:#fff}td.amount{font-weight:700;color:#0f766e;white-space:nowrap}.remove{background:#fee2e2;color:#b91c1c;padding:8px 10px}.note{font-size:12px;color:#687571;margin-top:10px;line-height:1.5}#viewPage{display:none}.view-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}.back{background:#475569;color:#fff}.view-title{font-size:23px;font-weight:800;margin:0}.view-table{min-width:650px}.view-table td,.view-table th{padding:10px 8px}.view-total{margin-top:12px;background:#fff;border:1px solid #dfe9e7;border-radius:16px;padding:14px;display:grid;gap:8px}.total-line{display:flex;justify-content:space-between;font-size:16px}.total-line strong{font-size:18px;color:#0f766e}.empty{padding:25px;text-align:center;color:#687571;background:#fff}@media(max-width:650px){.container{padding:10px 8px 24px}.summary{grid-template-columns:repeat(3,1fr);gap:6px}.card{padding:10px 7px;border-radius:12px}.card label{font-size:11px}.card input{font-size:17px}button{flex:1;min-width:105px}.header h1{font-size:24px}.header p{font-size:13px}.view-title{font-size:20px}}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,"Noto Sans Bengali",sans-serif;background:#f3f7f6;color:#17312d}
+.page{max-width:900px;margin:auto;padding:14px}
+h1{font-size:24px;margin:4px 0 14px}
+.card{background:#fff;border-radius:14px;padding:14px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.summary-item{background:#e8f5f2;border-radius:10px;padding:10px;text-align:center}
+.summary-item span{display:block;font-size:12px}
+.summary-item strong{display:block;font-size:17px;margin-top:4px}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+button{border:0;border-radius:9px;padding:10px 13px;cursor:pointer;background:#0f766e;color:white}
+button.secondary{background:#64748b}
+button.danger{background:#dc2626}
+button.light{background:#e2e8f0;color:#17312d}
+input{width:100%;border:1px solid #cbd5e1;border-radius:7px;padding:8px;background:#fff}
+.people{max-width:180px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:#fff}
+th,td{border:1px solid #d8e2df;padding:8px 6px;text-align:left}
+th{background:#e7f3f0;font-size:14px}
+td{font-size:14px}
+.main-table{min-width:650px}
+.main-table th:nth-child(1){width:30%}.main-table th:nth-child(2){width:14%}.main-table th:nth-child(3){width:14%}.main-table th:nth-child(4){width:17%}.main-table th:nth-child(5){width:17%}.main-table th:nth-child(6){width:8%;text-align:center}
+.main-table td:last-child{text-align:center}
+.remove{background:#dc2626;padding:6px 9px}
+.total-box{display:flex;justify-content:flex-end;margin-top:12px;font-size:18px;font-weight:bold}
+.view-page{display:none}
+.view-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.back{background:#475569}.view-title{margin:0;font-size:21px}
+
+/* View table: narrower quantity/unit/rate columns for mobile */
+.view-table{width:100%;min-width:0;table-layout:fixed}
+.view-table th:nth-child(1),.view-table td:nth-child(1){width:42%}
+.view-table th:nth-child(2),.view-table td:nth-child(2){width:13%}
+.view-table th:nth-child(3),.view-table td:nth-child(3){width:12%}
+.view-table th:nth-child(4),.view-table td:nth-child(4){width:15%}
+.view-table th:nth-child(5),.view-table td:nth-child(5){width:18%}
+.view-table td,.view-table th{padding:8px 5px;font-size:13px}
+.view-table td:nth-child(n+2),.view-table th:nth-child(n+2){white-space:nowrap}
+.view-table td:first-child{overflow-wrap:anywhere}
+.empty{text-align:center;padding:18px;color:#64748b}
+@media(max-width:520px){
+.page{padding:10px}h1{font-size:22px}.summary{gap:5px}.summary-item span{font-size:10px}.summary-item strong{font-size:15px}
+.actions button{flex:1 1 30%;padding:9px 7px;font-size:13px}
+.view-table td,.view-table th{font-size:12px;padding:7px 4px}
+}
 </style>
 </head>
 <body>
-<div class="container">
-<div id="mainPage">
-<div class="header"><h1>Shopping List</h1><p>Event shopping list and automatic cost calculator</p></div>
-<div class="summary"><div class="card"><label>Members / People</label><input id="members" type="text" inputmode="numeric" placeholder="20"></div><div class="card total"><label>Total Cost (৳)</label><input id="grandTotal" type="text" readonly value="0"></div><div class="card average"><label>Average per Person (৳)</label><input id="average" type="text" readonly value="0"></div></div>
-<div class="toolbar"><button class="add" id="addBtn">＋ Add Item</button><button class="view" id="viewBtn">👁 View</button><button class="backup" id="backupBtn">💾 Backup</button><button class="restore" id="restoreBtn">📂 Restore</button><button class="clear" id="clearBtn">🗑 Clear</button><input id="fileInput" type="file" accept=".json,application/json" hidden></div>
-<div class="table-wrap"><table><thead><tr><th>আইটেম</th><th>পরিমাণ</th><th>একক</th><th>দর (৳)</th><th>মোট (৳)</th><th>বাদ দিন</th></tr></thead><tbody id="itemsBody"></tbody></table></div>
-<div class="note">নতুন আইটেম লিখলে সেটি স্বয়ংক্রিয়ভাবে সেভ হবে এবং পরবর্তীতে আইটেম তালিকায় দেখা যাবে।</div>
+<div class="page" id="mainPage">
+<h1>Shopping List</h1>
+<div class="card"><div class="summary">
+<div class="summary-item"><span>Members / People</span><strong><input class="people" id="members" type="text" inputmode="numeric" value="1"></strong></div>
+<div class="summary-item"><span>Total Cost (৳)</span><strong id="grandTotal">0</strong></div>
+<div class="summary-item"><span>Average per Person (৳)</span><strong id="average">0</strong></div>
+</div></div>
+<div class="card"><div class="actions">
+<button id="addBtn">Add Item</button><button id="viewBtn" class="secondary">View</button><button id="backupBtn" class="light">Backup</button><button id="restoreBtn" class="light">Restore</button><button id="clearBtn" class="danger">Clear</button>
+<input id="restoreFile" type="file" accept=".json,application/json" hidden>
+</div></div>
+<div class="card"><div class="table-wrap"><table class="main-table"><thead><tr>
+<th>আইটেম</th><th>পরিমাণ</th><th>একক</th><th>দর (৳)</th><th>মোট (৳)</th><th>বাদ দিন</th>
+</tr></thead><tbody id="tableBody"></tbody></table></div>
+<div class="total-box">Grand Total: ৳ <span id="bottomTotal">0</span></div></div>
 </div>
-<div id="viewPage"><div class="view-header"><button class="back" id="backBtn">← Back</button><h2 class="view-title">Total Shopping List</h2></div><div class="table-wrap"><table class="view-table"><thead><tr><th>আইটেম</th><th>পরিমাণ</th><th>একক</th><th>দর (৳)</th><th>মোট (৳)</th></tr></thead><tbody id="viewBody"></tbody></table></div><div class="view-total"><div class="total-line"><span>Members / People</span><strong id="viewMembers">0</strong></div><div class="total-line"><span>Total Cost (৳)</span><strong id="viewGrandTotal">0</strong></div><div class="total-line"><span>Average per Person (৳)</span><strong id="viewAverage">0</strong></div></div></div>
+
+<div class="page view-page" id="viewPage">
+<div class="view-header"><button class="back" id="backBtn">← Back</button><h2 class="view-title">Total Shopping List</h2></div>
+<div class="card"><div class="table-wrap"><table class="view-table"><thead><tr>
+<th>আইটেম</th><th>পরিমাণ</th><th>একক</th><th>দর (৳)</th><th>মোট (৳)</th>
+</tr></thead><tbody id="viewBody"></tbody></table></div></div>
 </div>
+
+<datalist id="itemList"></datalist>
 <script>
-const DATA_KEY="shoppingListDataV2",ITEMS_KEY="shoppingListItemsV3";let itemMaster=loadItems(),rows=[];
-function sortItems(list){return list.slice().sort((a,b)=>a.name.localeCompare(b.name,"bn"))}
-function loadItems(){try{const s=JSON.parse(localStorage.getItem(ITEMS_KEY));if(Array.isArray(s))return sortItems(s.filter(x=>x&&x.name))}catch(e){}return[]}
-function saveItems(){itemMaster=sortItems(itemMaster.filter(x=>x&&x.name));localStorage.setItem(ITEMS_KEY,JSON.stringify(itemMaster))}
-function normalizeNumber(v){if(v==null)return 0;const s=String(v).replace(/[০-৯]/g,d=>String("০১২৩৪৫৬৭৮৯".indexOf(d))).replace(/[٠-٩]/g,d=>String("٠١٢٣٤٥٦٧٨٩".indexOf(d))).replace(/,/g,"").trim();const n=parseFloat(s);return Number.isFinite(n)?n:0}
-function loadData(){try{const s=JSON.parse(localStorage.getItem(DATA_KEY));if(s&&Array.isArray(s.rows)){document.getElementById("members").value=s.members||"";rows=s.rows;return}}catch(e){}rows=[{item:"",qty:"",unit:"",rate:""}]}
-function saveData(){localStorage.setItem(DATA_KEY,JSON.stringify({version:3,savedAt:new Date().toISOString(),members:document.getElementById("members").value,rows}))}
+const DATA_KEY="shoppingListDataV2",ITEMS_KEY="shoppingListItemsV3";
+let saved=loadData();let itemMaster=loadItems();let rows=saved.rows;let members=saved.members;
+function normalizeNumber(v){return String(v??"").replace(/[০-৯]/g,d=>"০১২৩৪৫৬৭৮৯".indexOf(d)).replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d)).replace(/,/g,"").trim()}
+function num(v){let n=parseFloat(normalizeNumber(v));return Number.isFinite(n)?n:0}
 function money(v){return Number(v||0).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:2})}
-function render(){const body=document.getElementById("itemsBody");body.innerHTML="";rows.forEach((row,i)=>{const tr=document.createElement("tr");const itemTd=document.createElement("td"),item=document.createElement("input");item.setAttribute("list","itemList");item.placeholder="আইটেম লিখুন";item.value=row.item||"";item.addEventListener("input",()=>{rows[i].item=item.value;saveData()});item.addEventListener("change",()=>saveNewItem(i));item.addEventListener("blur",()=>saveNewItem(i));itemTd.appendChild(item);const qtyTd=document.createElement("td"),qty=document.createElement("input");qty.type="text";qty.inputMode="decimal";qty.placeholder="0";qty.value=row.qty??"";qty.addEventListener("input",()=>{rows[i].qty=qty.value;saveData();recalc()});qtyTd.appendChild(qty);const unitTd=document.createElement("td"),unit=document.createElement("input");unit.value=row.unit||"";unit.placeholder="কেজি / লিটার / পিস";unit.addEventListener("input",()=>{rows[i].unit=unit.value;saveData()});unitTd.appendChild(unit);const rateTd=document.createElement("td"),rate=document.createElement("input");rate.type="text";rate.inputMode="decimal";rate.placeholder="0";rate.value=row.rate??"";rate.addEventListener("input",()=>{rows[i].rate=rate.value;saveData();recalc()});rateTd.appendChild(rate);const amountTd=document.createElement("td");amountTd.className="amount";amountTd.id="amount-"+i;const removeTd=document.createElement("td"),remove=document.createElement("button");remove.className="remove";remove.textContent="✕";remove.title="Remove";remove.addEventListener("click",()=>removeRow(i));removeTd.appendChild(remove);tr.append(itemTd,qtyTd,unitTd,rateTd,amountTd,removeTd);body.appendChild(tr)});const old=document.getElementById("itemList");if(old)old.remove();const dl=document.createElement("datalist");dl.id="itemList";sortItems(itemMaster).forEach(it=>{const o=document.createElement("option");o.value=it.name;dl.appendChild(o)});document.body.appendChild(dl);recalc()}
-function saveNewItem(i){const clean=(rows[i].item||"").trim();if(!clean)return;if(!itemMaster.some(x=>x.name.trim().toLowerCase()===clean.toLowerCase())){itemMaster.push({name:clean,unit:(rows[i].unit||"").trim()});saveItems()}saveData();render()}
-function addRow(){rows.push({item:"",qty:"",unit:"",rate:""});saveData();render();setTimeout(()=>{const x=document.querySelector("#itemsBody tr:last-child input");if(x)x.focus()},50)}
-function removeRow(i){rows.splice(i,1);if(!rows.length)rows.push({item:"",qty:"",unit:"",rate:""});saveData();render()}
-function recalc(){let total=0;rows.forEach((r,i)=>{const a=normalizeNumber(r.qty)*normalizeNumber(r.rate);total+=a;const e=document.getElementById("amount-"+i);if(e)e.textContent="৳ "+money(a)});document.getElementById("grandTotal").value=money(total);const m=normalizeNumber(document.getElementById("members").value);document.getElementById("average").value=m>0?money(total/m):"0"}
-function showView(){recalc();const b=document.getElementById("viewBody");b.innerHTML="";let total=0,has=false;rows.forEach(r=>{const item=(r.item||"").trim(),q=normalizeNumber(r.qty),rate=normalizeNumber(r.rate),a=q*rate;if(item||q||rate||r.unit){has=true;total+=a;const tr=document.createElement("tr");[item||"-",r.qty||"0",r.unit||"-",r.rate||"0","৳ "+money(a)].forEach((v,j)=>{const td=document.createElement("td");td.textContent=v;if(j===4)td.style.fontWeight="700";tr.appendChild(td)});b.appendChild(tr)}});if(!has){const tr=document.createElement("tr"),td=document.createElement("td");td.colSpan=5;td.className="empty";td.textContent="No items added yet.";tr.appendChild(td);b.appendChild(tr)}const m=normalizeNumber(document.getElementById("members").value);document.getElementById("viewMembers").textContent=m?money(m):"0";document.getElementById("viewGrandTotal").textContent=money(total);document.getElementById("viewAverage").textContent=m>0?money(total/m):"0";document.getElementById("mainPage").style.display="none";document.getElementById("viewPage").style.display="block";window.scrollTo(0,0)}
-function hideView(){document.getElementById("viewPage").style.display="none";document.getElementById("mainPage").style.display="block";window.scrollTo(0,0)}
-document.getElementById("members").addEventListener("input",()=>{saveData();recalc()});document.getElementById("addBtn").addEventListener("click",addRow);document.getElementById("viewBtn").addEventListener("click",showView);document.getElementById("backBtn").addEventListener("click",hideView);
-document.getElementById("clearBtn").addEventListener("click",()=>{if(confirm("Do you want to clear this Shopping List?")){rows=[{item:"",qty:"",unit:"",rate:""}];document.getElementById("members").value="";saveData();render()}});
-document.getElementById("backupBtn").addEventListener("click",()=>{saveData();const backup={app:"Shopping List",version:3,exportedAt:new Date().toISOString(),itemMaster,data:JSON.parse(localStorage.getItem(DATA_KEY))};const blob=new Blob([JSON.stringify(backup,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),link=document.createElement("a"),d=new Date();link.href=url;link.download="Shopping-List-Backup-"+d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")+".json";link.click();URL.revokeObjectURL(url)});
-document.getElementById("restoreBtn").addEventListener("click",()=>document.getElementById("fileInput").click());document.getElementById("fileInput").addEventListener("change",e=>{const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const backup=JSON.parse(reader.result);if(!backup.data||!Array.isArray(backup.data.rows))throw new Error();if(confirm("Restore this Backup? Current data will be replaced.")){if(Array.isArray(backup.itemMaster)){itemMaster=backup.itemMaster.filter(x=>x&&x.name);saveItems()}localStorage.setItem(DATA_KEY,JSON.stringify(backup.data));loadData();render();alert("Backup restored successfully.")}}catch(err){alert("This is not a valid Shopping List Backup.")}e.target.value=""};reader.readAsText(file)});
-loadData();render();if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(()=>{}));
-</script></body></html>
+function sortItems(a){return [...a].sort((x,y)=>String(x.name).localeCompare(String(y.name),"bn",{sensitivity:"base"}))}
+function loadItems(){try{let x=JSON.parse(localStorage.getItem(ITEMS_KEY));return Array.isArray(x)?sortItems(x.filter(a=>a&&a.name)):[]}catch(e){return[]}}
+function saveItems(){itemMaster=sortItems(itemMaster);localStorage.setItem(ITEMS_KEY,JSON.stringify(itemMaster))}
+function loadData(){try{let x=JSON.parse(localStorage.getItem(DATA_KEY));if(x&&Array.isArray(x.rows))return{members:x.members||1,rows:x.rows}}catch(e){}return{members:1,rows:[]}}
+function saveData(){localStorage.setItem(DATA_KEY,JSON.stringify({version:3,members:num(members)||1,rows}))}
+function updateList(){let d=document.getElementById("itemList");d.innerHTML="";sortItems(itemMaster).forEach(x=>{let o=document.createElement("option");o.value=x.name;d.appendChild(o)})}
+function saveNewItem(i){let r=rows[i],n=String(r.item||"").trim();if(!n)return;if(!itemMaster.some(x=>String(x.name).trim().toLowerCase()==n.toLowerCase())){itemMaster.push({name:n,unit:String(r.unit||"").trim()});saveItems();updateList()}}
+function addRow(){rows.push({item:"",qty:"",unit:"",rate:""});render()}
+function removeRow(i){rows.splice(i,1);saveData();render()}
+function recalc(){let t=rows.reduce((s,r)=>s+num(r.qty)*num(r.rate),0);document.getElementById("grandTotal").textContent=money(t);document.getElementById("bottomTotal").textContent=money(t);document.getElementById("average").textContent=money(t/(num(members)||1))}
+function render(){updateList();let b=document.getElementById("tableBody");b.innerHTML="";if(!rows.length){b.innerHTML='<tr><td colspan="6" class="empty">No items added yet.</td></tr>'}
+rows.forEach((r,i)=>{let tr=document.createElement("tr");let a=document.createElement("input"),q=document.createElement("input"),u=document.createElement("input"),rate=document.createElement("input");
+a.type="text";a.setAttribute("list","itemList");a.placeholder="আইটেম লিখুন";a.value=r.item||"";a.oninput=e=>{r.item=e.target.value;saveNewItem(i);saveData()};
+q.type="text";q.inputMode="decimal";q.value=r.qty||"";q.oninput=e=>{r.qty=e.target.value;saveData();recalc()};
+u.type="text";u.value=r.unit||"";u.oninput=e=>{r.unit=e.target.value;saveNewItem(i);saveData()};
+rate.type="text";rate.inputMode="decimal";rate.value=r.rate||"";rate.oninput=e=>{r.rate=e.target.value;saveData();recalc()};
+let cells=[a,q,u,rate];cells.forEach((el,j)=>{let td=document.createElement("td");td.appendChild(el);tr.appendChild(td);if(j===3){let td2=document.createElement("td");td2.textContent="৳ "+money(num(r.qty)*num(r.rate));tr.appendChild(td2)}});let td=document.createElement("td"),bt=document.createElement("button");bt.className="remove";bt.textContent="✕";bt.onclick=()=>removeRow(i);td.appendChild(bt);tr.appendChild(td);b.appendChild(tr)})
+recalc()}
+function esc(v){return String(v).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function showView(){document.getElementById("mainPage").style.display="none";document.getElementById("viewPage").style.display="block";let b=document.getElementById("viewBody");b.innerHTML="";if(!rows.length){b.innerHTML='<tr><td colspan="5" class="empty">No items added yet.</td></tr>';return}rows.forEach(r=>{let tr=document.createElement("tr");tr.innerHTML="<td>"+esc(r.item||"")+"</td><td>"+esc(r.qty||"")+"</td><td>"+esc(r.unit||"")+"</td><td>"+esc(r.rate||"")+"</td><td>৳ "+money(num(r.qty)*num(r.rate))+"</td>";b.appendChild(tr)})}
+function hideView(){document.getElementById("viewPage").style.display="none";document.getElementById("mainPage").style.display="block"}
+document.getElementById("members").oninput=e=>{members=e.target.value;saveData();recalc()}
+document.getElementById("addBtn").onclick=addRow;document.getElementById("viewBtn").onclick=showView;document.getElementById("backBtn").onclick=hideView;
+document.getElementById("clearBtn").onclick=()=>{if(confirm("Clear the current shopping list?")){rows=[];members=1;document.getElementById("members").value="1";saveData();render()}}
+document.getElementById("backupBtn").onclick=()=>{let x={app:"Shopping List",version:3,exportedAt:new Date().toISOString(),itemMaster,data:{members:num(members)||1,rows}};let blob=new Blob([JSON.stringify(x,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="shopping-list-backup.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+document.getElementById("restoreBtn").onclick=()=>document.getElementById("restoreFile").click();
+document.getElementById("restoreFile").onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(Array.isArray(x.itemMaster)){itemMaster=sortItems(x.itemMaster.filter(a=>a&&a.name));saveItems()}if(x.data&&Array.isArray(x.data.rows)){rows=x.data.rows;members=x.data.members||1;document.getElementById("members").value=members;saveData();render();alert("Restore completed.")}else alert("Invalid backup file.")}catch(err){alert("Could not restore this file.")}e.target.value=""};r.readAsText(f)}
+document.getElementById("members").value=members||1;render();
+if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js"));
+</script>
+</body>
+</html>
