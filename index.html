@@ -50,9 +50,11 @@ body{
     opacity:.92;
 }
 
+/* SUMMARY - ALWAYS 3 COLUMNS */
+
 .summary{
     display:grid;
-    grid-template-columns:1fr 1fr 1fr;
+    grid-template-columns:repeat(3,1fr);
     gap:8px;
     margin-bottom:12px;
 }
@@ -63,6 +65,7 @@ body{
     padding:11px 10px;
     border:1px solid #dfe9e7;
     box-shadow:0 2px 8px rgba(0,0,0,.04);
+    min-width:0;
 }
 
 .card label{
@@ -70,16 +73,18 @@ body{
     font-size:13px;
     color:#63706d;
     margin-bottom:5px;
+    white-space:nowrap;
 }
 
 .card input{
     width:100%;
     border:0;
     outline:0;
-    font-size:21px;
+    font-size:20px;
     font-weight:700;
     background:transparent;
     color:#17211f;
+    padding:0;
 }
 
 .total input{
@@ -183,14 +188,39 @@ td.amount{
     line-height:1.5;
 }
 
-@media(max-width:650px){
 
-    .summary{
-        grid-template-columns:1fr;
-    }
+/* MOBILE */
+
+@media(max-width:650px){
 
     .container{
         padding:10px 8px 24px;
+    }
+
+    /*
+       IMPORTANT:
+       Summary stays 3 columns on mobile.
+    */
+
+    .summary{
+        grid-template-columns:repeat(3,1fr);
+        gap:6px;
+    }
+
+    .card{
+        padding:10px 7px;
+        border-radius:12px;
+    }
+
+    .card label{
+        font-size:11px;
+        margin-bottom:5px;
+        white-space:normal;
+        line-height:1.2;
+    }
+
+    .card input{
+        font-size:17px;
     }
 
     button{
@@ -201,7 +231,12 @@ td.amount{
     .header h1{
         font-size:24px;
     }
+
+    .header p{
+        font-size:13px;
+    }
 }
+
 </style>
 </head>
 
@@ -215,6 +250,7 @@ td.amount{
     </div>
 
     <!-- SUMMARY -->
+
     <div class="summary">
 
         <div class="card">
@@ -249,6 +285,7 @@ td.amount{
 
 
     <!-- BUTTONS -->
+
     <div class="toolbar">
 
         <button
@@ -285,6 +322,7 @@ td.amount{
 
 
     <!-- SHOPPING TABLE -->
+
     <div class="table-wrap">
 
         <table>
