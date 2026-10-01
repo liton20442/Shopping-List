@@ -1188,7 +1188,7 @@ function showMain(){
    BACKUP
 ========================= */
 
-function backupData(){
+async function backupData(){
 
   const backup={
     app:"Shopping List",
@@ -1205,7 +1205,14 @@ function backupData(){
     }
   };
 
-  const blob=new Blob(
+  const date=new Date()
+    .toISOString()
+    .slice(0,10);
+
+  const fileName=
+    "Shopping-List-Backup-"+date+".json";
+
+  const file=new File(
     [
       JSON.stringify(
         backup,
@@ -1213,37 +1220,56 @@ function backupData(){
         2
       )
     ],
+    fileName,
     {
       type:"application/json"
     }
   );
 
-  const url=URL.createObjectURL(blob);
+  if(
+    navigator.share &&
+    navigator.canShare &&
+    navigator.canShare({files:[file]})
+  ){
 
-  const a=document.createElement("a");
+    try{
 
-  const date=new Date()
-    .toISOString()
-    .slice(0,10);
+      await navigator.share({
+        title:"Shopping List Backup",
+        text:"Shopping List Backup File",
+        files:[file]
+      });
 
-  a.href=url;
+    }catch(error){
 
-  a.download=
-    "Shopping-List-Backup-"+
-    date+
-    ".json";
+      if(error.name!=="AbortError"){
+        console.log("Share failed:",error);
+      }
 
-  document.body.appendChild(a);
+    }
 
-  a.click();
+  }else{
 
-  a.remove();
+    const url=URL.createObjectURL(file);
 
-  URL.revokeObjectURL(url);
+    const a=document.createElement("a");
+
+    a.href=url;
+    a.download=fileName;
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    setTimeout(()=>{
+      URL.revokeObjectURL(url);
+    },1000);
+
+  }
 
 }
-
-
 /* =========================
    RESTORE
 ========================= */
