@@ -136,7 +136,7 @@ td{
   font-size:16px;
 }
 
-/* মূল Shopping List টেবিল */
+/* Main Shopping Table */
 
 .main-table{
   width:100%;
@@ -144,43 +144,50 @@ td{
   table-layout:fixed;
 }
 
-/* Item column */
+/* Item */
+
 .main-table th:nth-child(1),
 .main-table td:nth-child(1){
   width:24%;
 }
 
-/* Category column */
+/* Category */
+
 .main-table th:nth-child(2),
 .main-table td:nth-child(2){
   width:16%;
 }
 
 /* Quantity */
+
 .main-table th:nth-child(3),
 .main-table td:nth-child(3){
   width:10%;
 }
 
 /* Unit */
+
 .main-table th:nth-child(4),
 .main-table td:nth-child(4){
   width:10%;
 }
 
 /* Rate */
+
 .main-table th:nth-child(5),
 .main-table td:nth-child(5){
   width:14%;
 }
 
 /* Total */
+
 .main-table th:nth-child(6),
 .main-table td:nth-child(6){
   width:17%;
 }
 
 /* Delete */
+
 .main-table th:nth-child(7),
 .main-table td:nth-child(7){
   width:9%;
@@ -216,7 +223,7 @@ td{
   font-weight:bold;
 }
 
-/* View Page */
+/* View */
 
 .view-page{
   display:none;
@@ -435,26 +442,39 @@ td{
       <div class="summary">
 
         <div class="summary-item">
+
           <span>Members / People</span>
+
           <strong>
+
             <input
               id="members"
               class="people"
               type="text"
-              inputmode="numeric"
               value="1"
+              inputmode="numeric"
             >
+
           </strong>
+
         </div>
 
+
         <div class="summary-item">
+
           <span>Total Cost (৳)</span>
+
           <strong id="grandTotal">০</strong>
+
         </div>
 
+
         <div class="summary-item">
+
           <span>Average per Person (৳)</span>
+
           <strong id="average">০</strong>
+
         </div>
 
       </div>
@@ -475,7 +495,7 @@ td{
         </button>
 
         <button onclick="showReport()">
-          📊 রিপোর্ট
+          📊 Report
         </button>
 
         <button onclick="backupData()">
@@ -491,6 +511,7 @@ td{
         </button>
 
       </div>
+
 
       <input
         type="file"
@@ -512,13 +533,21 @@ td{
           <thead>
 
             <tr>
+
               <th>আইটেম</th>
+
               <th>ক্যাটাগরি</th>
+
               <th>পরিমাণ</th>
+
               <th>একক</th>
+
               <th>দর (৳)</th>
+
               <th>মোট (৳)</th>
+
               <th>বাদ দিন</th>
+
             </tr>
 
           </thead>
@@ -531,7 +560,10 @@ td{
 
 
       <div class="total-box">
-        সর্বমোট: ৳ <span id="bottomTotal">০</span>
+
+        সর্বমোট: ৳
+        <span id="bottomTotal">০</span>
+
       </div>
 
     </div>
@@ -565,11 +597,17 @@ td{
           <thead>
 
             <tr>
+
               <th>আইটেম</th>
+
               <th>পরিমাণ</th>
+
               <th>একক</th>
+
               <th>দর (৳)</th>
+
               <th>মোট (৳)</th>
+
             </tr>
 
           </thead>
@@ -611,8 +649,11 @@ td{
           <thead>
 
             <tr>
+
               <th>ক্যাটাগরি</th>
+
               <th>মোট টাকা (৳)</th>
+
             </tr>
 
           </thead>
@@ -622,8 +663,11 @@ td{
           <tfoot>
 
             <tr>
+
               <td>সর্বমোট</td>
+
               <td id="reportTotal">৳ ০</td>
+
             </tr>
 
           </tfoot>
@@ -639,30 +683,35 @@ td{
 </div>
 
 
-<!-- ITEM DROPDOWN -->
+<!-- ITEM LIST -->
 
 <datalist id="itemList"></datalist>
 
 
-<!-- CATEGORY DROPDOWN -->
+<!-- CATEGORY LIST -->
 
 <datalist id="categoryList"></datalist>
 
 
 <script>
 
-/* =========================================================
+/* =====================================================
    STORAGE
-========================================================= */
+===================================================== */
 
-const DATA_KEY = "shoppingListDataV2";
-const ITEMS_KEY = "shoppingListItemsV3";
-const CATEGORY_KEY = "shoppingListCategoriesV1";
+const DATA_KEY =
+  "shoppingListDataV2";
+
+const ITEMS_KEY =
+  "shoppingListItemsV3";
+
+const CATEGORY_KEY =
+  "shoppingListCategoriesV1";
 
 
-/* =========================================================
-   DEFAULT CATEGORIES
-========================================================= */
+/* =====================================================
+   DEFAULT CATEGORY
+===================================================== */
 
 const DEFAULT_CATEGORIES = [
   "খাবার",
@@ -671,9 +720,9 @@ const DEFAULT_CATEGORIES = [
 ];
 
 
-/* =========================================================
-   LOAD DATA
-========================================================= */
+/* =====================================================
+   LOAD
+===================================================== */
 
 let saved = loadData();
 
@@ -686,15 +735,21 @@ let rows = saved.rows;
 let members = saved.members;
 
 
-/* =========================================================
-   NUMBER FUNCTIONS
-========================================================= */
+/* =====================================================
+   NUMBER
+===================================================== */
 
 function normalizeNumber(v){
 
   return String(v ?? "")
-    .replace(/[০-৯]/g,d=>"০১২৩৪৫৬৭৮৯".indexOf(d))
-    .replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d))
+    .replace(
+      /[০-৯]/g,
+      d => "০১২৩৪৫৬৭৮৯".indexOf(d)
+    )
+    .replace(
+      /[٠-٩]/g,
+      d => "٠١٢٣٤٥٦٧٨٩".indexOf(d)
+    )
     .replace(/,/g,"")
     .trim();
 
@@ -703,29 +758,35 @@ function normalizeNumber(v){
 
 function num(v){
 
-  let n = parseFloat(normalizeNumber(v));
+  let n =
+    parseFloat(
+      normalizeNumber(v)
+    );
 
-  return Number.isFinite(n) ? n : 0;
+  return Number.isFinite(n)
+    ? n
+    : 0;
 
 }
 
 
 function money(v){
 
-  return Number(v || 0).toLocaleString(
-    "bn-BD",
-    {
-      minimumFractionDigits:0,
-      maximumFractionDigits:2
-    }
-  );
+  return Number(v || 0)
+    .toLocaleString(
+      "bn-BD",
+      {
+        minimumFractionDigits:0,
+        maximumFractionDigits:2
+      }
+    );
 
 }
 
 
-/* =========================================================
+/* =====================================================
    SORT
-========================================================= */
+===================================================== */
 
 function sortItems(a){
 
@@ -734,7 +795,9 @@ function sortItems(a){
       String(x.name).localeCompare(
         String(y.name),
         "bn",
-        {sensitivity:"base"}
+        {
+          sensitivity:"base"
+        }
       )
   );
 
@@ -748,24 +811,29 @@ function sortCategories(a){
       String(x).localeCompare(
         String(y),
         "bn",
-        {sensitivity:"base"}
+        {
+          sensitivity:"base"
+        }
       )
   );
 
 }
 
 
-/* =========================================================
-   ITEMS
-========================================================= */
+/* =====================================================
+   ITEM DATA
+===================================================== */
 
 function loadItems(){
 
   try{
 
-    let x = JSON.parse(
-      localStorage.getItem(ITEMS_KEY)
-    );
+    let x =
+      JSON.parse(
+        localStorage.getItem(
+          ITEMS_KEY
+        )
+      );
 
     return Array.isArray(x)
       ? sortItems(
@@ -786,7 +854,8 @@ function loadItems(){
 
 function saveItems(){
 
-  itemMaster = sortItems(itemMaster);
+  itemMaster =
+    sortItems(itemMaster);
 
   localStorage.setItem(
     ITEMS_KEY,
@@ -796,30 +865,31 @@ function saveItems(){
 }
 
 
-/* =========================================================
-   CATEGORIES
-========================================================= */
+/* =====================================================
+   CATEGORY DATA
+===================================================== */
 
 function loadCategories(){
 
   try{
 
-    let x = JSON.parse(
-      localStorage.getItem(CATEGORY_KEY)
-    );
+    let x =
+      JSON.parse(
+        localStorage.getItem(
+          CATEGORY_KEY
+        )
+      );
 
     if(Array.isArray(x)){
 
-      let result = [
-        ...DEFAULT_CATEGORIES,
-        ...x
-      ];
-
       return [
         ...new Set(
-          result
-            .map(x=>String(x).trim())
-            .filter(Boolean)
+          [
+            ...DEFAULT_CATEGORIES,
+            ...x
+          ]
+          .map(x=>String(x).trim())
+          .filter(Boolean)
         )
       ];
 
@@ -827,40 +897,50 @@ function loadCategories(){
 
   }catch(e){}
 
-  return [...DEFAULT_CATEGORIES];
+  return [
+    ...DEFAULT_CATEGORIES
+  ];
 
 }
 
 
 function saveCategories(){
 
-  categoryMaster = sortCategories(
-    [...new Set(
-      categoryMaster
-        .map(x=>String(x).trim())
-        .filter(Boolean)
-    )]
-  );
+  categoryMaster =
+    sortCategories(
+      [
+        ...new Set(
+          categoryMaster
+            .map(x=>String(x).trim())
+            .filter(Boolean)
+        )
+      ]
+    );
 
   localStorage.setItem(
     CATEGORY_KEY,
-    JSON.stringify(categoryMaster)
+    JSON.stringify(
+      categoryMaster
+    )
   );
 
 }
 
 
-/* =========================================================
-   DATA
-========================================================= */
+/* =====================================================
+   MAIN DATA
+===================================================== */
 
 function loadData(){
 
   try{
 
-    let x = JSON.parse(
-      localStorage.getItem(DATA_KEY)
-    );
+    let x =
+      JSON.parse(
+        localStorage.getItem(
+          DATA_KEY
+        )
+      );
 
     if(
       x &&
@@ -868,8 +948,11 @@ function loadData(){
     ){
 
       return {
-        members:x.members || 1,
-        rows:x.rows
+        members:
+          x.members || 1,
+
+        rows:
+          x.rows
       };
 
     }
@@ -889,32 +972,44 @@ function saveData(){
   localStorage.setItem(
     DATA_KEY,
     JSON.stringify({
+
       version:4,
-      members:num(members) || 1,
+
+      members:
+        num(members) || 1,
+
       rows
+
     })
   );
 
 }
 
 
-/* =========================================================
-   UPDATE ITEM LIST
-========================================================= */
+/* =====================================================
+   ITEM LIST
+===================================================== */
 
 function updateList(){
 
   let d =
-    document.getElementById("itemList");
+    document.getElementById(
+      "itemList"
+    );
 
   d.innerHTML = "";
 
-  sortItems(itemMaster).forEach(x=>{
+  sortItems(
+    itemMaster
+  ).forEach(x=>{
 
     let o =
-      document.createElement("option");
+      document.createElement(
+        "option"
+      );
 
-    o.value = x.name;
+    o.value =
+      x.name;
 
     d.appendChild(o);
 
@@ -923,21 +1018,27 @@ function updateList(){
 }
 
 
-/* =========================================================
-   UPDATE CATEGORY LIST
-========================================================= */
+/* =====================================================
+   CATEGORY LIST
+===================================================== */
 
 function updateCategoryList(){
 
   let d =
-    document.getElementById("categoryList");
+    document.getElementById(
+      "categoryList"
+    );
 
   d.innerHTML = "";
 
-  sortCategories(categoryMaster).forEach(x=>{
+  sortCategories(
+    categoryMaster
+  ).forEach(x=>{
 
     let o =
-      document.createElement("option");
+      document.createElement(
+        "option"
+      );
 
     o.value = x;
 
@@ -948,22 +1049,25 @@ function updateCategoryList(){
 }
 
 
-/* =========================================================
+/* =====================================================
    SAVE NEW ITEM
-========================================================= */
+===================================================== */
 
 function saveNewItem(i){
 
   let r = rows[i];
 
   let n =
-    String(r.item || "").trim();
+    String(
+      r.item || ""
+    ).trim();
 
   if(!n)return;
 
+
   if(
     !itemMaster.some(
-      x=>
+      x =>
         String(x.name)
           .trim()
           .toLowerCase()
@@ -973,8 +1077,14 @@ function saveNewItem(i){
   ){
 
     itemMaster.push({
+
       name:n,
-      unit:String(r.unit || "").trim()
+
+      unit:
+        String(
+          r.unit || ""
+        ).trim()
+
     });
 
     saveItems();
@@ -986,22 +1096,25 @@ function saveNewItem(i){
 }
 
 
-/* =========================================================
+/* =====================================================
    SAVE NEW CATEGORY
-========================================================= */
+===================================================== */
 
 function saveNewCategory(i){
 
   let r = rows[i];
 
   let n =
-    String(r.category || "").trim();
+    String(
+      r.category || ""
+    ).trim();
 
   if(!n)return;
 
+
   if(
     !categoryMaster.some(
-      x=>
+      x =>
         String(x)
           .trim()
           .toLowerCase()
@@ -1021,18 +1134,20 @@ function saveNewCategory(i){
 }
 
 
-/* =========================================================
+/* =====================================================
    ADD ROW
-========================================================= */
+===================================================== */
 
 function addRow(){
 
   rows.push({
+
     item:"",
     category:"",
     qty:"",
     unit:"",
     rate:""
+
   });
 
   saveData();
@@ -1040,20 +1155,23 @@ function addRow(){
   render();
 
   focusCell(
-    rows.length-1,
+    rows.length - 1,
     0
   );
 
 }
 
 
-/* =========================================================
+/* =====================================================
    REMOVE ROW
-========================================================= */
+===================================================== */
 
 function removeRow(i){
 
-  rows.splice(i,1);
+  rows.splice(
+    i,
+    1
+  );
 
   saveData();
 
@@ -1062,15 +1180,15 @@ function removeRow(i){
 }
 
 
-/* =========================================================
+/* =====================================================
    ROW TOTAL
-========================================================= */
+===================================================== */
 
 function updateRowTotal(i){
 
   let cell =
     document.getElementById(
-      "rowTotal-"+i
+      "rowTotal-" + i
     );
 
   if(cell){
@@ -1087,13 +1205,13 @@ function updateRowTotal(i){
 }
 
 
-/* =========================================================
+/* =====================================================
    RECALCULATE
-========================================================= */
+===================================================== */
 
 function recalc(){
 
-  let t =
+  let total =
     rows.reduce(
       (s,r)=>
         s +
@@ -1102,30 +1220,33 @@ function recalc(){
       0
     );
 
+
   document.getElementById(
     "grandTotal"
   ).textContent =
-    money(t);
+    money(total);
+
 
   document.getElementById(
     "bottomTotal"
   ).textContent =
-    money(t);
+    money(total);
+
 
   document.getElementById(
     "average"
   ).textContent =
     money(
-      t /
+      total /
       (num(members) || 1)
     );
 
 }
 
 
-/* =========================================================
+/* =====================================================
    FOCUS CELL
-========================================================= */
+===================================================== */
 
 function focusCell(
   rowIndex,
@@ -1143,12 +1264,14 @@ function focusCell(
 
     if(!row)return;
 
+
     let input =
       row.querySelector(
         'input[data-col-index="' +
         colIndex +
         '"]'
       );
+
 
     if(input){
 
@@ -1158,22 +1281,21 @@ function focusCell(
 
     }
 
-  },30);
+  },50);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    ENTER NAVIGATION
-=========================================================
 
-   0 = Item
-   1 = Category
-   2 = Quantity
-   3 = Unit
-   4 = Rate
+   0 Item
+   1 Category
+   2 Quantity
+   3 Unit
+   4 Rate
 
-========================================================= */
+===================================================== */
 
 function handleEnter(
   e,
@@ -1181,7 +1303,20 @@ function handleEnter(
   colIndex
 ){
 
-  if(e.key !== "Enter")return;
+  /*
+    iPhone-এর Return key
+    এবং keyboard-এর Enter key
+    দুটোই key = Enter হিসেবে
+    ধরা হবে।
+  */
+
+  if(
+    e.key !== "Enter" &&
+    e.key !== "Return"
+  ){
+    return;
+  }
+
 
   e.preventDefault();
 
@@ -1203,11 +1338,13 @@ function handleEnter(
     ){
 
       rows.push({
+
         item:"",
         category:"",
         qty:"",
         unit:"",
         rate:""
+
       });
 
       saveData();
@@ -1215,7 +1352,7 @@ function handleEnter(
       render();
 
       focusCell(
-        rows.length-1,
+        rows.length - 1,
         0
       );
 
@@ -1233,25 +1370,40 @@ function handleEnter(
 }
 
 
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
+/* =====================================================
+   ESCAPE
+===================================================== */
 
 function esc(v){
 
   return String(v ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
 
-/* =========================================================
-   RENDER MAIN TABLE
-========================================================= */
+/* =====================================================
+   RENDER
+===================================================== */
 
 function render(){
 
@@ -1263,350 +1415,440 @@ function render(){
   body.innerHTML = "";
 
 
-  rows.forEach((r,i)=>{
+  rows.forEach(
+    (r,i)=>{
 
-    if(!r.category){
-      r.category = "";
-    }
-
-
-    let tr =
-      document.createElement("tr");
-
-    tr.dataset.rowIndex = i;
-
-
-    /* ITEM */
-
-    let tdItem =
-      document.createElement("td");
-
-    let itemInput =
-      document.createElement("input");
-
-    itemInput.type = "text";
-
-    itemInput.setAttribute(
-      "list",
-      "itemList"
-    );
-
-    itemInput.dataset.colIndex = "0";
-
-    itemInput.value =
-      r.item || "";
-
-
-    itemInput.addEventListener(
-      "input",
-      e=>{
-
-        rows[i].item =
-          e.target.value;
-
-        saveData();
-
+      if(!r.category){
+        r.category = "";
       }
-    );
 
 
-    itemInput.addEventListener(
-      "change",
-      ()=>{
+      let tr =
+        document.createElement(
+          "tr"
+        );
 
-        saveNewItem(i);
+      tr.dataset.rowIndex = i;
 
-      }
-    );
 
+      /* ITEM */
 
-    itemInput.addEventListener(
-      "keydown",
-      e=>
-        handleEnter(
-          e,
-          i,
-          0
-        )
-    );
+      let tdItem =
+        document.createElement(
+          "td"
+        );
 
 
-    tdItem.appendChild(
-      itemInput
-    );
+      let itemInput =
+        document.createElement(
+          "input"
+        );
 
 
-    /* CATEGORY */
+      itemInput.type =
+        "text";
 
-    let tdCategory =
-      document.createElement("td");
+      itemInput.setAttribute(
+        "list",
+        "itemList"
+      );
 
-    let categoryInput =
-      document.createElement("input");
+      itemInput.dataset.colIndex =
+        "0";
 
-    categoryInput.type = "text";
+      itemInput.value =
+        r.item || "";
 
-    categoryInput.setAttribute(
-      "list",
-      "categoryList"
-    );
 
-    categoryInput.dataset.colIndex = "1";
+      itemInput.addEventListener(
+        "input",
+        e=>{
 
-    categoryInput.value =
-      r.category || "";
+          rows[i].item =
+            e.target.value;
 
+          saveData();
 
-    categoryInput.addEventListener(
-      "input",
-      e=>{
-
-        rows[i].category =
-          e.target.value;
-
-        saveData();
-
-        recalc();
-
-      }
-    );
-
-
-    categoryInput.addEventListener(
-      "change",
-      ()=>{
-
-        saveNewCategory(i);
-
-      }
-    );
-
-
-    categoryInput.addEventListener(
-      "blur",
-      ()=>{
-
-        saveNewCategory(i);
-
-      }
-    );
-
-
-    categoryInput.addEventListener(
-      "keydown",
-      e=>
-        handleEnter(
-          e,
-          i,
-          1
-        )
-    );
-
-
-    tdCategory.appendChild(
-      categoryInput
-    );
-
-
-    /* QUANTITY */
-
-    let tdQty =
-      document.createElement("td");
-
-    let qtyInput =
-      document.createElement("input");
-
-    qtyInput.type = "text";
-
-    qtyInput.inputMode = "decimal";
-
-    qtyInput.dataset.colIndex = "2";
-
-    qtyInput.value =
-      r.qty || "";
-
-
-    qtyInput.addEventListener(
-      "input",
-      e=>{
-
-        rows[i].qty =
-          e.target.value;
-
-        saveData();
-
-        updateRowTotal(i);
-
-        recalc();
-
-      }
-    );
-
-
-    qtyInput.addEventListener(
-      "keydown",
-      e=>
-        handleEnter(
-          e,
-          i,
-          2
-        )
-    );
-
-
-    tdQty.appendChild(
-      qtyInput
-    );
-
-
-    /* UNIT */
-
-    let tdUnit =
-      document.createElement("td");
-
-    let unitInput =
-      document.createElement("input");
-
-    unitInput.type = "text";
-
-    unitInput.dataset.colIndex = "3";
-
-    unitInput.value =
-      r.unit || "";
-
-
-    unitInput.addEventListener(
-      "input",
-      e=>{
-
-        rows[i].unit =
-          e.target.value;
-
-        saveData();
-
-      }
-    );
-
-
-    unitInput.addEventListener(
-      "keydown",
-      e=>
-        handleEnter(
-          e,
-          i,
-          3
-        )
-    );
-
-
-    tdUnit.appendChild(
-      unitInput
-    );
-
-
-    /* RATE */
-
-    let tdRate =
-      document.createElement("td");
-
-    let rateInput =
-      document.createElement("input");
-
-    rateInput.type = "text";
-
-    rateInput.inputMode = "decimal";
-
-    rateInput.dataset.colIndex = "4";
-
-    rateInput.value =
-      r.rate || "";
-
-
-    rateInput.addEventListener(
-      "input",
-      e=>{
-
-        rows[i].rate =
-          e.target.value;
-
-        saveData();
-
-        updateRowTotal(i);
-
-        recalc();
-
-      }
-    );
-
-
-    rateInput.addEventListener(
-      "keydown",
-      e=>
-        handleEnter(
-          e,
-          i,
-          4
-        )
-    );
-
-
-    tdRate.appendChild(
-      rateInput
-    );
-
-
-    /* TOTAL */
-
-    let tdTotal =
-      document.createElement("td");
-
-    tdTotal.id =
-      "rowTotal-"+i;
-
-    tdTotal.textContent =
-      "৳ " +
-      money(
-        num(r.qty) *
-        num(r.rate)
+        }
       );
 
 
-    /* DELETE */
-
-    let tdDelete =
-      document.createElement("td");
-
-    let deleteButton =
-      document.createElement("button");
-
-    deleteButton.className =
-      "remove";
-
-    deleteButton.textContent =
-      "×";
-
-    deleteButton.title =
-      "এই আইটেম বাদ দিন";
-
-    deleteButton.onclick =
-      ()=>removeRow(i);
-
-    tdDelete.appendChild(
-      deleteButton
-    );
+      itemInput.addEventListener(
+        "change",
+        ()=>{
+          saveNewItem(i);
+        }
+      );
 
 
-    tr.appendChild(tdItem);
-    tr.appendChild(tdCategory);
-    tr.appendChild(tdQty);
-    tr.appendChild(tdUnit);
-    tr.appendChild(tdRate);
-    tr.appendChild(tdTotal);
-    tr.appendChild(tdDelete);
+      itemInput.addEventListener(
+        "keydown",
+        e=>{
+          handleEnter(
+            e,
+            i,
+            0
+          );
+        }
+      );
 
-    body.appendChild(tr);
 
-  });
+      tdItem.appendChild(
+        itemInput
+      );
+
+
+      /* CATEGORY */
+
+      let tdCategory =
+        document.createElement(
+          "td"
+        );
+
+
+      let categoryInput =
+        document.createElement(
+          "input"
+        );
+
+
+      categoryInput.type =
+        "text";
+
+      categoryInput.setAttribute(
+        "list",
+        "categoryList"
+      );
+
+      categoryInput.dataset.colIndex =
+        "1";
+
+      categoryInput.value =
+        r.category || "";
+
+
+      categoryInput.addEventListener(
+        "input",
+        e=>{
+
+          rows[i].category =
+            e.target.value;
+
+          saveData();
+
+          recalc();
+
+        }
+      );
+
+
+      categoryInput.addEventListener(
+        "change",
+        ()=>{
+          saveNewCategory(i);
+        }
+      );
+
+
+      categoryInput.addEventListener(
+        "blur",
+        ()=>{
+          saveNewCategory(i);
+        }
+      );
+
+
+      categoryInput.addEventListener(
+        "keydown",
+        e=>{
+          handleEnter(
+            e,
+            i,
+            1
+          );
+        }
+      );
+
+
+      tdCategory.appendChild(
+        categoryInput
+      );
+
+
+      /* QUANTITY */
+
+      let tdQty =
+        document.createElement(
+          "td"
+        );
+
+
+      let qtyInput =
+        document.createElement(
+          "input"
+        );
+
+
+      /*
+        এখানে inputMode ব্যবহার করা হয়নি।
+
+        তাই iPhone-এ সাধারণ keyboard
+        আসবে এবং Return button থাকবে।
+      */
+
+      qtyInput.type =
+        "text";
+
+      qtyInput.dataset.colIndex =
+        "2";
+
+      qtyInput.value =
+        r.qty || "";
+
+
+      qtyInput.addEventListener(
+        "input",
+        e=>{
+
+          rows[i].qty =
+            e.target.value;
+
+          saveData();
+
+          updateRowTotal(i);
+
+          recalc();
+
+        }
+      );
+
+
+      qtyInput.addEventListener(
+        "keydown",
+        e=>{
+          handleEnter(
+            e,
+            i,
+            2
+          );
+        }
+      );
+
+
+      tdQty.appendChild(
+        qtyInput
+      );
+
+
+      /* UNIT */
+
+      let tdUnit =
+        document.createElement(
+          "td"
+        );
+
+
+      let unitInput =
+        document.createElement(
+          "input"
+        );
+
+
+      unitInput.type =
+        "text";
+
+      unitInput.dataset.colIndex =
+        "3";
+
+      unitInput.value =
+        r.unit || "";
+
+
+      unitInput.addEventListener(
+        "input",
+        e=>{
+
+          rows[i].unit =
+            e.target.value;
+
+          saveData();
+
+        }
+      );
+
+
+      unitInput.addEventListener(
+        "keydown",
+        e=>{
+          handleEnter(
+            e,
+            i,
+            3
+          );
+        }
+      );
+
+
+      tdUnit.appendChild(
+        unitInput
+      );
+
+
+      /* RATE */
+
+      let tdRate =
+        document.createElement(
+          "td"
+        );
+
+
+      let rateInput =
+        document.createElement(
+          "input"
+        );
+
+
+      /*
+        inputMode নেই।
+
+        তাই iPhone-এ Return
+        button থাকবে।
+      */
+
+      rateInput.type =
+        "text";
+
+      rateInput.dataset.colIndex =
+        "4";
+
+      rateInput.value =
+        r.rate || "";
+
+
+      rateInput.addEventListener(
+        "input",
+        e=>{
+
+          rows[i].rate =
+            e.target.value;
+
+          saveData();
+
+          updateRowTotal(i);
+
+          recalc();
+
+        }
+      );
+
+
+      rateInput.addEventListener(
+        "keydown",
+        e=>{
+          handleEnter(
+            e,
+            i,
+            4
+          );
+        }
+      );
+
+
+      tdRate.appendChild(
+        rateInput
+      );
+
+
+      /* TOTAL */
+
+      let tdTotal =
+        document.createElement(
+          "td"
+        );
+
+
+      tdTotal.id =
+        "rowTotal-" + i;
+
+
+      tdTotal.textContent =
+        "৳ " +
+        money(
+          num(r.qty) *
+          num(r.rate)
+        );
+
+
+      /* DELETE */
+
+      let tdDelete =
+        document.createElement(
+          "td"
+        );
+
+
+      let deleteButton =
+        document.createElement(
+          "button"
+        );
+
+
+      deleteButton.className =
+        "remove";
+
+      deleteButton.textContent =
+        "×";
+
+      deleteButton.title =
+        "এই আইটেম বাদ দিন";
+
+
+      deleteButton.onclick =
+        ()=>{
+          removeRow(i);
+        };
+
+
+      tdDelete.appendChild(
+        deleteButton
+      );
+
+
+      tr.appendChild(
+        tdItem
+      );
+
+      tr.appendChild(
+        tdCategory
+      );
+
+      tr.appendChild(
+        tdQty
+      );
+
+      tr.appendChild(
+        tdUnit
+      );
+
+      tr.appendChild(
+        tdRate
+      );
+
+      tr.appendChild(
+        tdTotal
+      );
+
+      tr.appendChild(
+        tdDelete
+      );
+
+
+      body.appendChild(
+        tr
+      );
+
+    }
+  );
 
 
   updateList();
@@ -1618,9 +1860,9 @@ function render(){
 }
 
 
-/* =========================================================
+/* =====================================================
    MEMBERS
-========================================================= */
+===================================================== */
 
 document.getElementById(
   "members"
@@ -1639,23 +1881,28 @@ document.getElementById(
 );
 
 
-/* =========================================================
+/* =====================================================
    VIEW
-========================================================= */
+===================================================== */
 
 function showView(){
 
   document.getElementById(
     "mainPage"
-  ).style.display = "none";
+  ).style.display =
+    "none";
+
 
   document.getElementById(
     "reportPage"
-  ).style.display = "none";
+  ).style.display =
+    "none";
+
 
   document.getElementById(
     "viewPage"
-  ).style.display = "block";
+  ).style.display =
+    "block";
 
 
   let body =
@@ -1669,57 +1916,84 @@ function showView(){
   let hasRows = false;
 
 
-  rows.forEach(r=>{
+  rows.forEach(
+    r=>{
 
-    if(
-      !String(r.item || "").trim() &&
-      !num(r.qty) &&
-      !num(r.rate)
-    ){
-      return;
+      if(
+        !String(
+          r.item || ""
+        ).trim()
+        &&
+        !num(r.qty)
+        &&
+        !num(r.rate)
+      ){
+
+        return;
+
+      }
+
+
+      hasRows = true;
+
+
+      let tr =
+        document.createElement(
+          "tr"
+        );
+
+
+      tr.innerHTML = `
+
+        <td>
+          ${esc(r.item)}
+        </td>
+
+        <td>
+          ${esc(r.qty)}
+        </td>
+
+        <td>
+          ${esc(r.unit)}
+        </td>
+
+        <td>
+          ৳ ${money(num(r.rate))}
+        </td>
+
+        <td>
+          ৳ ${
+            money(
+              num(r.qty) *
+              num(r.rate)
+            )
+          }
+        </td>
+
+      `;
+
+
+      body.appendChild(
+        tr
+      );
+
     }
-
-
-    hasRows = true;
-
-
-    let tr =
-      document.createElement("tr");
-
-
-    tr.innerHTML = `
-
-      <td>${esc(r.item)}</td>
-
-      <td>${esc(r.qty)}</td>
-
-      <td>${esc(r.unit)}</td>
-
-      <td>৳ ${money(num(r.rate))}</td>
-
-      <td>
-        ৳ ${money(
-          num(r.qty) *
-          num(r.rate)
-        )}
-      </td>
-
-    `;
-
-
-    body.appendChild(tr);
-
-  });
+  );
 
 
   if(!hasRows){
 
     body.innerHTML =
-      `<tr>
-        <td colspan="5" class="empty">
+      `
+      <tr>
+        <td
+          colspan="5"
+          class="empty"
+        >
           কোনো তথ্য নেই
         </td>
-      </tr>`;
+      </tr>
+      `;
 
   }
 
@@ -1730,73 +2004,86 @@ function hideView(){
 
   document.getElementById(
     "viewPage"
-  ).style.display = "none";
+  ).style.display =
+    "none";
+
 
   document.getElementById(
     "mainPage"
-  ).style.display = "block";
+  ).style.display =
+    "block";
 
 }
 
 
-/* =========================================================
+/* =====================================================
    REPORT
-========================================================= */
+===================================================== */
 
 function showReport(){
 
   document.getElementById(
     "mainPage"
-  ).style.display = "none";
+  ).style.display =
+    "none";
+
 
   document.getElementById(
     "viewPage"
-  ).style.display = "none";
+  ).style.display =
+    "none";
+
 
   document.getElementById(
     "reportPage"
-  ).style.display = "block";
+  ).style.display =
+    "block";
 
 
   let totals = {};
 
 
-  rows.forEach(r=>{
+  rows.forEach(
+    r=>{
 
-    let category =
-      String(
-        r.category || ""
-      ).trim();
-
-
-    let total =
-      num(r.qty) *
-      num(r.rate);
+      let category =
+        String(
+          r.category || ""
+        ).trim();
 
 
-    if(
-      !category ||
-      total === 0
-    ){
-      return;
+      let total =
+        num(r.qty) *
+        num(r.rate);
+
+
+      if(
+        !category ||
+        total === 0
+      ){
+
+        return;
+
+      }
+
+
+      if(
+        !Object.prototype.hasOwnProperty.call(
+          totals,
+          category
+        )
+      ){
+
+        totals[category] = 0;
+
+      }
+
+
+      totals[category] +=
+        total;
+
     }
-
-
-    if(
-      !Object.prototype.hasOwnProperty.call(
-        totals,
-        category
-      )
-    ){
-
-      totals[category] = 0;
-
-    }
-
-
-    totals[category] += total;
-
-  });
+  );
 
 
   let body =
@@ -1811,50 +2098,73 @@ function showReport(){
 
 
   let categories =
-    Object.keys(totals).sort(
-      (a,b)=>
-        a.localeCompare(
-          b,
-          "bn",
-          {sensitivity:"base"}
-        )
-    );
+    Object.keys(totals)
+      .sort(
+        (a,b)=>
+          a.localeCompare(
+            b,
+            "bn",
+            {
+              sensitivity:"base"
+            }
+          )
+      );
 
 
-  if(categories.length === 0){
+  if(
+    categories.length === 0
+  ){
 
     body.innerHTML =
-      `<tr>
-        <td colspan="2" class="empty">
+      `
+      <tr>
+        <td
+          colspan="2"
+          class="empty"
+        >
           কোনো ক্যাটাগরি অনুযায়ী হিসাব পাওয়া যায়নি
         </td>
-      </tr>`;
+      </tr>
+      `;
 
   }else{
 
-    categories.forEach(category=>{
+    categories.forEach(
+      category=>{
 
-      grand += totals[category];
-
-
-      let tr =
-        document.createElement("tr");
+        grand +=
+          totals[category];
 
 
-      tr.innerHTML = `
-
-        <td>${esc(category)}</td>
-
-        <td>
-          ৳ ${money(totals[category])}
-        </td>
-
-      `;
+        let tr =
+          document.createElement(
+            "tr"
+          );
 
 
-      body.appendChild(tr);
+        tr.innerHTML = `
 
-    });
+          <td>
+            ${esc(category)}
+          </td>
+
+          <td>
+            ৳ ${
+              money(
+                totals[category]
+              )
+            }
+          </td>
+
+        `;
+
+
+        body.appendChild(
+          tr
+        );
+
+      }
+    );
 
   }
 
@@ -1862,7 +2172,8 @@ function showReport(){
   document.getElementById(
     "reportTotal"
   ).textContent =
-    "৳ " + money(grand);
+    "৳ " +
+    money(grand);
 
 }
 
@@ -1871,18 +2182,21 @@ function hideReport(){
 
   document.getElementById(
     "reportPage"
-  ).style.display = "none";
+  ).style.display =
+    "none";
+
 
   document.getElementById(
     "mainPage"
-  ).style.display = "block";
+  ).style.display =
+    "block";
 
 }
 
 
-/* =========================================================
+/* =====================================================
    CLEAR
-========================================================= */
+===================================================== */
 
 function clearAll(){
 
@@ -1890,6 +2204,7 @@ function clearAll(){
     confirm(
       "সব Shopping List, Item এবং Category-এর সংরক্ষিত ডাটা মুছে ফেলতে চান?"
     );
+
 
   if(!ok)return;
 
@@ -1905,12 +2220,14 @@ function clearAll(){
 
   document.getElementById(
     "members"
-  ).value = "1";
+  ).value =
+    "1";
 
 
   localStorage.removeItem(
     ITEMS_KEY
   );
+
 
   localStorage.removeItem(
     CATEGORY_KEY
@@ -1924,28 +2241,37 @@ function clearAll(){
 }
 
 
-/* =========================================================
+/* =====================================================
    BACKUP
-========================================================= */
+===================================================== */
 
 function backupData(){
 
   let backup = {
 
-    app:"Shopping List",
+    app:
+      "Shopping List",
 
-    version:4,
+    version:
+      4,
 
     exportedAt:
       new Date().toISOString(),
 
-    itemMaster:itemMaster,
+    itemMaster:
+      itemMaster,
 
-    categoryMaster:categoryMaster,
+    categoryMaster:
+      categoryMaster,
 
     data:{
-      members:members,
-      rows:rows
+
+      members:
+        members,
+
+      rows:
+        rows
+
     }
 
   };
@@ -1961,22 +2287,29 @@ function backupData(){
         )
       ],
       {
-        type:"application/json"
+        type:
+          "application/json"
       }
     );
 
 
   let url =
-    URL.createObjectURL(blob);
+    URL.createObjectURL(
+      blob
+    );
 
 
   let a =
-    document.createElement("a");
+    document.createElement(
+      "a"
+    );
+
 
   a.href = url;
 
   a.download =
     "shopping-list-backup.json";
+
 
   document.body.appendChild(a);
 
@@ -1984,19 +2317,23 @@ function backupData(){
 
   a.remove();
 
-  URL.revokeObjectURL(url);
+
+  URL.revokeObjectURL(
+    url
+  );
 
 }
 
 
-/* =========================================================
+/* =====================================================
    RESTORE
-========================================================= */
+===================================================== */
 
 function restoreData(event){
 
   let file =
     event.target.files[0];
+
 
   if(!file)return;
 
@@ -2034,20 +2371,26 @@ function restoreData(event){
 
 
         rows =
-          backup.data.rows.map(r=>({
+          backup.data.rows.map(
+            r=>({
 
-            item:r.item || "",
+              item:
+                r.item || "",
 
-            category:
-              r.category || "",
+              category:
+                r.category || "",
 
-            qty:r.qty || "",
+              qty:
+                r.qty || "",
 
-            unit:r.unit || "",
+              unit:
+                r.unit || "",
 
-            rate:r.rate || ""
+              rate:
+                r.rate || ""
 
-          }));
+            })
+          );
 
 
         members =
@@ -2084,7 +2427,9 @@ function restoreData(event){
         }else{
 
           categoryMaster =
-            [...DEFAULT_CATEGORIES];
+            [
+              ...DEFAULT_CATEGORIES
+            ];
 
         }
 
@@ -2129,9 +2474,9 @@ function restoreData(event){
 }
 
 
-/* =========================================================
+/* =====================================================
    INITIALIZE
-========================================================= */
+===================================================== */
 
 document.getElementById(
   "members"
@@ -2142,11 +2487,13 @@ document.getElementById(
 if(rows.length === 0){
 
   rows.push({
+
     item:"",
     category:"",
     qty:"",
     unit:"",
     rate:""
+
   });
 
 }
@@ -2159,11 +2506,13 @@ updateCategoryList();
 render();
 
 
-/* =========================================================
+/* =====================================================
    SERVICE WORKER
-========================================================= */
+===================================================== */
 
-if("serviceWorker" in navigator){
+if(
+  "serviceWorker" in navigator
+){
 
   window.addEventListener(
     "load",
