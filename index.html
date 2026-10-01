@@ -2,13 +2,21 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
 <meta name="theme-color" content="#0f766e">
+
 <link rel="manifest" href="./manifest.json">
+
 <title>Shopping List</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -128,51 +136,54 @@ td{
   font-size:16px;
 }
 
-
-/* =========================
-   MAIN TABLE
-   ========================= */
+/* মূল Shopping List টেবিল */
 
 .main-table{
   width:100%;
-  min-width:650px;
+  min-width:790px;
   table-layout:fixed;
 }
 
-/* আইটেম ৩০% */
+/* Item column */
 .main-table th:nth-child(1),
 .main-table td:nth-child(1){
-  width:20%;
+  width:24%;
 }
 
-/* পরিমাণ একটু বড় */
+/* Category column */
 .main-table th:nth-child(2),
 .main-table td:nth-child(2){
-  width:12%;
+  width:16%;
 }
 
-/* একক একটু বড় */
+/* Quantity */
 .main-table th:nth-child(3),
 .main-table td:nth-child(3){
-  width:11%;
+  width:10%;
 }
 
-/* দর একটু বড় */
+/* Unit */
 .main-table th:nth-child(4),
 .main-table td:nth-child(4){
-  width:15%;
+  width:10%;
 }
 
-/* মোট */
+/* Rate */
 .main-table th:nth-child(5),
 .main-table td:nth-child(5){
-  width:22%;
+  width:14%;
 }
 
-/* বাদ দিন */
+/* Total */
 .main-table th:nth-child(6),
 .main-table td:nth-child(6){
-  width:10%;
+  width:17%;
+}
+
+/* Delete */
+.main-table th:nth-child(7),
+.main-table td:nth-child(7){
+  width:9%;
   text-align:center;
 }
 
@@ -182,7 +193,7 @@ td{
   font-size:16px;
 }
 
-.main-table td:nth-child(5){
+.main-table td:nth-child(6){
   white-space:nowrap;
   font-weight:600;
 }
@@ -205,10 +216,7 @@ td{
   font-weight:bold;
 }
 
-
-/* =========================
-   VIEW PAGE
-   ========================= */
+/* View Page */
 
 .view-page{
   display:none;
@@ -236,31 +244,26 @@ td{
   table-layout:fixed;
 }
 
-/* View-এ আইটেম একটু ছোট */
 .view-table th:nth-child(1),
 .view-table td:nth-child(1){
   width:34%;
 }
 
-/* পরিমাণ */
 .view-table th:nth-child(2),
 .view-table td:nth-child(2){
   width:16%;
 }
 
-/* একক */
 .view-table th:nth-child(3),
 .view-table td:nth-child(3){
   width:14%;
 }
 
-/* দর */
 .view-table th:nth-child(4),
 .view-table td:nth-child(4){
   width:17%;
 }
 
-/* মোট */
 .view-table th:nth-child(5),
 .view-table td:nth-child(5){
   width:19%;
@@ -281,17 +284,57 @@ td{
   overflow-wrap:anywhere;
 }
 
+/* Report */
+
+.report-page{
+  display:none;
+}
+
+.report-header{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  margin-bottom:13px;
+}
+
+.report-title{
+  margin:0;
+  font-size:24px;
+}
+
+.report-table{
+  width:100%;
+  table-layout:fixed;
+}
+
+.report-table th:nth-child(1),
+.report-table td:nth-child(1){
+  width:60%;
+}
+
+.report-table th:nth-child(2),
+.report-table td:nth-child(2){
+  width:40%;
+  text-align:right;
+}
+
+.report-table th,
+.report-table td{
+  font-size:16px;
+  padding:11px 9px;
+}
+
+.report-table tfoot td{
+  font-weight:bold;
+  background:#e7f3f0;
+}
+
 .empty{
   text-align:center;
   padding:20px;
   color:#64748b;
   font-size:16px;
 }
-
-
-/* =========================
-   MOBILE
-   ========================= */
 
 @media(max-width:520px){
 
@@ -330,7 +373,7 @@ td{
   }
 
   .main-table{
-    min-width:650px;
+    min-width:790px;
   }
 
   .main-table th{
@@ -358,195 +401,318 @@ td{
     padding:9px 5px;
   }
 
+  .report-title{
+    font-size:21px;
+  }
+
+  .report-table th,
+  .report-table td{
+    font-size:15px;
+    padding:10px 7px;
+  }
+
   .total-box{
     font-size:20px;
   }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="page" id="mainPage">
+<div class="page">
 
-<h1>Shopping List</h1>
+  <!-- MAIN PAGE -->
 
-<div class="card">
+  <div id="mainPage">
 
-<div class="summary">
+    <h1>Shopping List</h1>
 
-<div class="summary-item">
-<span>Members / People</span>
-<strong>
-<input
-class="people"
-id="members"
-type="text"
-inputmode="numeric"
-value="1">
-</strong>
+    <div class="card">
+
+      <div class="summary">
+
+        <div class="summary-item">
+          <span>Members / People</span>
+          <strong>
+            <input
+              id="members"
+              class="people"
+              type="text"
+              inputmode="numeric"
+              value="1"
+            >
+          </strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Total Cost (৳)</span>
+          <strong id="grandTotal">০</strong>
+        </div>
+
+        <div class="summary-item">
+          <span>Average per Person (৳)</span>
+          <strong id="average">০</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="actions">
+
+        <button onclick="addRow()">
+          + Add Item
+        </button>
+
+        <button onclick="showView()">
+          View
+        </button>
+
+        <button onclick="showReport()">
+          📊 রিপোর্ট
+        </button>
+
+        <button onclick="backupData()">
+          Backup
+        </button>
+
+        <button onclick="document.getElementById('restoreFile').click()">
+          Restore
+        </button>
+
+        <button class="danger" onclick="clearAll()">
+          Clear
+        </button>
+
+      </div>
+
+      <input
+        type="file"
+        id="restoreFile"
+        accept=".json"
+        style="display:none"
+        onchange="restoreData(event)"
+      >
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="table-wrap">
+
+        <table class="main-table">
+
+          <thead>
+
+            <tr>
+              <th>আইটেম</th>
+              <th>ক্যাটাগরি</th>
+              <th>পরিমাণ</th>
+              <th>একক</th>
+              <th>দর (৳)</th>
+              <th>মোট (৳)</th>
+              <th>বাদ দিন</th>
+            </tr>
+
+          </thead>
+
+          <tbody id="tableBody"></tbody>
+
+        </table>
+
+      </div>
+
+
+      <div class="total-box">
+        সর্বমোট: ৳ <span id="bottomTotal">০</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- VIEW PAGE -->
+
+  <div id="viewPage" class="view-page">
+
+    <div class="card">
+
+      <div class="view-header">
+
+        <button class="back" onclick="hideView()">
+          ← Back
+        </button>
+
+        <h2 class="view-title">
+          Total Shopping List
+        </h2>
+
+      </div>
+
+
+      <div class="table-wrap">
+
+        <table class="view-table">
+
+          <thead>
+
+            <tr>
+              <th>আইটেম</th>
+              <th>পরিমাণ</th>
+              <th>একক</th>
+              <th>দর (৳)</th>
+              <th>মোট (৳)</th>
+            </tr>
+
+          </thead>
+
+          <tbody id="viewBody"></tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- REPORT PAGE -->
+
+  <div id="reportPage" class="report-page">
+
+    <div class="card">
+
+      <div class="report-header">
+
+        <button class="back" onclick="hideReport()">
+          ← Back
+        </button>
+
+        <h2 class="report-title">
+          খরচের ক্যাটাগরি রিপোর্ট
+        </h2>
+
+      </div>
+
+
+      <div class="table-wrap">
+
+        <table class="report-table">
+
+          <thead>
+
+            <tr>
+              <th>ক্যাটাগরি</th>
+              <th>মোট টাকা (৳)</th>
+            </tr>
+
+          </thead>
+
+          <tbody id="reportBody"></tbody>
+
+          <tfoot>
+
+            <tr>
+              <td>সর্বমোট</td>
+              <td id="reportTotal">৳ ০</td>
+            </tr>
+
+          </tfoot>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
 
-<div class="summary-item">
-<span>Total Cost (৳)</span>
-<strong id="grandTotal">০</strong>
-</div>
 
-<div class="summary-item">
-<span>Average per Person (৳)</span>
-<strong id="average">০</strong>
-</div>
-
-</div>
-</div>
-
-
-<div class="card">
-
-<div class="actions">
-
-<button id="addBtn">Add Item</button>
-
-<button id="viewBtn" class="secondary">View</button>
-
-<button id="backupBtn" class="light">Backup</button>
-
-<button id="restoreBtn" class="light">Restore</button>
-
-<button id="clearBtn" class="danger">Clear</button>
-
-<input
-id="restoreFile"
-type="file"
-accept=".json,application/json"
-hidden>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<div class="table-wrap">
-
-<table class="main-table">
-
-<thead>
-<tr>
-<th>আইটেম</th>
-<th>পরিমাণ</th>
-<th>একক</th>
-<th>দর (৳)</th>
-<th>মোট (৳)</th>
-<th>বাদ দিন</th>
-</tr>
-</thead>
-
-<tbody id="tableBody"></tbody>
-
-</table>
-
-</div>
-
-<div class="total-box">
-সর্বমোট: ৳ <span id="bottomTotal">০</span>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- VIEW PAGE -->
-
-<div class="page view-page" id="viewPage">
-
-<div class="view-header">
-
-<button class="back" id="backBtn">
-← Back
-</button>
-
-<h2 class="view-title">
-Total Shopping List
-</h2>
-
-</div>
-
-<div class="card">
-
-<div class="table-wrap">
-
-<table class="view-table">
-
-<thead>
-<tr>
-<th>আইটেম</th>
-<th>পরিমাণ</th>
-<th>একক</th>
-<th>দর (৳)</th>
-<th>মোট (৳)</th>
-</tr>
-</thead>
-
-<tbody id="viewBody"></tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-
+<!-- ITEM DROPDOWN -->
 
 <datalist id="itemList"></datalist>
 
 
+<!-- CATEGORY DROPDOWN -->
+
+<datalist id="categoryList"></datalist>
+
+
 <script>
 
-const DATA_KEY="shoppingListDataV2";
-const ITEMS_KEY="shoppingListItemsV3";
+/* =========================================================
+   STORAGE
+========================================================= */
 
-let saved=loadData();
-let itemMaster=loadItems();
-let rows=saved.rows;
-let members=saved.members;
+const DATA_KEY = "shoppingListDataV2";
+const ITEMS_KEY = "shoppingListItemsV3";
+const CATEGORY_KEY = "shoppingListCategoriesV1";
 
 
-/* সংখ্যা ঠিক করা */
+/* =========================================================
+   DEFAULT CATEGORIES
+========================================================= */
+
+const DEFAULT_CATEGORIES = [
+  "খাবার",
+  "ডেকোরেটর",
+  "অন্যান্য"
+];
+
+
+/* =========================================================
+   LOAD DATA
+========================================================= */
+
+let saved = loadData();
+
+let itemMaster = loadItems();
+
+let categoryMaster = loadCategories();
+
+let rows = saved.rows;
+
+let members = saved.members;
+
+
+/* =========================================================
+   NUMBER FUNCTIONS
+========================================================= */
+
 function normalizeNumber(v){
 
-  return String(v??"")
-    .replace(/[০-৯]/g,d=>
-      "০১২৩৪৫৬৭৮৯".indexOf(d)
-    )
-    .replace(/[٠-٩]/g,d=>
-      "٠١٢٣٤٥٦٧٨٩".indexOf(d)
-    )
+  return String(v ?? "")
+    .replace(/[০-৯]/g,d=>"০১২৩৪৫৬৭৮৯".indexOf(d))
+    .replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d))
     .replace(/,/g,"")
     .trim();
 
 }
 
 
-/* Number */
 function num(v){
 
-  let n=parseFloat(
-    normalizeNumber(v)
-  );
+  let n = parseFloat(normalizeNumber(v));
 
-  return Number.isFinite(n)?n:0;
+  return Number.isFinite(n) ? n : 0;
 
 }
 
 
-/* বাংলা টাকার সংখ্যা */
 function money(v){
 
-  return Number(v||0).toLocaleString(
+  return Number(v || 0).toLocaleString(
     "bn-BD",
     {
       minimumFractionDigits:0,
@@ -557,7 +723,10 @@ function money(v){
 }
 
 
-/* Item Sort */
+/* =========================================================
+   SORT
+========================================================= */
+
 function sortItems(a){
 
   return [...a].sort(
@@ -565,48 +734,59 @@ function sortItems(a){
       String(x.name).localeCompare(
         String(y.name),
         "bn",
-        {
-          sensitivity:"base"
-        }
+        {sensitivity:"base"}
       )
   );
 
 }
 
 
-/* Load Items */
+function sortCategories(a){
+
+  return [...a].sort(
+    (x,y)=>
+      String(x).localeCompare(
+        String(y),
+        "bn",
+        {sensitivity:"base"}
+      )
+  );
+
+}
+
+
+/* =========================================================
+   ITEMS
+========================================================= */
+
 function loadItems(){
 
   try{
 
-    let x=JSON.parse(
-      localStorage.getItem(
-        ITEMS_KEY
-      )
+    let x = JSON.parse(
+      localStorage.getItem(ITEMS_KEY)
     );
 
     return Array.isArray(x)
-      ?sortItems(
-        x.filter(
-          a=>a&&a.name
+      ? sortItems(
+          x.filter(
+            a=>a && a.name
+          )
         )
-      )
-      :[];
+      : [];
 
   }catch(e){
 
-    return[];
+    return [];
 
   }
 
 }
 
 
-/* Save Items */
 function saveItems(){
 
-  itemMaster=
-    sortItems(itemMaster);
+  itemMaster = sortItems(itemMaster);
 
   localStorage.setItem(
     ITEMS_KEY,
@@ -616,24 +796,79 @@ function saveItems(){
 }
 
 
-/* Load Data */
+/* =========================================================
+   CATEGORIES
+========================================================= */
+
+function loadCategories(){
+
+  try{
+
+    let x = JSON.parse(
+      localStorage.getItem(CATEGORY_KEY)
+    );
+
+    if(Array.isArray(x)){
+
+      let result = [
+        ...DEFAULT_CATEGORIES,
+        ...x
+      ];
+
+      return [
+        ...new Set(
+          result
+            .map(x=>String(x).trim())
+            .filter(Boolean)
+        )
+      ];
+
+    }
+
+  }catch(e){}
+
+  return [...DEFAULT_CATEGORIES];
+
+}
+
+
+function saveCategories(){
+
+  categoryMaster = sortCategories(
+    [...new Set(
+      categoryMaster
+        .map(x=>String(x).trim())
+        .filter(Boolean)
+    )]
+  );
+
+  localStorage.setItem(
+    CATEGORY_KEY,
+    JSON.stringify(categoryMaster)
+  );
+
+}
+
+
+/* =========================================================
+   DATA
+========================================================= */
+
 function loadData(){
 
   try{
 
-    let x=JSON.parse(
-      localStorage.getItem(
-        DATA_KEY
-      )
+    let x = JSON.parse(
+      localStorage.getItem(DATA_KEY)
     );
 
     if(
-      x&&
+      x &&
       Array.isArray(x.rows)
     ){
 
-      return{
-        members:x.members||1,
+      return {
+        members:x.members || 1,
         rows:x.rows
       };
 
@@ -641,7 +876,7 @@ function loadData(){
 
   }catch(e){}
 
-  return{
+  return {
     members:1,
     rows:[]
   };
@@ -649,14 +884,13 @@ function loadData(){
 }
 
 
-/* Save Data */
 function saveData(){
 
   localStorage.setItem(
     DATA_KEY,
     JSON.stringify({
-      version:3,
-      members:num(members)||1,
+      version:4,
+      members:num(members) || 1,
       rows
     })
   );
@@ -664,26 +898,23 @@ function saveData(){
 }
 
 
-/* Item List */
+/* =========================================================
+   UPDATE ITEM LIST
+========================================================= */
+
 function updateList(){
 
-  let d=
-    document.getElementById(
-      "itemList"
-    );
+  let d =
+    document.getElementById("itemList");
 
-  d.innerHTML="";
+  d.innerHTML = "";
 
-  sortItems(
-    itemMaster
-  ).forEach(x=>{
+  sortItems(itemMaster).forEach(x=>{
 
-    let o=
-      document.createElement(
-        "option"
-      );
+    let o =
+      document.createElement("option");
 
-    o.value=x.name;
+    o.value = x.name;
 
     d.appendChild(o);
 
@@ -692,15 +923,41 @@ function updateList(){
 }
 
 
-/* Save New Item */
+/* =========================================================
+   UPDATE CATEGORY LIST
+========================================================= */
+
+function updateCategoryList(){
+
+  let d =
+    document.getElementById("categoryList");
+
+  d.innerHTML = "";
+
+  sortCategories(categoryMaster).forEach(x=>{
+
+    let o =
+      document.createElement("option");
+
+    o.value = x;
+
+    d.appendChild(o);
+
+  });
+
+}
+
+
+/* =========================================================
+   SAVE NEW ITEM
+========================================================= */
+
 function saveNewItem(i){
 
-  let r=rows[i];
+  let r = rows[i];
 
-  let n=
-    String(
-      r.item||""
-    ).trim();
+  let n =
+    String(r.item || "").trim();
 
   if(!n)return;
 
@@ -708,21 +965,20 @@ function saveNewItem(i){
     !itemMaster.some(
       x=>
         String(x.name)
-        .trim()
-        .toLowerCase()
-        ==
+          .trim()
+          .toLowerCase()
+        ===
         n.toLowerCase()
     )
   ){
 
     itemMaster.push({
       name:n,
-      unit:String(
-        r.unit||""
-      ).trim()
+      unit:String(r.unit || "").trim()
     });
 
     saveItems();
+
     updateList();
 
   }
@@ -730,11 +986,50 @@ function saveNewItem(i){
 }
 
 
-/* Add Row */
+/* =========================================================
+   SAVE NEW CATEGORY
+========================================================= */
+
+function saveNewCategory(i){
+
+  let r = rows[i];
+
+  let n =
+    String(r.category || "").trim();
+
+  if(!n)return;
+
+  if(
+    !categoryMaster.some(
+      x=>
+        String(x)
+          .trim()
+          .toLowerCase()
+        ===
+        n.toLowerCase()
+    )
+  ){
+
+    categoryMaster.push(n);
+
+    saveCategories();
+
+    updateCategoryList();
+
+  }
+
+}
+
+
+/* =========================================================
+   ADD ROW
+========================================================= */
+
 function addRow(){
 
   rows.push({
     item:"",
+    category:"",
     qty:"",
     unit:"",
     rate:""
@@ -752,7 +1047,10 @@ function addRow(){
 }
 
 
-/* Remove Row */
+/* =========================================================
+   REMOVE ROW
+========================================================= */
+
 function removeRow(i){
 
   rows.splice(i,1);
@@ -764,43 +1062,71 @@ function removeRow(i){
 }
 
 
-/* Recalculate */
+/* =========================================================
+   ROW TOTAL
+========================================================= */
+
+function updateRowTotal(i){
+
+  let cell =
+    document.getElementById(
+      "rowTotal-"+i
+    );
+
+  if(cell){
+
+    cell.textContent =
+      "৳ " +
+      money(
+        num(rows[i].qty) *
+        num(rows[i].rate)
+      );
+
+  }
+
+}
+
+
+/* =========================================================
+   RECALCULATE
+========================================================= */
+
 function recalc(){
 
-  let t=
+  let t =
     rows.reduce(
       (s,r)=>
-        s+
-        num(r.qty)*
+        s +
+        num(r.qty) *
         num(r.rate),
       0
     );
 
-
   document.getElementById(
     "grandTotal"
-  ).textContent=
+  ).textContent =
     money(t);
-
 
   document.getElementById(
     "bottomTotal"
-  ).textContent=
+  ).textContent =
     money(t);
-
 
   document.getElementById(
     "average"
-  ).textContent=
+  ).textContent =
     money(
-      t/
-      (num(members)||1)
+      t /
+      (num(members) || 1)
     );
 
 }
 
 
-/* Focus Cell */
+/* =========================================================
+   FOCUS CELL
+========================================================= */
+
 function focusCell(
   rowIndex,
   colIndex
@@ -808,25 +1134,26 @@ function focusCell(
 
   setTimeout(()=>{
 
-    let row=
+    let row =
       document.querySelector(
-        '#tableBody tr[data-row-index="'+
-        rowIndex+
+        '#tableBody tr[data-row-index="' +
+        rowIndex +
         '"]'
       );
 
     if(!row)return;
 
-    let input=
+    let input =
       row.querySelector(
-        'input[data-col-index="'+
-        colIndex+
+        'input[data-col-index="' +
+        colIndex +
         '"]'
       );
 
     if(input){
 
       input.focus();
+
       input.select();
 
     }
@@ -836,40 +1163,48 @@ function focusCell(
 }
 
 
-/* Enter Navigation */
+/* =========================================================
+   ENTER NAVIGATION
+=========================================================
+
+   0 = Item
+   1 = Category
+   2 = Quantity
+   3 = Unit
+   4 = Rate
+
+========================================================= */
+
 function handleEnter(
   e,
   rowIndex,
   colIndex
 ){
 
-  if(
-    e.key!=="Enter"
-  )return;
+  if(e.key !== "Enter")return;
 
   e.preventDefault();
 
   e.stopPropagation();
 
 
-  if(
-    colIndex<3
-  ){
+  if(colIndex < 4){
 
     focusCell(
       rowIndex,
-      colIndex+1
+      colIndex + 1
     );
 
   }else{
 
     if(
-      rowIndex===
-      rows.length-1
+      rowIndex ===
+      rows.length - 1
     ){
 
       rows.push({
         item:"",
+        category:"",
         qty:"",
         unit:"",
         rate:""
@@ -887,7 +1222,7 @@ function handleEnter(
     }else{
 
       focusCell(
-        rowIndex+1,
+        rowIndex + 1,
         0
       );
 
@@ -898,661 +1233,945 @@ function handleEnter(
 }
 
 
-/* Render */
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function esc(v){
+
+  return String(v ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================================
+   RENDER MAIN TABLE
+========================================================= */
+
 function render(){
 
-  updateList();
-
-  let b=
+  let body =
     document.getElementById(
       "tableBody"
     );
 
-  b.innerHTML="";
+  body.innerHTML = "";
 
 
-  if(!rows.length){
+  rows.forEach((r,i)=>{
 
-    b.innerHTML=
-      '<tr>'+
-      '<td colspan="6" class="empty">'+
-      'No items added yet.'+
-      '</td>'+
-      '</tr>';
-
-  }
-
-
-  rows.forEach(
-    (r,i)=>{
-
-      let tr=
-        document.createElement(
-          "tr"
-        );
-
-      tr.dataset.rowIndex=i;
-
-
-      /* Item */
-
-      let a=
-        document.createElement(
-          "input"
-        );
-
-      a.type="text";
-
-      a.setAttribute(
-        "list",
-        "itemList"
-      );
-
-      a.placeholder=
-        "আইটেম লিখুন";
-
-      a.value=
-        r.item||"";
-
-      a.dataset.colIndex="0";
-
-
-      a.oninput=e=>{
-
-        r.item=
-          e.target.value;
-
-        saveNewItem(i);
-
-        saveData();
-
-      };
-
-
-      /* Quantity */
-
-      let q=
-        document.createElement(
-          "input"
-        );
-
-      q.type="text";
-
-      q.inputMode=
-        "decimal";
-
-      q.value=
-        r.qty||"";
-
-      q.dataset.colIndex="1";
-
-
-      q.oninput=e=>{
-
-        r.qty=
-          e.target.value;
-
-        saveData();
-
-        recalc();
-
-        updateRowTotal(i);
-
-      };
-
-
-      /* Unit */
-
-      let u=
-        document.createElement(
-          "input"
-        );
-
-      u.type="text";
-
-      u.value=
-        r.unit||"";
-
-      u.dataset.colIndex="2";
-
-
-      u.oninput=e=>{
-
-        r.unit=
-          e.target.value;
-
-        saveNewItem(i);
-
-        saveData();
-
-      };
-
-
-      /* Rate */
-
-      let rate=
-        document.createElement(
-          "input"
-        );
-
-      rate.type="text";
-
-      rate.inputMode=
-        "decimal";
-
-      rate.value=
-        r.rate||"";
-
-      rate.dataset.colIndex="3";
-
-
-      rate.oninput=e=>{
-
-        r.rate=
-          e.target.value;
-
-        saveData();
-
-        recalc();
-
-        updateRowTotal(i);
-
-      };
-
-
-      /* Enter */
-
-      a.onkeydown=e=>
-        handleEnter(e,i,0);
-
-      q.onkeydown=e=>
-        handleEnter(e,i,1);
-
-      u.onkeydown=e=>
-        handleEnter(e,i,2);
-
-      rate.onkeydown=e=>
-        handleEnter(e,i,3);
-
-
-      /* Cells */
-
-      let cells=[
-        a,
-        q,
-        u,
-        rate
-      ];
-
-
-      cells.forEach(
-        (el,j)=>{
-
-          let td=
-            document.createElement(
-              "td"
-            );
-
-          td.appendChild(el);
-
-          tr.appendChild(td);
-
-
-          if(j===3){
-
-            let td2=
-              document.createElement(
-                "td"
-              );
-
-            td2.id=
-              "rowTotal-"+i;
-
-            td2.textContent=
-              "৳ "+
-              money(
-                num(r.qty)*
-                num(r.rate)
-              );
-
-            tr.appendChild(td2);
-
-          }
-
-        }
-      );
-
-
-      /* Remove */
-
-      let td=
-        document.createElement(
-          "td"
-        );
-
-      let bt=
-        document.createElement(
-          "button"
-        );
-
-      bt.className="remove";
-
-      bt.textContent="✕";
-
-      bt.onclick=()=>
-        removeRow(i);
-
-      td.appendChild(bt);
-
-      tr.appendChild(td);
-
-      b.appendChild(tr);
-
+    if(!r.category){
+      r.category = "";
     }
-  );
 
+
+    let tr =
+      document.createElement("tr");
+
+    tr.dataset.rowIndex = i;
+
+
+    /* ITEM */
+
+    let tdItem =
+      document.createElement("td");
+
+    let itemInput =
+      document.createElement("input");
+
+    itemInput.type = "text";
+
+    itemInput.setAttribute(
+      "list",
+      "itemList"
+    );
+
+    itemInput.dataset.colIndex = "0";
+
+    itemInput.value =
+      r.item || "";
+
+
+    itemInput.addEventListener(
+      "input",
+      e=>{
+
+        rows[i].item =
+          e.target.value;
+
+        saveData();
+
+      }
+    );
+
+
+    itemInput.addEventListener(
+      "change",
+      ()=>{
+
+        saveNewItem(i);
+
+      }
+    );
+
+
+    itemInput.addEventListener(
+      "keydown",
+      e=>
+        handleEnter(
+          e,
+          i,
+          0
+        )
+    );
+
+
+    tdItem.appendChild(
+      itemInput
+    );
+
+
+    /* CATEGORY */
+
+    let tdCategory =
+      document.createElement("td");
+
+    let categoryInput =
+      document.createElement("input");
+
+    categoryInput.type = "text";
+
+    categoryInput.setAttribute(
+      "list",
+      "categoryList"
+    );
+
+    categoryInput.dataset.colIndex = "1";
+
+    categoryInput.value =
+      r.category || "";
+
+
+    categoryInput.addEventListener(
+      "input",
+      e=>{
+
+        rows[i].category =
+          e.target.value;
+
+        saveData();
+
+        recalc();
+
+      }
+    );
+
+
+    categoryInput.addEventListener(
+      "change",
+      ()=>{
+
+        saveNewCategory(i);
+
+      }
+    );
+
+
+    categoryInput.addEventListener(
+      "blur",
+      ()=>{
+
+        saveNewCategory(i);
+
+      }
+    );
+
+
+    categoryInput.addEventListener(
+      "keydown",
+      e=>
+        handleEnter(
+          e,
+          i,
+          1
+        )
+    );
+
+
+    tdCategory.appendChild(
+      categoryInput
+    );
+
+
+    /* QUANTITY */
+
+    let tdQty =
+      document.createElement("td");
+
+    let qtyInput =
+      document.createElement("input");
+
+    qtyInput.type = "text";
+
+    qtyInput.inputMode = "decimal";
+
+    qtyInput.dataset.colIndex = "2";
+
+    qtyInput.value =
+      r.qty || "";
+
+
+    qtyInput.addEventListener(
+      "input",
+      e=>{
+
+        rows[i].qty =
+          e.target.value;
+
+        saveData();
+
+        updateRowTotal(i);
+
+        recalc();
+
+      }
+    );
+
+
+    qtyInput.addEventListener(
+      "keydown",
+      e=>
+        handleEnter(
+          e,
+          i,
+          2
+        )
+    );
+
+
+    tdQty.appendChild(
+      qtyInput
+    );
+
+
+    /* UNIT */
+
+    let tdUnit =
+      document.createElement("td");
+
+    let unitInput =
+      document.createElement("input");
+
+    unitInput.type = "text";
+
+    unitInput.dataset.colIndex = "3";
+
+    unitInput.value =
+      r.unit || "";
+
+
+    unitInput.addEventListener(
+      "input",
+      e=>{
+
+        rows[i].unit =
+          e.target.value;
+
+        saveData();
+
+      }
+    );
+
+
+    unitInput.addEventListener(
+      "keydown",
+      e=>
+        handleEnter(
+          e,
+          i,
+          3
+        )
+    );
+
+
+    tdUnit.appendChild(
+      unitInput
+    );
+
+
+    /* RATE */
+
+    let tdRate =
+      document.createElement("td");
+
+    let rateInput =
+      document.createElement("input");
+
+    rateInput.type = "text";
+
+    rateInput.inputMode = "decimal";
+
+    rateInput.dataset.colIndex = "4";
+
+    rateInput.value =
+      r.rate || "";
+
+
+    rateInput.addEventListener(
+      "input",
+      e=>{
+
+        rows[i].rate =
+          e.target.value;
+
+        saveData();
+
+        updateRowTotal(i);
+
+        recalc();
+
+      }
+    );
+
+
+    rateInput.addEventListener(
+      "keydown",
+      e=>
+        handleEnter(
+          e,
+          i,
+          4
+        )
+    );
+
+
+    tdRate.appendChild(
+      rateInput
+    );
+
+
+    /* TOTAL */
+
+    let tdTotal =
+      document.createElement("td");
+
+    tdTotal.id =
+      "rowTotal-"+i;
+
+    tdTotal.textContent =
+      "৳ " +
+      money(
+        num(r.qty) *
+        num(r.rate)
+      );
+
+
+    /* DELETE */
+
+    let tdDelete =
+      document.createElement("td");
+
+    let deleteButton =
+      document.createElement("button");
+
+    deleteButton.className =
+      "remove";
+
+    deleteButton.textContent =
+      "×";
+
+    deleteButton.title =
+      "এই আইটেম বাদ দিন";
+
+    deleteButton.onclick =
+      ()=>removeRow(i);
+
+    tdDelete.appendChild(
+      deleteButton
+    );
+
+
+    tr.appendChild(tdItem);
+    tr.appendChild(tdCategory);
+    tr.appendChild(tdQty);
+    tr.appendChild(tdUnit);
+    tr.appendChild(tdRate);
+    tr.appendChild(tdTotal);
+    tr.appendChild(tdDelete);
+
+    body.appendChild(tr);
+
+  });
+
+
+  updateList();
+
+  updateCategoryList();
 
   recalc();
 
 }
 
 
-/* Row Total */
-function updateRowTotal(i){
+/* =========================================================
+   MEMBERS
+========================================================= */
 
-  let cell=
-    document.getElementById(
-      "rowTotal-"+i
-    );
+document.getElementById(
+  "members"
+).addEventListener(
+  "input",
+  e=>{
 
-  if(cell){
+    members =
+      num(e.target.value) || 1;
 
-    cell.textContent=
-      "৳ "+
-      money(
-        num(rows[i].qty)*
-        num(rows[i].rate)
-      );
+    saveData();
+
+    recalc();
 
   }
-
-}
-
-
-/* Escape */
-function esc(v){
-
-  return String(v).replace(
-    /[&<>"']/g,
-    m=>({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#039;"
-    }[m])
-  );
-
-}
+);
 
 
-/* View */
+/* =========================================================
+   VIEW
+========================================================= */
+
 function showView(){
 
   document.getElementById(
     "mainPage"
-  ).style.display="none";
+  ).style.display = "none";
+
+  document.getElementById(
+    "reportPage"
+  ).style.display = "none";
 
   document.getElementById(
     "viewPage"
-  ).style.display="block";
+  ).style.display = "block";
 
 
-  let b=
+  let body =
     document.getElementById(
       "viewBody"
     );
 
-  b.innerHTML="";
+  body.innerHTML = "";
 
 
-  if(!rows.length){
-
-    b.innerHTML=
-      '<tr>'+
-      '<td colspan="5" class="empty">'+
-      'No items added yet.'+
-      '</td>'+
-      '</tr>';
-
-    return;
-
-  }
+  let hasRows = false;
 
 
   rows.forEach(r=>{
 
-    let tr=
-      document.createElement(
-        "tr"
-      );
+    if(
+      !String(r.item || "").trim() &&
+      !num(r.qty) &&
+      !num(r.rate)
+    ){
+      return;
+    }
 
 
-    tr.innerHTML=
-      "<td>"+
-      esc(r.item||"")+
-      "</td>"+
-
-      "<td>"+
-      esc(r.qty||"")+
-      "</td>"+
-
-      "<td>"+
-      esc(r.unit||"")+
-      "</td>"+
-
-      "<td>"+
-      esc(r.rate||"")+
-      "</td>"+
-
-      "<td>৳ "+
-      money(
-        num(r.qty)*
-        num(r.rate)
-      )+
-      "</td>";
+    hasRows = true;
 
 
-    b.appendChild(tr);
+    let tr =
+      document.createElement("tr");
+
+
+    tr.innerHTML = `
+
+      <td>${esc(r.item)}</td>
+
+      <td>${esc(r.qty)}</td>
+
+      <td>${esc(r.unit)}</td>
+
+      <td>৳ ${money(num(r.rate))}</td>
+
+      <td>
+        ৳ ${money(
+          num(r.qty) *
+          num(r.rate)
+        )}
+      </td>
+
+    `;
+
+
+    body.appendChild(tr);
 
   });
+
+
+  if(!hasRows){
+
+    body.innerHTML =
+      `<tr>
+        <td colspan="5" class="empty">
+          কোনো তথ্য নেই
+        </td>
+      </tr>`;
+
+  }
 
 }
 
 
-/* Hide View */
 function hideView(){
 
   document.getElementById(
     "viewPage"
-  ).style.display="none";
+  ).style.display = "none";
 
   document.getElementById(
     "mainPage"
-  ).style.display="block";
+  ).style.display = "block";
 
 }
 
 
-/* Members */
-document.getElementById(
-  "members"
-).oninput=e=>{
+/* =========================================================
+   REPORT
+========================================================= */
 
-  members=
-    e.target.value;
+function showReport(){
 
-  saveData();
+  document.getElementById(
+    "mainPage"
+  ).style.display = "none";
 
-  recalc();
+  document.getElementById(
+    "viewPage"
+  ).style.display = "none";
 
-};
-
-
-/* Add */
-document.getElementById(
-  "addBtn"
-).onclick=
-  addRow;
+  document.getElementById(
+    "reportPage"
+  ).style.display = "block";
 
 
-/* View */
-document.getElementById(
-  "viewBtn"
-).onclick=
-  showView;
+  let totals = {};
 
 
-/* Back */
-document.getElementById(
-  "backBtn"
-).onclick=
-  hideView;
+  rows.forEach(r=>{
+
+    let category =
+      String(
+        r.category || ""
+      ).trim();
 
 
-/* Clear */
+    let total =
+      num(r.qty) *
+      num(r.rate);
 
-document.getElementById(
-  "clearBtn"
-).onclick=()=>{
 
-  if(
-    confirm(
-      "Clear the current shopping list?"
-    )
-  ){
+    if(
+      !category ||
+      total === 0
+    ){
+      return;
+    }
 
-    /* বর্তমান Shopping List মুছে যাবে */
-    rows=[];
 
-    /* Members আবার 1 হবে */
-    members=1;
+    if(
+      !Object.prototype.hasOwnProperty.call(
+        totals,
+        category
+      )
+    ){
 
+      totals[category] = 0;
+
+    }
+
+
+    totals[category] += total;
+
+  });
+
+
+  let body =
     document.getElementById(
-      "members"
-    ).value="1";
-
-    /* Item Dropdown-এর সব পুরোনো ডাটা মুছে যাবে */
-    itemMaster=[];
-
-    localStorage.removeItem(
-      ITEMS_KEY
+      "reportBody"
     );
 
-    /* Shopping List-ও মুছে সেভ হবে */
-    saveData();
+  body.innerHTML = "";
 
-    /* Dropdown এবং টেবিল নতুন করে খালি হবে */
-    render();
+
+  let grand = 0;
+
+
+  let categories =
+    Object.keys(totals).sort(
+      (a,b)=>
+        a.localeCompare(
+          b,
+          "bn",
+          {sensitivity:"base"}
+        )
+    );
+
+
+  if(categories.length === 0){
+
+    body.innerHTML =
+      `<tr>
+        <td colspan="2" class="empty">
+          কোনো ক্যাটাগরি অনুযায়ী হিসাব পাওয়া যায়নি
+        </td>
+      </tr>`;
+
+  }else{
+
+    categories.forEach(category=>{
+
+      grand += totals[category];
+
+
+      let tr =
+        document.createElement("tr");
+
+
+      tr.innerHTML = `
+
+        <td>${esc(category)}</td>
+
+        <td>
+          ৳ ${money(totals[category])}
+        </td>
+
+      `;
+
+
+      body.appendChild(tr);
+
+    });
 
   }
 
-};
-/* Backup */
-document.getElementById(
-  "backupBtn"
-).onclick=()=>{
 
-  let x={
+  document.getElementById(
+    "reportTotal"
+  ).textContent =
+    "৳ " + money(grand);
+
+}
+
+
+function hideReport(){
+
+  document.getElementById(
+    "reportPage"
+  ).style.display = "none";
+
+  document.getElementById(
+    "mainPage"
+  ).style.display = "block";
+
+}
+
+
+/* =========================================================
+   CLEAR
+========================================================= */
+
+function clearAll(){
+
+  let ok =
+    confirm(
+      "সব Shopping List, Item এবং Category-এর সংরক্ষিত ডাটা মুছে ফেলতে চান?"
+    );
+
+  if(!ok)return;
+
+
+  rows = [];
+
+  members = 1;
+
+  itemMaster = [];
+
+  categoryMaster = [];
+
+
+  document.getElementById(
+    "members"
+  ).value = "1";
+
+
+  localStorage.removeItem(
+    ITEMS_KEY
+  );
+
+  localStorage.removeItem(
+    CATEGORY_KEY
+  );
+
+
+  saveData();
+
+  render();
+
+}
+
+
+/* =========================================================
+   BACKUP
+========================================================= */
+
+function backupData(){
+
+  let backup = {
+
     app:"Shopping List",
-    version:3,
+
+    version:4,
+
     exportedAt:
       new Date().toISOString(),
 
-    itemMaster,
+    itemMaster:itemMaster,
+
+    categoryMaster:categoryMaster,
 
     data:{
-      members:
-        num(members)||1,
-      rows
+      members:members,
+      rows:rows
     }
 
   };
 
 
-  let blob=
+  let blob =
     new Blob(
       [
         JSON.stringify(
-          x,
+          backup,
           null,
           2
         )
       ],
       {
-        type:
-          "application/json"
+        type:"application/json"
       }
     );
 
 
-  let url=
-    URL.createObjectURL(
-      blob
-    );
+  let url =
+    URL.createObjectURL(blob);
 
 
-  let a=
-    document.createElement(
-      "a"
-    );
+  let a =
+    document.createElement("a");
 
-  a.href=url;
+  a.href = url;
 
-  a.download=
+  a.download =
     "shopping-list-backup.json";
+
+  document.body.appendChild(a);
 
   a.click();
 
+  a.remove();
 
-  setTimeout(
-    ()=>
-      URL.revokeObjectURL(url),
-    1000
-  );
+  URL.revokeObjectURL(url);
 
-};
+}
 
 
-/* Restore */
-document.getElementById(
-  "restoreBtn"
-).onclick=()=>
-  document.getElementById(
-    "restoreFile"
-  ).click();
+/* =========================================================
+   RESTORE
+========================================================= */
+
+function restoreData(event){
+
+  let file =
+    event.target.files[0];
+
+  if(!file)return;
 
 
-document.getElementById(
-  "restoreFile"
-).onchange=e=>{
-
-  let f=
-    e.target.files[0];
-
-  if(!f)return;
-
-
-  let r=
+  let reader =
     new FileReader();
 
 
-  r.onload=()=>{
+  reader.onload =
+    function(e){
 
-    try{
+      try{
 
-      let x=
-        JSON.parse(
-          r.result
-        );
-
-
-      if(
-        Array.isArray(
-          x.itemMaster
-        )
-      ){
-
-        itemMaster=
-          sortItems(
-            x.itemMaster.filter(
-              a=>a&&a.name
-            )
+        let backup =
+          JSON.parse(
+            e.target.result
           );
+
+
+        if(
+          !backup ||
+          !backup.data ||
+          !Array.isArray(
+            backup.data.rows
+          )
+        ){
+
+          alert(
+            "Backup ফাইলটি সঠিক নয়।"
+          );
+
+          return;
+
+        }
+
+
+        rows =
+          backup.data.rows.map(r=>({
+
+            item:r.item || "",
+
+            category:
+              r.category || "",
+
+            qty:r.qty || "",
+
+            unit:r.unit || "",
+
+            rate:r.rate || ""
+
+          }));
+
+
+        members =
+          num(
+            backup.data.members
+          ) || 1;
+
+
+        if(
+          Array.isArray(
+            backup.itemMaster
+          )
+        ){
+
+          itemMaster =
+            backup.itemMaster;
+
+        }else{
+
+          itemMaster = [];
+
+        }
+
+
+        if(
+          Array.isArray(
+            backup.categoryMaster
+          )
+        ){
+
+          categoryMaster =
+            backup.categoryMaster;
+
+        }else{
+
+          categoryMaster =
+            [...DEFAULT_CATEGORIES];
+
+        }
+
 
         saveItems();
 
-      }
+        saveCategories();
 
-
-      if(
-        x.data&&
-        Array.isArray(
-          x.data.rows
-        )
-      ){
-
-        rows=
-          x.data.rows;
-
-        members=
-          x.data.members||1;
+        saveData();
 
 
         document.getElementById(
           "members"
-        ).value=
+        ).value =
           members;
 
-
-        saveData();
 
         render();
 
 
         alert(
-          "Restore completed."
+          "Backup সফলভাবে Restore হয়েছে।"
         );
 
-      }else{
+
+      }catch(error){
 
         alert(
-          "Invalid backup file."
+          "Backup ফাইল পড়তে সমস্যা হয়েছে।"
         );
 
       }
 
-    }catch(err){
-
-      alert(
-        "Could not restore this file."
-      );
-
-    }
+    };
 
 
-    e.target.value="";
-
-  };
+  reader.readAsText(file);
 
 
-  r.readAsText(f);
+  event.target.value = "";
 
-};
+}
 
 
-/* Start */
+/* =========================================================
+   INITIALIZE
+========================================================= */
 
 document.getElementById(
   "members"
-).value=
-  members||1;
+).value =
+  members;
+
+
+if(rows.length === 0){
+
+  rows.push({
+    item:"",
+    category:"",
+    qty:"",
+    unit:"",
+    rate:""
+  });
+
+}
+
+
+updateList();
+
+updateCategoryList();
 
 render();
 
 
-/* Service Worker */
+/* =========================================================
+   SERVICE WORKER
+========================================================= */
 
-if(
-  "serviceWorker" in navigator
-){
+if("serviceWorker" in navigator){
 
   window.addEventListener(
     "load",
-    ()=>
+    ()=>{
       navigator.serviceWorker.register(
         "./service-worker.js"
-      )
+      );
+    }
   );
 
 }
