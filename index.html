@@ -2,357 +2,108 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <meta name="theme-color" content="#0f766e">
-
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Shopping List">
-
 <link rel="manifest" href="./manifest.json">
-
 <title>Shopping List</title>
 
 <style>
 *{box-sizing:border-box}
-
 body{
   margin:0;
   font-family:Arial,"Noto Sans Bengali",sans-serif;
   background:#f3f7f6;
   color:#17312d;
-  font-size:16px;
+  font-size:16px
 }
-
-.page{
-  max-width:900px;
-  margin:auto;
-  padding:14px;
-}
-
-h1{
-  font-size:27px;
-  margin:4px 0 16px;
-}
-
+.page{max-width:900px;margin:auto;padding:14px}
+h1{font-size:27px;margin:4px 0 16px}
 .card{
-  background:#fff;
-  border-radius:14px;
-  padding:15px;
-  margin-bottom:13px;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  background:#fff;border-radius:14px;padding:15px;margin-bottom:13px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08)
 }
-
-.summary{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:9px;
-}
-
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
 .summary-item{
-  background:#e8f5f2;
-  border-radius:10px;
-  padding:11px;
-  text-align:center;
+  background:#e8f5f2;border-radius:10px;padding:11px;text-align:center
 }
-
-.summary-item span{
-  display:block;
-  font-size:14px;
-}
-
-.summary-item strong{
-  display:block;
-  font-size:19px;
-  margin-top:5px;
-}
-
-.actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:9px;
-}
-
+.summary-item span{display:block;font-size:14px}
+.summary-item strong{display:block;font-size:19px;margin-top:5px}
+.actions{display:flex;flex-wrap:wrap;gap:9px}
 button{
-  border:0;
-  border-radius:9px;
-  padding:11px 14px;
-  cursor:pointer;
-  background:#0f766e;
-  color:white;
-  font-size:15px;
+  border:0;border-radius:9px;padding:11px 14px;cursor:pointer;
+  background:#0f766e;color:white;font-size:15px
 }
-
-button.secondary{
-  background:#64748b;
-}
-
-button.danger{
-  background:#dc2626;
-}
-
-button.light{
-  background:#e2e8f0;
-  color:#17312d;
-}
-
+button.secondary{background:#64748b}
+button.danger{background:#dc2626}
+button.light{background:#e2e8f0;color:#17312d}
 input{
-  width:100%;
-  border:1px solid #cbd5e1;
-  border-radius:7px;
-  padding:9px 8px;
-  background:#fff;
-  font-size:16px;
+  width:100%;border:1px solid #cbd5e1;border-radius:7px;
+  padding:9px 8px;background:#fff;font-size:16px
 }
-
-.table-wrap{
-  overflow-x:auto;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  background:#fff;
-}
-
-th,td{
-  border:1px solid #d8e2df;
-  padding:9px 7px;
-  text-align:left;
-}
-
-th{
-  background:#e7f3f0;
-  font-size:16px;
-}
-
-td{
-  font-size:16px;
-}
-
-.main-table{
-  width:100%;
-  min-width:790px;
-  table-layout:fixed;
-}
-
-.main-table th:nth-child(1),
-.main-table td:nth-child(1){width:24%}
-
-.main-table th:nth-child(2),
-.main-table td:nth-child(2){width:16%}
-
-.main-table th:nth-child(3),
-.main-table td:nth-child(3){width:10%}
-
-.main-table th:nth-child(4),
-.main-table td:nth-child(4){width:10%}
-
-.main-table th:nth-child(5),
-.main-table td:nth-child(5){width:14%}
-
-.main-table th:nth-child(6),
-.main-table td:nth-child(6){width:17%}
-
-.main-table th:nth-child(7),
-.main-table td:nth-child(7){
-  width:9%;
-  text-align:center;
-}
-
-.main-table input{
-  width:100%;
-  padding:9px 7px;
-  font-size:16px;
-}
-
-.main-table td:nth-child(6){
-  white-space:nowrap;
-  font-weight:600;
-}
-
-.main-table td:last-child{
-  text-align:center;
-}
-
-.remove{
-  background:#dc2626;
-  padding:7px 10px;
-  font-size:15px;
-}
-
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:#fff}
+th,td{border:1px solid #d8e2df;padding:9px 7px;text-align:left}
+th{background:#e7f3f0;font-size:16px}
+td{font-size:16px}
+.main-table{width:100%;min-width:790px;table-layout:fixed}
+.main-table th:nth-child(1),.main-table td:nth-child(1){width:24%}
+.main-table th:nth-child(2),.main-table td:nth-child(2){width:16%}
+.main-table th:nth-child(3),.main-table td:nth-child(3){width:10%}
+.main-table th:nth-child(4),.main-table td:nth-child(4){width:10%}
+.main-table th:nth-child(5),.main-table td:nth-child(5){width:14%}
+.main-table th:nth-child(6),.main-table td:nth-child(6){width:17%}
+.main-table th:nth-child(7),.main-table td:nth-child(7){width:9%;text-align:center}
+.main-table input{width:100%;padding:9px 7px;font-size:16px}
+.main-table td:nth-child(6){white-space:nowrap;font-weight:600}
+.main-table td:last-child{text-align:center}
+.remove{background:#dc2626;padding:7px 10px;font-size:15px}
 .total-box{
-  display:flex;
-  justify-content:flex-end;
-  margin-top:13px;
-  font-size:21px;
-  font-weight:bold;
+  display:flex;justify-content:flex-end;margin-top:13px;
+  font-size:21px;font-weight:bold
 }
-
-.view-page{
-  display:none;
+.view-page,.report-page{display:none}
+.view-header,.report-header{
+  display:flex;align-items:center;gap:11px;margin-bottom:13px
 }
-
-.view-header{
-  display:flex;
-  align-items:center;
-  gap:11px;
-  margin-bottom:13px;
+.back{background:#475569}
+.view-title,.report-title{margin:0;font-size:24px}
+.view-table{width:100%;min-width:0;table-layout:fixed}
+.view-table th:nth-child(1),.view-table td:nth-child(1){width:34%}
+.view-table th:nth-child(2),.view-table td:nth-child(2){width:16%}
+.view-table th:nth-child(3),.view-table td:nth-child(3){width:14%}
+.view-table th:nth-child(4),.view-table td:nth-child(4){width:17%}
+.view-table th:nth-child(5),.view-table td:nth-child(5){width:19%}
+.view-table td,.view-table th{padding:9px 6px;font-size:15px}
+.view-table td:nth-child(n+2),.view-table th:nth-child(n+2){white-space:nowrap}
+.view-table td:first-child{overflow-wrap:anywhere}
+.report-table{width:100%;table-layout:fixed}
+.report-table th:nth-child(1),.report-table td:nth-child(1){width:60%}
+.report-table th:nth-child(2),.report-table td:nth-child(2){
+  width:40%;text-align:right
 }
-
-.back{
-  background:#475569;
-}
-
-.view-title{
-  margin:0;
-  font-size:24px;
-}
-
-.view-table{
-  width:100%;
-  min-width:0;
-  table-layout:fixed;
-}
-
-.view-table th:nth-child(1),
-.view-table td:nth-child(1){width:34%}
-
-.view-table th:nth-child(2),
-.view-table td:nth-child(2){width:16%}
-
-.view-table th:nth-child(3),
-.view-table td:nth-child(3){width:14%}
-
-.view-table th:nth-child(4),
-.view-table td:nth-child(4){width:17%}
-
-.view-table th:nth-child(5),
-.view-table td:nth-child(5){width:19%}
-
-.view-table td,
-.view-table th{
-  padding:9px 6px;
-  font-size:15px;
-}
-
-.view-table td:nth-child(n+2),
-.view-table th:nth-child(n+2){
-  white-space:nowrap;
-}
-
-.view-table td:first-child{
-  overflow-wrap:anywhere;
-}
-
-.report-page{
-  display:none;
-}
-
-.report-header{
-  display:flex;
-  align-items:center;
-  gap:11px;
-  margin-bottom:13px;
-}
-
-.report-title{
-  margin:0;
-  font-size:24px;
-}
-
-.report-table{
-  width:100%;
-  table-layout:fixed;
-}
-
-.report-table th:nth-child(1),
-.report-table td:nth-child(1){width:60%}
-
-.report-table th:nth-child(2),
-.report-table td:nth-child(2){
-  width:40%;
-  text-align:right;
-}
-
-.report-table th,
-.report-table td{
-  font-size:16px;
-  padding:11px 9px;
-}
-
-.report-table tfoot td{
-  font-weight:bold;
-  background:#e7f3f0;
-}
-
-.empty{
-  text-align:center;
-  padding:20px;
-  color:#64748b;
-  font-size:16px;
-}
+.report-table th,.report-table td{font-size:16px;padding:11px 9px}
+.report-table tfoot td{font-weight:bold;background:#e7f3f0}
+.empty{text-align:center;padding:20px;color:#64748b;font-size:16px}
 
 @media(max-width:520px){
-
   .page{padding:10px}
-
   h1{font-size:25px}
-
   .card{padding:12px}
-
   .summary{gap:6px}
-
   .summary-item{padding:9px 5px}
-
   .summary-item span{font-size:12px}
-
   .summary-item strong{font-size:17px}
-
-  .actions button{
-    flex:1 1 30%;
-    padding:10px 7px;
-    font-size:14px;
-  }
-
-  .main-table{
-    min-width:790px;
-  }
-
-  .main-table th{
-    font-size:15px;
-    padding:9px 6px;
-  }
-
-  .main-table td{
-    font-size:16px;
-    padding:8px 5px;
-  }
-
-  .main-table input{
-    font-size:16px;
-    padding:9px 6px;
-  }
-
-  .view-title{font-size:21px}
-
-  .view-table th,
-  .view-table td{
-    font-size:15px;
-    padding:9px 5px;
-  }
-
-  .report-title{font-size:21px}
-
-  .report-table th,
-  .report-table td{
-    font-size:15px;
-    padding:10px 7px;
-  }
-
+  .actions button{flex:1 1 30%;padding:10px 7px;font-size:14px}
+  .main-table{min-width:790px}
+  .main-table th{font-size:15px;padding:9px 6px}
+  .main-table td{font-size:16px;padding:8px 5px}
+  .main-table input{font-size:16px;padding:9px 6px}
+  .view-title,.report-title{font-size:21px}
+  .view-table th,.view-table td{font-size:15px;padding:9px 5px}
+  .report-table th,.report-table td{font-size:15px;padding:10px 7px}
   .total-box{font-size:20px}
 }
 </style>
@@ -367,51 +118,27 @@ td{
 <h1>Shopping List</h1>
 
 <div class="card summary">
-
   <div class="summary-item">
     <span>Members / People</span>
     <strong id="memberCount">1</strong>
   </div>
-
   <div class="summary-item">
     <span>Total Cost (৳)</span>
     <strong id="totalCost">0</strong>
   </div>
-
   <div class="summary-item">
     <span>Average per Person (৳)</span>
     <strong id="averageCost">0</strong>
   </div>
-
 </div>
 
 <div class="card actions">
-
-  <button onclick="addRow()">
-    + Add Item
-  </button>
-
-  <button class="secondary" onclick="showView()">
-    View
-  </button>
-
-  <button class="secondary" onclick="showReport()">
-    📊 Report
-  </button>
-
-  <button class="light" onclick="backupData()">
-    Backup
-  </button>
-
-  <button
-    class="light"
-    onclick="document.getElementById('restoreFile').click()">
-    Restore
-  </button>
-
-  <button class="danger" onclick="clearAll()">
-    Clear
-  </button>
+  <button onclick="addRow()">+ Add Item</button>
+  <button class="secondary" onclick="showView()">View</button>
+  <button class="secondary" onclick="showReport()">📊 Report</button>
+  <button class="light" onclick="backupData()">Backup</button>
+  <button class="light" onclick="document.getElementById('restoreFile').click()">Restore</button>
+  <button class="danger" onclick="clearAll()">Clear</button>
 
   <input
     type="file"
@@ -420,7 +147,6 @@ td{
     style="display:none"
     onchange="restoreData(event)"
   >
-
 </div>
 
 <div class="card table-wrap">
@@ -444,27 +170,18 @@ td{
 </table>
 
 <div class="total-box">
-  সর্বমোট&nbsp; ৳
-  <span id="grandTotal">0</span>
+  সর্বমোট&nbsp; ৳ <span id="grandTotal">0</span>
 </div>
 
 </div>
-
 </div>
 
 
 <div id="viewPage" class="view-page">
 
 <div class="view-header">
-
-  <button class="back" onclick="showMain()">
-    ← Back
-  </button>
-
-  <h2 class="view-title">
-    Total Shopping List
-  </h2>
-
+  <button class="back" onclick="showMain()">← Back</button>
+  <h2 class="view-title">Total Shopping List</h2>
 </div>
 
 <div class="card table-wrap">
@@ -491,24 +208,15 @@ td{
 </tfoot>
 
 </table>
-
 </div>
-
 </div>
 
 
 <div id="reportPage" class="report-page">
 
 <div class="report-header">
-
-  <button class="back" onclick="showMain()">
-    ← Back
-  </button>
-
-  <h2 class="report-title">
-    খরচের ক্যাটাগরি রিপোর্ট
-  </h2>
-
+  <button class="back" onclick="showMain()">← Back</button>
+  <h2 class="report-title">খরচের ক্যাটাগরি রিপোর্ট</h2>
 </div>
 
 <div class="card table-wrap">
@@ -532,9 +240,7 @@ td{
 </tfoot>
 
 </table>
-
 </div>
-
 </div>
 
 </div>
@@ -560,13 +266,9 @@ const DEFAULT_CATEGORIES=[
 ];
 
 let saved=loadData();
-
 let itemMaster=loadItems();
-
 let categoryMaster=loadCategories();
-
 let rows=saved.rows;
-
 let members=saved.members;
 
 
@@ -576,15 +278,9 @@ let members=saved.members;
 
 function normalizeNumber(v){
 
-  return String(v ?? "")
-    .replace(
-      /[০-৯]/g,
-      d=>"০১২৩৪৫৬৭৮৯".indexOf(d)
-    )
-    .replace(
-      /[٠-٩]/g,
-      d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d)
-    )
+  return String(v??"")
+    .replace(/[০-৯]/g,d=>"০১২৩৪৫৬৭৮৯".indexOf(d))
+    .replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d))
     .replace(/,/g,"")
     .trim();
 
@@ -592,13 +288,9 @@ function normalizeNumber(v){
 
 function num(v){
 
-  let n=parseFloat(
-    normalizeNumber(v)
-  );
+  const n=parseFloat(normalizeNumber(v));
 
-  return Number.isFinite(n)
-    ? n
-    : 0;
+  return Number.isFinite(n)?n:0;
 
 }
 
@@ -623,13 +315,11 @@ function loadItems(){
 
   try{
 
-    let data=JSON.parse(
+    const data=JSON.parse(
       localStorage.getItem(ITEMS_KEY)
     );
 
-    return Array.isArray(data)
-      ? data
-      : [];
+    return Array.isArray(data)?data:[];
 
   }catch(e){
 
@@ -650,23 +340,20 @@ function saveItems(){
 
 function saveNewItem(i){
 
-  let name=String(
+  const name=String(
     rows[i].item||""
   ).trim();
 
   if(!name)return;
 
-  let exists=itemMaster.some(
+  const exists=itemMaster.some(
     x=>String(x.name).toLowerCase()===
        name.toLowerCase()
   );
 
   if(!exists){
 
-    itemMaster.push({
-      name:name
-    });
-
+    itemMaster.push({name:name});
     saveItems();
 
   }
@@ -682,14 +369,11 @@ function loadCategories(){
 
   try{
 
-    let data=JSON.parse(
+    const data=JSON.parse(
       localStorage.getItem(CATEGORY_KEY)
     );
 
-    if(
-      Array.isArray(data) &&
-      data.length
-    ){
+    if(Array.isArray(data)){
 
       return [
         ...new Set([
@@ -717,7 +401,7 @@ function saveCategories(){
 
 function updateCategoryList(){
 
-  let list=document.getElementById(
+  const list=document.getElementById(
     "categoryList"
   );
 
@@ -725,38 +409,34 @@ function updateCategoryList(){
 
   list.innerHTML="";
 
-  let allCategories=[
+  [
     ...new Set([
       ...DEFAULT_CATEGORIES,
       ...categoryMaster
     ])
-  ];
+  ]
+  .sort((a,b)=>String(a).localeCompare(b,"bn"))
+  .forEach(category=>{
 
-  allCategories
-    .sort((a,b)=>String(a).localeCompare(b,"bn"))
-    .forEach(category=>{
+    const option=document.createElement("option");
 
-      let option=document.createElement(
-        "option"
-      );
+    option.value=category;
 
-      option.value=category;
+    list.appendChild(option);
 
-      list.appendChild(option);
-
-    });
+  });
 
 }
 
 function saveNewCategory(i){
 
-  let category=String(
+  const category=String(
     rows[i].category||""
   ).trim();
 
   if(!category)return;
 
-  let exists=categoryMaster.some(
+  const exists=categoryMaster.some(
     x=>String(x).toLowerCase()===
        category.toLowerCase()
   );
@@ -764,9 +444,7 @@ function saveNewCategory(i){
   if(!exists){
 
     categoryMaster.push(category);
-
     saveCategories();
-
     updateCategoryList();
 
   }
@@ -782,36 +460,28 @@ function loadData(){
 
   try{
 
-    let data=JSON.parse(
+    const data=JSON.parse(
       localStorage.getItem(DATA_KEY)
     );
 
-    if(
-      data &&
-      Array.isArray(data.rows)
-    ){
+    if(data&&Array.isArray(data.rows)){
 
-      return {
-
+      return{
         rows:data.rows.map(r=>({
-
           item:r.item||"",
           category:r.category||"",
           qty:r.qty||"",
           unit:r.unit||"",
           rate:r.rate||""
-
         })),
-
         members:Number(data.members)||1
-
       };
 
     }
 
   }catch(e){}
 
-  return {
+  return{
     rows:[],
     members:1
   };
@@ -832,52 +502,14 @@ function saveData(){
 
 
 /* =========================
-   ADD ROW
+   FOCUS
 ========================= */
 
-function addRow(){
-
-  rows.push({
-    item:"",
-    category:"",
-    qty:"",
-    unit:"",
-    rate:""
-  });
-
-  saveData();
-
-  render();
-
-  /*
-    গুরুত্বপূর্ণ:
-    এখানে কোনো setTimeout নেই।
-    render() শেষ হওয়ার সঙ্গে সঙ্গে,
-    একই user action-এর মধ্যে নতুন
-    Item input-এ focus করা হচ্ছে।
-  */
-
-  const newIndex=rows.length-1;
-
-  const tr=document.querySelector(
-    'tr[data-row-index="'+newIndex+'"]'
-  );
-
-  if(!tr)return;
-
-  const input=tr.querySelector(
-    'input[data-col-index="0"]'
-  );
+function activateInput(input){
 
   if(!input)return;
 
-  input.focus({
-    preventScroll:true
-  });
-
-  try{
-    input.click();
-  }catch(e){}
+  input.focus();
 
   try{
     input.setSelectionRange(
@@ -890,6 +522,294 @@ function addRow(){
 
 
 /* =========================
+   CREATE ROW DOM
+========================= */
+
+function createRowElement(row,i){
+
+  const tr=document.createElement("tr");
+
+  tr.dataset.rowIndex=i;
+
+
+  /* ITEM */
+
+  const tdItem=document.createElement("td");
+
+  const itemInput=document.createElement("input");
+
+  itemInput.type="text";
+  itemInput.value=row.item||"";
+  itemInput.dataset.colIndex="0";
+  itemInput.autocomplete="off";
+
+  itemInput.addEventListener("input",()=>{
+
+    rows[i].item=itemInput.value;
+    saveData();
+
+  });
+
+  itemInput.addEventListener("change",()=>{
+
+    rows[i].item=itemInput.value;
+    saveNewItem(i);
+    saveData();
+
+  });
+
+  itemInput.addEventListener("keydown",e=>{
+
+    handleEnter(e,i,0);
+
+  });
+
+  tdItem.appendChild(itemInput);
+
+
+  /* CATEGORY */
+
+  const tdCategory=document.createElement("td");
+
+  const categoryInput=document.createElement("input");
+
+  categoryInput.type="text";
+  categoryInput.setAttribute("list","categoryList");
+  categoryInput.value=row.category||"";
+  categoryInput.dataset.colIndex="1";
+  categoryInput.autocomplete="off";
+
+  categoryInput.addEventListener("input",()=>{
+
+    rows[i].category=categoryInput.value;
+    saveData();
+
+  });
+
+  categoryInput.addEventListener("change",()=>{
+
+    rows[i].category=categoryInput.value;
+    saveNewCategory(i);
+    saveData();
+
+  });
+
+  categoryInput.addEventListener("blur",()=>{
+
+    rows[i].category=categoryInput.value;
+    saveNewCategory(i);
+    saveData();
+
+  });
+
+  categoryInput.addEventListener("keydown",e=>{
+
+    handleEnter(e,i,1);
+
+  });
+
+  tdCategory.appendChild(categoryInput);
+
+
+  /* QUANTITY */
+
+  const tdQty=document.createElement("td");
+
+  const qtyInput=document.createElement("input");
+
+  qtyInput.type="text";
+  qtyInput.value=row.qty||"";
+  qtyInput.dataset.colIndex="2";
+  qtyInput.autocomplete="off";
+
+  qtyInput.addEventListener("input",()=>{
+
+    rows[i].qty=qtyInput.value;
+    updateRowTotal(i);
+    recalc();
+
+  });
+
+  qtyInput.addEventListener("keydown",e=>{
+
+    handleEnter(e,i,2);
+
+  });
+
+  tdQty.appendChild(qtyInput);
+
+
+  /* UNIT */
+
+  const tdUnit=document.createElement("td");
+
+  const unitInput=document.createElement("input");
+
+  unitInput.type="text";
+  unitInput.value=row.unit||"";
+  unitInput.dataset.colIndex="3";
+  unitInput.autocomplete="off";
+
+  unitInput.addEventListener("input",()=>{
+
+    rows[i].unit=unitInput.value;
+    saveData();
+
+  });
+
+  unitInput.addEventListener("keydown",e=>{
+
+    handleEnter(e,i,3);
+
+  });
+
+  tdUnit.appendChild(unitInput);
+
+
+  /* RATE */
+
+  const tdRate=document.createElement("td");
+
+  const rateInput=document.createElement("input");
+
+  rateInput.type="text";
+  rateInput.value=row.rate||"";
+  rateInput.dataset.colIndex="4";
+  rateInput.autocomplete="off";
+
+  rateInput.addEventListener("input",()=>{
+
+    rows[i].rate=rateInput.value;
+    updateRowTotal(i);
+    recalc();
+
+  });
+
+  rateInput.addEventListener("keydown",e=>{
+
+    handleEnter(e,i,4);
+
+  });
+
+  tdRate.appendChild(rateInput);
+
+
+  /* TOTAL */
+
+  const tdTotal=document.createElement("td");
+
+  tdTotal.id="rowTotal-"+i;
+
+  tdTotal.textContent=money(
+    num(row.qty)*num(row.rate)
+  );
+
+
+  /* REMOVE */
+
+  const tdRemove=document.createElement("td");
+
+  const removeButton=document.createElement("button");
+
+  removeButton.className="remove";
+  removeButton.textContent="×";
+  removeButton.title="বাদ দিন";
+
+  removeButton.onclick=()=>{
+
+    removeRow(i);
+
+  };
+
+  tdRemove.appendChild(removeButton);
+
+
+  tr.appendChild(tdItem);
+  tr.appendChild(tdCategory);
+  tr.appendChild(tdQty);
+  tr.appendChild(tdUnit);
+  tr.appendChild(tdRate);
+  tr.appendChild(tdTotal);
+  tr.appendChild(tdRemove);
+
+  return tr;
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
+function render(){
+
+  const body=document.getElementById(
+    "tableBody"
+  );
+
+  body.innerHTML="";
+
+  rows.forEach((row,i)=>{
+
+    body.appendChild(
+      createRowElement(row,i)
+    );
+
+  });
+
+  updateCategoryList();
+
+  recalc();
+
+}
+
+
+/* =========================
+   ADD ROW
+   নতুন Row DOM-এ সরাসরি
+   যোগ করা হচ্ছে যাতে iPhone
+   keyboard focus হারায় না।
+========================= */
+
+function addRow(){
+
+  const newIndex=rows.length;
+
+  const newRow={
+    item:"",
+    category:"",
+    qty:"",
+    unit:"",
+    rate:""
+  };
+
+  rows.push(newRow);
+
+  const body=document.getElementById(
+    "tableBody"
+  );
+
+  const tr=createRowElement(
+    newRow,
+    newIndex
+  );
+
+  body.appendChild(tr);
+
+  saveData();
+
+  recalc();
+
+  const input=tr.querySelector(
+    'input[data-col-index="0"]'
+  );
+
+  activateInput(input);
+
+}
+
+
+/* =========================
    REMOVE
 ========================= */
 
@@ -897,29 +817,42 @@ function removeRow(i){
 
   rows.splice(i,1);
 
-  saveData();
+  if(rows.length===0){
+
+    rows.push({
+      item:"",
+      category:"",
+      qty:"",
+      unit:"",
+      rate:""
+    });
+
+  }
 
   render();
+
+  saveData();
 
 }
 
 
 /* =========================
-   ROW TOTAL
+   UPDATE TOTAL
 ========================= */
 
 function updateRowTotal(i){
 
-  let total=
-    num(rows[i].qty)*
-    num(rows[i].rate);
-
-  let el=document.getElementById(
+  const el=document.getElementById(
     "rowTotal-"+i
   );
 
   if(el){
-    el.textContent=money(total);
+
+    el.textContent=money(
+      num(rows[i].qty)*
+      num(rows[i].rate)
+    );
+
   }
 
 }
@@ -941,9 +874,7 @@ function recalc(){
 
   });
 
-  if(members<1){
-    members=1;
-  }
+  if(members<1)members=1;
 
   document.getElementById(
     "memberCount"
@@ -969,7 +900,7 @@ function recalc(){
 
 
 /* =========================
-   FOCUS CELL
+   FOCUS EXISTING CELL
 ========================= */
 
 function focusCell(rowIndex,colIndex){
@@ -984,35 +915,16 @@ function focusCell(rowIndex,colIndex){
     'input[data-col-index="'+colIndex+'"]'
   );
 
-  if(!input)return;
-
-  input.focus({
-    preventScroll:true
-  });
-
-  try{
-    input.click();
-  }catch(e){}
-
-  try{
-    input.setSelectionRange(
-      input.value.length,
-      input.value.length
-    );
-  }catch(e){}
+  activateInput(input);
 
 }
 
 
 /* =========================
-   ENTER
+   ENTER NAVIGATION
 ========================= */
 
-function handleEnter(
-  e,
-  rowIndex,
-  colIndex
-){
+function handleEnter(e,rowIndex,colIndex){
 
   if(
     e.key!=="Enter" &&
@@ -1024,297 +936,58 @@ function handleEnter(
   e.preventDefault();
   e.stopPropagation();
 
-  if(colIndex<4){
 
-    focusCell(
-      rowIndex,
-      colIndex+1
-    );
+  if(colIndex===0){
 
+    focusCell(rowIndex,1);
     return;
 
   }
 
-  if(rowIndex<rows.length-1){
 
-    focusCell(
-      rowIndex+1,
-      0
-    );
+  if(colIndex===1){
 
-  }else{
-
-    addRow();
+    focusCell(rowIndex,2);
+    return;
 
   }
 
-}
 
+  if(colIndex===2){
 
-/* =========================
-   RENDER
-========================= */
+    focusCell(rowIndex,3);
+    return;
 
-function render(){
+  }
 
-  let body=document.getElementById(
-    "tableBody"
-  );
 
-  body.innerHTML="";
+  if(colIndex===3){
 
-  rows.forEach((row,i)=>{
+    focusCell(rowIndex,4);
+    return;
 
-    let tr=document.createElement("tr");
+  }
 
-    tr.dataset.rowIndex=i;
 
+  if(colIndex===4){
 
-    /* ITEM */
+    if(rowIndex<rows.length-1){
 
-    let tdItem=document.createElement("td");
+      focusCell(rowIndex+1,0);
 
-    let itemInput=document.createElement("input");
+    }else{
 
-    itemInput.type="text";
+      /*
+        এখানে কোনো render() নেই।
+        নতুন input সরাসরি DOM-এ তৈরি হচ্ছে
+        এবং একই Enter event-এর মধ্যে focus হচ্ছে।
+      */
 
-    itemInput.value=row.item||"";
+      addRow();
 
-    itemInput.dataset.colIndex="0";
+    }
 
-    itemInput.autocomplete="off";
-
-    itemInput.addEventListener(
-      "input",
-      ()=>{
-        rows[i].item=itemInput.value;
-        saveData();
-      }
-    );
-
-    itemInput.addEventListener(
-      "change",
-      ()=>{
-        rows[i].item=itemInput.value;
-        saveNewItem(i);
-        saveData();
-      }
-    );
-
-    itemInput.addEventListener(
-      "keydown",
-      e=>{
-        handleEnter(e,i,0);
-      }
-    );
-
-    tdItem.appendChild(itemInput);
-
-
-    /* CATEGORY */
-
-    let tdCategory=document.createElement("td");
-
-    let categoryInput=document.createElement("input");
-
-    categoryInput.type="text";
-
-    categoryInput.setAttribute(
-      "list",
-      "categoryList"
-    );
-
-    categoryInput.value=row.category||"";
-
-    categoryInput.dataset.colIndex="1";
-
-    categoryInput.autocomplete="off";
-
-    categoryInput.addEventListener(
-      "input",
-      ()=>{
-        rows[i].category=
-          categoryInput.value;
-        saveData();
-      }
-    );
-
-    categoryInput.addEventListener(
-      "change",
-      ()=>{
-        rows[i].category=
-          categoryInput.value;
-        saveNewCategory(i);
-        saveData();
-      }
-    );
-
-    categoryInput.addEventListener(
-      "blur",
-      ()=>{
-        rows[i].category=
-          categoryInput.value;
-        saveNewCategory(i);
-        saveData();
-      }
-    );
-
-    categoryInput.addEventListener(
-      "keydown",
-      e=>{
-        handleEnter(e,i,1);
-      }
-    );
-
-    tdCategory.appendChild(
-      categoryInput
-    );
-
-
-    /* QUANTITY */
-
-    let tdQty=document.createElement("td");
-
-    let qtyInput=document.createElement("input");
-
-    qtyInput.type="text";
-
-    qtyInput.value=row.qty||"";
-
-    qtyInput.dataset.colIndex="2";
-
-    qtyInput.autocomplete="off";
-
-    qtyInput.addEventListener(
-      "input",
-      ()=>{
-        rows[i].qty=qtyInput.value;
-        updateRowTotal(i);
-        recalc();
-      }
-    );
-
-    qtyInput.addEventListener(
-      "keydown",
-      e=>{
-        handleEnter(e,i,2);
-      }
-    );
-
-    tdQty.appendChild(qtyInput);
-
-
-    /* UNIT */
-
-    let tdUnit=document.createElement("td");
-
-    let unitInput=document.createElement("input");
-
-    unitInput.type="text";
-
-    unitInput.value=row.unit||"";
-
-    unitInput.dataset.colIndex="3";
-
-    unitInput.autocomplete="off";
-
-    unitInput.addEventListener(
-      "input",
-      ()=>{
-        rows[i].unit=unitInput.value;
-        saveData();
-      }
-    );
-
-    unitInput.addEventListener(
-      "keydown",
-      e=>{
-        handleEnter(e,i,3);
-      }
-    );
-
-    tdUnit.appendChild(unitInput);
-
-
-    /* RATE */
-
-    let tdRate=document.createElement("td");
-
-    let rateInput=document.createElement("input");
-
-    rateInput.type="text";
-
-    rateInput.value=row.rate||"";
-
-    rateInput.dataset.colIndex="4";
-
-    rateInput.autocomplete="off";
-
-    rateInput.addEventListener(
-      "input",
-      ()=>{
-        rows[i].rate=rateInput.value;
-        updateRowTotal(i);
-        recalc();
-      }
-    );
-
-    rateInput.addEventListener(
-      "keydown",
-      e=>{
-        handleEnter(e,i,4);
-      }
-    );
-
-    tdRate.appendChild(rateInput);
-
-
-    /* TOTAL */
-
-    let tdTotal=document.createElement("td");
-
-    tdTotal.id="rowTotal-"+i;
-
-    tdTotal.textContent=money(
-      num(row.qty)*
-      num(row.rate)
-    );
-
-
-    /* REMOVE */
-
-    let tdRemove=document.createElement("td");
-
-    let removeButton=document.createElement("button");
-
-    removeButton.className="remove";
-
-    removeButton.textContent="×";
-
-    removeButton.title="বাদ দিন";
-
-    removeButton.onclick=()=>{
-      removeRow(i);
-    };
-
-    tdRemove.appendChild(removeButton);
-
-
-    tr.appendChild(tdItem);
-    tr.appendChild(tdCategory);
-    tr.appendChild(tdQty);
-    tr.appendChild(tdUnit);
-    tr.appendChild(tdRate);
-    tr.appendChild(tdTotal);
-    tr.appendChild(tdRemove);
-
-    body.appendChild(tr);
-
-  });
-
-  updateCategoryList();
-
-  recalc();
+  }
 
 }
 
@@ -1325,17 +998,9 @@ function render(){
 
 function showView(){
 
-  document.getElementById(
-    "mainPage"
-  ).style.display="none";
-
-  document.getElementById(
-    "reportPage"
-  ).style.display="none";
-
-  document.getElementById(
-    "viewPage"
-  ).style.display="block";
+  document.getElementById("mainPage").style.display="none";
+  document.getElementById("reportPage").style.display="none";
+  document.getElementById("viewPage").style.display="block";
 
   renderView();
 
@@ -1343,7 +1008,7 @@ function showView(){
 
 function renderView(){
 
-  let body=document.getElementById(
+  const body=document.getElementById(
     "viewBody"
   );
 
@@ -1351,7 +1016,7 @@ function renderView(){
 
   let total=0;
 
-  let validRows=rows.filter(
+  const validRows=rows.filter(
     r=>
       String(r.item||"").trim()||
       num(r.qty)||
@@ -1360,44 +1025,36 @@ function renderView(){
 
   if(validRows.length===0){
 
-    let tr=document.createElement("tr");
-
-    let td=document.createElement("td");
+    const tr=document.createElement("tr");
+    const td=document.createElement("td");
 
     td.colSpan=5;
-
     td.className="empty";
-
-    td.textContent=
-      "কোনো Shopping List নেই";
+    td.textContent="কোনো Shopping List নেই";
 
     tr.appendChild(td);
-
     body.appendChild(tr);
 
   }else{
 
     validRows.forEach(r=>{
 
-      let rowTotal=
-        num(r.qty)*
-        num(r.rate);
+      const rowTotal=
+        num(r.qty)*num(r.rate);
 
       total+=rowTotal;
 
-      let tr=document.createElement("tr");
+      const tr=document.createElement("tr");
 
-      let values=[
+      [
         r.item||"",
         r.qty||"",
         r.unit||"",
         money(num(r.rate)),
         money(rowTotal)
-      ];
+      ].forEach(value=>{
 
-      values.forEach(value=>{
-
-        let td=document.createElement("td");
+        const td=document.createElement("td");
 
         td.textContent=value;
 
@@ -1424,17 +1081,9 @@ function renderView(){
 
 function showReport(){
 
-  document.getElementById(
-    "mainPage"
-  ).style.display="none";
-
-  document.getElementById(
-    "viewPage"
-  ).style.display="none";
-
-  document.getElementById(
-    "reportPage"
-  ).style.display="block";
+  document.getElementById("mainPage").style.display="none";
+  document.getElementById("viewPage").style.display="none";
+  document.getElementById("reportPage").style.display="block";
 
   renderReport();
 
@@ -1442,24 +1091,21 @@ function showReport(){
 
 function renderReport(){
 
-  let totals={};
+  const totals={};
 
   let grandTotal=0;
 
   rows.forEach(r=>{
 
-    let amount=
-      num(r.qty)*
-      num(r.rate);
+    const amount=
+      num(r.qty)*num(r.rate);
 
     if(amount<=0)return;
 
     let category=
       String(r.category||"").trim();
 
-    if(!category){
-      category="অন্যান্য";
-    }
+    if(!category)category="অন্যান্য";
 
     if(!totals[category]){
       totals[category]=0;
@@ -1471,53 +1117,43 @@ function renderReport(){
 
   });
 
-  let body=document.getElementById(
+  const body=document.getElementById(
     "reportBody"
   );
 
   body.innerHTML="";
 
-  let categories=
+  const categories=
     Object.keys(totals)
-      .sort(
-        (a,b)=>
-          a.localeCompare(b,"bn")
-      );
+      .sort((a,b)=>a.localeCompare(b,"bn"));
 
   if(categories.length===0){
 
-    let tr=document.createElement("tr");
-
-    let td=document.createElement("td");
+    const tr=document.createElement("tr");
+    const td=document.createElement("td");
 
     td.colSpan=2;
-
     td.className="empty";
-
-    td.textContent=
-      "কোনো খরচের তথ্য নেই";
+    td.textContent="কোনো খরচের তথ্য নেই";
 
     tr.appendChild(td);
-
     body.appendChild(tr);
 
   }else{
 
     categories.forEach(category=>{
 
-      let tr=document.createElement("tr");
+      const tr=document.createElement("tr");
 
-      let tdName=document.createElement("td");
-
+      const tdName=document.createElement("td");
       tdName.textContent=category;
 
-      let tdAmount=document.createElement("td");
-
-      tdAmount.textContent=
-        money(totals[category]);
+      const tdAmount=document.createElement("td");
+      tdAmount.textContent=money(
+        totals[category]
+      );
 
       tr.appendChild(tdName);
-
       tr.appendChild(tdAmount);
 
       body.appendChild(tr);
@@ -1539,17 +1175,9 @@ function renderReport(){
 
 function showMain(){
 
-  document.getElementById(
-    "viewPage"
-  ).style.display="none";
-
-  document.getElementById(
-    "reportPage"
-  ).style.display="none";
-
-  document.getElementById(
-    "mainPage"
-  ).style.display="block";
+  document.getElementById("viewPage").style.display="none";
+  document.getElementById("reportPage").style.display="none";
+  document.getElementById("mainPage").style.display="block";
 
   render();
 
@@ -1562,28 +1190,22 @@ function showMain(){
 
 function backupData(){
 
-  let backup={
-
+  const backup={
     app:"Shopping List",
-
-    version:4,
-
-    exportedAt:
-      new Date().toISOString(),
+    version:5,
+    exportedAt:new Date().toISOString(),
 
     itemMaster:itemMaster,
 
-    categoryMaster:
-      categoryMaster,
+    categoryMaster:categoryMaster,
 
     data:{
       members:members,
       rows:rows
     }
-
   };
 
-  let blob=new Blob(
+  const blob=new Blob(
     [
       JSON.stringify(
         backup,
@@ -1596,16 +1218,13 @@ function backupData(){
     }
   );
 
-  let url=
-    URL.createObjectURL(blob);
+  const url=URL.createObjectURL(blob);
 
-  let a=
-    document.createElement("a");
+  const a=document.createElement("a");
 
-  let date=
-    new Date()
-      .toISOString()
-      .slice(0,10);
+  const date=new Date()
+    .toISOString()
+    .slice(0,10);
 
   a.href=url;
 
@@ -1631,77 +1250,59 @@ function backupData(){
 
 function restoreData(event){
 
-  let file=
-    event.target.files[0];
+  const file=event.target.files[0];
 
   if(!file)return;
 
-  let reader=
-    new FileReader();
+  const reader=new FileReader();
 
   reader.onload=function(){
 
     try{
 
-      let backup=
-        JSON.parse(
-          reader.result
-        );
+      const backup=
+        JSON.parse(reader.result);
 
       if(
         !backup||
         !backup.data||
-        !Array.isArray(
-          backup.data.rows
-        )
+        !Array.isArray(backup.data.rows)
       ){
 
-        alert(
-          "Backup file সঠিক নয়।"
-        );
-
+        alert("Backup file সঠিক নয়।");
         return;
 
       }
 
-      rows=
-        backup.data.rows.map(
-          r=>({
+      rows=backup.data.rows.map(r=>({
+        item:r.item||"",
+        category:r.category||"",
+        qty:r.qty||"",
+        unit:r.unit||"",
+        rate:r.rate||""
+      }));
 
-            item:r.item||"",
-            category:r.category||"",
-            qty:r.qty||"",
-            unit:r.unit||"",
-            rate:r.rate||""
+      if(rows.length===0){
 
-          })
-        );
-
-      members=
-        Number(
-          backup.data.members
-        )||1;
-
-      if(
-        Array.isArray(
-          backup.itemMaster
-        )
-      ){
-
-        itemMaster=
-          backup.itemMaster;
+        rows.push({
+          item:"",
+          category:"",
+          qty:"",
+          unit:"",
+          rate:""
+        });
 
       }
 
-      if(
-        Array.isArray(
-          backup.categoryMaster
-        )
-      ){
+      members=
+        Number(backup.data.members)||1;
 
-        categoryMaster=
-          backup.categoryMaster;
+      if(Array.isArray(backup.itemMaster)){
+        itemMaster=backup.itemMaster;
+      }
 
+      if(Array.isArray(backup.categoryMaster)){
+        categoryMaster=backup.categoryMaster;
       }
 
       categoryMaster=[
@@ -1712,11 +1313,8 @@ function restoreData(event){
       ];
 
       saveItems();
-
       saveCategories();
-
       saveData();
-
       render();
 
       alert(
@@ -1746,13 +1344,19 @@ function restoreData(event){
 
 function clearAll(){
 
-  let ok=confirm(
+  const ok=confirm(
     "সব Shopping List, Item এবং Category-এর সংরক্ষিত ডাটা মুছে ফেলতে চান?"
   );
 
   if(!ok)return;
 
-  rows=[];
+  rows=[{
+    item:"",
+    category:"",
+    qty:"",
+    unit:"",
+    rate:""
+  }];
 
   members=1;
 
@@ -1767,38 +1371,24 @@ function clearAll(){
   );
 
   saveCategories();
-
-  rows.push({
-
-    item:"",
-    category:"",
-    qty:"",
-    unit:"",
-    rate:""
-
-  });
-
   saveData();
-
   render();
 
 }
 
 
 /* =========================
-   INITIALIZE
+   START
 ========================= */
 
 if(rows.length===0){
 
   rows.push({
-
     item:"",
     category:"",
     qty:"",
     unit:"",
     rate:""
-
   });
 
 }
@@ -1811,8 +1401,6 @@ categoryMaster=[
 ];
 
 saveCategories();
-
-updateCategoryList();
 
 render();
 
