@@ -966,7 +966,7 @@ function recalc(){
 
   });
 
-  if(members<1)members=1;
+  if(members<0)members=0;
 
   const memberInput=document.getElementById(
     "memberInput"
@@ -974,7 +974,11 @@ function recalc(){
 
   if(memberInput){
 
-    memberInput.value=members;
+    if(document.activeElement!==memberInput){
+
+      memberInput.value=members||"";
+
+    }
 
   }
 
@@ -985,7 +989,7 @@ function recalc(){
   document.getElementById(
     "averageCost"
   ).textContent=money(
-    total/members
+    members>0 ? total/members : 0
   );
 
   document.getElementById(
@@ -995,8 +999,6 @@ function recalc(){
   saveData();
 
 }
-
-
 /* =========================
    FOCUS EXISTING CELL
 ========================= */
