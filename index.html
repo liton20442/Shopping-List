@@ -31,6 +31,21 @@ h1{font-size:27px;margin:4px 0 16px}
 }
 .summary-item span{display:block;font-size:14px}
 .summary-item strong{display:block;font-size:19px;margin-top:5px}
+
+.summary-input{
+  display:block;
+  width:100%;
+  margin-top:5px;
+  border:1px solid #cbd5e1;
+  border-radius:7px;
+  padding:6px 5px;
+  background:#fff;
+  color:#17312d;
+  font-size:19px;
+  font-weight:bold;
+  text-align:center;
+}
+
 .actions{display:flex;flex-wrap:wrap;gap:9px}
 button{
   border:0;border-radius:9px;padding:11px 14px;cursor:pointer;
@@ -96,6 +111,7 @@ td{font-size:16px}
   .summary-item{padding:9px 5px}
   .summary-item span{font-size:12px}
   .summary-item strong{font-size:17px}
+  .summary-input{font-size:17px;padding:6px 4px}
   .actions button{flex:1 1 30%;padding:10px 7px;font-size:14px}
   .main-table{min-width:790px}
   .main-table th{font-size:15px;padding:9px 6px}
@@ -118,18 +134,30 @@ td{font-size:16px}
 <h1>Shopping List</h1>
 
 <div class="card summary">
+
   <div class="summary-item">
     <span>Members / People</span>
-    <strong id="memberCount">1</strong>
+
+    <input
+      id="memberInput"
+      class="summary-input"
+      type="text"
+      inputmode="numeric"
+      value="1"
+      autocomplete="off"
+    >
   </div>
+
   <div class="summary-item">
     <span>Total Cost (৳)</span>
     <strong id="totalCost">0</strong>
   </div>
+
   <div class="summary-item">
     <span>Average per Person (৳)</span>
     <strong id="averageCost">0</strong>
   </div>
+
 </div>
 
 <div class="card actions">
@@ -502,6 +530,52 @@ function saveData(){
 
 
 /* =========================
+   MEMBER INPUT
+========================= */
+
+function setupMemberInput(){
+
+  const input=document.getElementById(
+    "memberInput"
+  );
+
+  if(!input)return;
+
+  input.value=members||1;
+
+  input.addEventListener("input",()=>{
+
+    const value=num(input.value);
+
+    members=value>0?value:1;
+
+    saveData();
+    recalc();
+
+  });
+
+  input.addEventListener("blur",()=>{
+
+    if(num(input.value)<1){
+
+      members=1;
+      input.value="1";
+
+    }else{
+
+      members=num(input.value);
+
+    }
+
+    saveData();
+    recalc();
+
+  });
+
+}
+
+
+/* =========================
    FOCUS
 ========================= */
 
@@ -759,6 +833,16 @@ function render(){
 
   updateCategoryList();
 
+  const memberInput=document.getElementById(
+    "memberInput"
+  );
+
+  if(memberInput){
+
+    memberInput.value=members||1;
+
+  }
+
   recalc();
 
 }
@@ -766,9 +850,6 @@ function render(){
 
 /* =========================
    ADD ROW
-   নতুন Row DOM-এ সরাসরি
-   যোগ করা হচ্ছে যাতে iPhone
-   keyboard focus হারায় না।
 ========================= */
 
 function addRow(){
@@ -876,9 +957,15 @@ function recalc(){
 
   if(members<1)members=1;
 
-  document.getElementById(
-    "memberCount"
-  ).textContent=money(members);
+  const memberInput=document.getElementById(
+    "memberInput"
+  );
+
+  if(memberInput){
+
+    memberInput.value=members;
+
+  }
 
   document.getElementById(
     "totalCost"
@@ -976,12 +1063,6 @@ function handleEnter(e,rowIndex,colIndex){
       focusCell(rowIndex+1,0);
 
     }else{
-
-      /*
-        এখানে কোনো render() নেই।
-        নতুন input সরাসরি DOM-এ তৈরি হচ্ছে
-        এবং একই Enter event-এর মধ্যে focus হচ্ছে।
-      */
 
       addRow();
 
@@ -1270,6 +1351,8 @@ async function backupData(){
   }
 
 }
+
+
 /* =========================
    RESTORE
 ========================= */
@@ -1427,6 +1510,8 @@ categoryMaster=[
 ];
 
 saveCategories();
+
+setupMemberInput();
 
 render();
 
