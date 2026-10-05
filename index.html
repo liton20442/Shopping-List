@@ -12,6 +12,7 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Arial,"Noto Sans Bengali",sans-serif;
@@ -19,18 +20,42 @@ body{
   color:#17312d;
   font-size:16px
 }
+
 .page{max-width:900px;margin:auto;padding:14px}
+
 h1{font-size:27px;margin:4px 0 16px}
+
 .card{
-  background:#fff;border-radius:14px;padding:15px;margin-bottom:13px;
+  background:#fff;
+  border-radius:14px;
+  padding:15px;
+  margin-bottom:13px;
   box-shadow:0 2px 8px rgba(0,0,0,.08)
 }
-.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-.summary-item{
-  background:#e8f5f2;border-radius:10px;padding:11px;text-align:center
+
+.summary{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px
 }
-.summary-item span{display:block;font-size:14px}
-.summary-item strong{display:block;font-size:19px;margin-top:5px}
+
+.summary-item{
+  background:#e8f5f2;
+  border-radius:10px;
+  padding:11px;
+  text-align:center
+}
+
+.summary-item span{
+  display:block;
+  font-size:14px
+}
+
+.summary-item strong{
+  display:block;
+  font-size:19px;
+  margin-top:5px
+}
 
 .summary-input{
   display:block;
@@ -46,80 +71,270 @@ h1{font-size:27px;margin:4px 0 16px}
   text-align:center;
 }
 
-.actions{display:flex;flex-wrap:wrap;gap:9px}
-button{
-  border:0;border-radius:9px;padding:11px 14px;cursor:pointer;
-  background:#0f766e;color:white;font-size:15px
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px
 }
+
+button{
+  border:0;
+  border-radius:9px;
+  padding:11px 14px;
+  cursor:pointer;
+  background:#0f766e;
+  color:white;
+  font-size:15px
+}
+
 button.secondary{background:#64748b}
 button.danger{background:#dc2626}
 button.light{background:#e2e8f0;color:#17312d}
+
 input{
-  width:100%;border:1px solid #cbd5e1;border-radius:7px;
-  padding:9px 8px;background:#fff;font-size:16px
+  width:100%;
+  border:1px solid #cbd5e1;
+  border-radius:7px;
+  padding:9px 8px;
+  background:#fff;
+  font-size:16px
 }
+
 .table-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;background:#fff}
-th,td{border:1px solid #d8e2df;padding:9px 7px;text-align:left}
-th{background:#e7f3f0;font-size:16px}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:#fff
+}
+
+th,td{
+  border:1px solid #d8e2df;
+  padding:9px 7px;
+  text-align:left
+}
+
+th{
+  background:#e7f3f0;
+  font-size:16px
+}
+
 td{font-size:16px}
-.main-table{width:100%;min-width:790px;table-layout:fixed}
-.main-table th:nth-child(1),.main-table td:nth-child(1){width:15%}
-.main-table th:nth-child(2),.main-table td:nth-child(2){width:12%}
-.main-table th:nth-child(3),.main-table td:nth-child(3){width:9%}
-.main-table th:nth-child(4),.main-table td:nth-child(4){width:9%}
-.main-table th:nth-child(5),.main-table td:nth-child(5){width:10%}
-.main-table th:nth-child(6),.main-table td:nth-child(6){width:17%}
-.main-table th:nth-child(7),.main-table td:nth-child(7){width:9%;text-align:center}
-.main-table input{width:100%;padding:9px 7px;font-size:16px}
-.main-table td:nth-child(6){white-space:nowrap;font-weight:600}
+
+.main-table{
+  width:100%;
+  min-width:900px;
+  table-layout:fixed
+}
+
+.main-table th:nth-child(1),
+.main-table td:nth-child(1){width:13%}
+
+.main-table th:nth-child(2),
+.main-table td:nth-child(2){width:11%}
+
+.main-table th:nth-child(3),
+.main-table td:nth-child(3){width:8%}
+
+.main-table th:nth-child(4),
+.main-table td:nth-child(4){width:8%}
+
+.main-table th:nth-child(5),
+.main-table td:nth-child(5){width:10%}
+
+.main-table th:nth-child(6),
+.main-table td:nth-child(6){width:13%}
+
+.main-table th:nth-child(7),
+.main-table td:nth-child(7){width:13%}
+
+.main-table th:nth-child(8),
+.main-table td:nth-child(8){width:10%}
+
+.main-table th:nth-child(9),
+.main-table td:nth-child(9){width:8%;text-align:center}
+
+.main-table input{
+  width:100%;
+  padding:9px 7px;
+  font-size:16px
+}
+
+.main-table td:nth-child(6),
+.main-table td:nth-child(7),
+.main-table td:nth-child(8){
+  white-space:nowrap;
+  font-weight:600
+}
+
 .main-table td:last-child{text-align:center}
-.remove{background:#dc2626;padding:7px 10px;font-size:15px}
+
+.remove{
+  background:#dc2626;
+  padding:7px 10px;
+  font-size:15px
+}
+
 .total-box{
-  display:flex;justify-content:flex-end;margin-top:13px;
-  font-size:21px;font-weight:bold
+  display:flex;
+  justify-content:flex-end;
+  margin-top:13px;
+  font-size:21px;
+  font-weight:bold
 }
+
 .view-page,.report-page{display:none}
+
 .view-header,.report-header{
-  display:flex;align-items:center;gap:11px;margin-bottom:13px
+  display:flex;
+  align-items:center;
+  gap:11px;
+  margin-bottom:13px
 }
+
 .back{background:#475569}
-.view-title,.report-title{margin:0;font-size:24px}
-.view-table{width:100%;min-width:0;table-layout:fixed}
-.view-table th:nth-child(1),.view-table td:nth-child(1){width:20%}
-.view-table th:nth-child(2),.view-table td:nth-child(2){width:16%}
-.view-table th:nth-child(3),.view-table td:nth-child(3){width:14%}
-.view-table th:nth-child(4),.view-table td:nth-child(4){width:17%}
-.view-table th:nth-child(5),.view-table td:nth-child(5){width:19%}
-.view-table td,.view-table th{padding:9px 6px;font-size:15px}
-.view-table td:nth-child(n+2),.view-table th:nth-child(n+2){white-space:nowrap}
-.view-table td:first-child{overflow-wrap:anywhere}
-.report-table{width:100%;table-layout:fixed}
-.report-table th:nth-child(1),.report-table td:nth-child(1){width:60%}
-.report-table th:nth-child(2),.report-table td:nth-child(2){
-  width:40%;text-align:right
+
+.view-title,.report-title{
+  margin:0;
+  font-size:24px
 }
-.report-table th,.report-table td{font-size:16px;padding:11px 9px}
-.report-table tfoot td{font-weight:bold;background:#e7f3f0}
-.empty{text-align:center;padding:20px;color:#64748b;font-size:16px}
+
+.view-table{
+  width:100%;
+  min-width:0;
+  table-layout:fixed
+}
+
+.view-table th:nth-child(1),
+.view-table td:nth-child(1){width:18%}
+
+.view-table th:nth-child(2),
+.view-table td:nth-child(2){width:13%}
+
+.view-table th:nth-child(3),
+.view-table td:nth-child(3){width:12%}
+
+.view-table th:nth-child(4),
+.view-table td:nth-child(4){width:12%}
+
+.view-table th:nth-child(5),
+.view-table td:nth-child(5){width:15%}
+
+.view-table th:nth-child(6),
+.view-table td:nth-child(6){width:15%}
+
+.view-table th:nth-child(7),
+.view-table td:nth-child(7){width:15%}
+
+.view-table td,
+.view-table th{
+  padding:9px 6px;
+  font-size:15px
+}
+
+.view-table td:nth-child(n+2),
+.view-table th:nth-child(n+2){
+  white-space:nowrap
+}
+
+.view-table td:first-child{
+  overflow-wrap:anywhere
+}
+
+.report-table{
+  width:100%;
+  table-layout:fixed
+}
+
+.report-table th:nth-child(1),
+.report-table td:nth-child(1){width:40%}
+
+.report-table th:nth-child(2),
+.report-table td:nth-child(2){width:30%;text-align:right}
+
+.report-table th:nth-child(3),
+.report-table td:nth-child(3){width:30%;text-align:right}
+
+.report-table th,
+.report-table td{
+  font-size:16px;
+  padding:11px 9px
+}
+
+.report-table tfoot td{
+  font-weight:bold;
+  background:#e7f3f0
+}
+
+.empty{
+  text-align:center;
+  padding:20px;
+  color:#64748b;
+  font-size:16px
+}
 
 @media(max-width:520px){
+
   .page{padding:10px}
+
   h1{font-size:25px}
+
   .card{padding:12px}
+
   .summary{gap:6px}
+
   .summary-item{padding:9px 5px}
+
   .summary-item span{font-size:12px}
+
   .summary-item strong{font-size:17px}
-  .summary-input{font-size:17px;padding:6px 4px}
-  .actions button{flex:1 1 30%;padding:10px 7px;font-size:14px}
-  .main-table{min-width:790px}
-  .main-table th{font-size:15px;padding:9px 6px}
-  .main-table td{font-size:16px;padding:8px 5px}
-  .main-table input{font-size:16px;padding:9px 6px}
-  .view-title,.report-title{font-size:21px}
-  .view-table th,.view-table td{font-size:15px;padding:9px 5px}
-  .report-table th,.report-table td{font-size:15px;padding:10px 7px}
+
+  .summary-input{
+    font-size:17px;
+    padding:6px 4px
+  }
+
+  .actions button{
+    flex:1 1 30%;
+    padding:10px 7px;
+    font-size:14px
+  }
+
+  .main-table{
+    min-width:900px
+  }
+
+  .main-table th{
+    font-size:15px;
+    padding:9px 6px
+  }
+
+  .main-table td{
+    font-size:16px;
+    padding:8px 5px
+  }
+
+  .main-table input{
+    font-size:16px;
+    padding:9px 6px
+  }
+
+  .view-title,.report-title{
+    font-size:21px
+  }
+
+  .view-table th,
+  .view-table td{
+    font-size:14px;
+    padding:9px 5px
+  }
+
+  .report-table th,
+  .report-table td{
+    font-size:15px;
+    padding:10px 7px
+  }
+
   .total-box{font-size:20px}
 }
 </style>
@@ -149,24 +364,41 @@ td{font-size:16px}
   </div>
 
   <div class="summary-item">
-    <span>Total Cost (৳)</span>
-    <strong id="totalCost">0</strong>
+    <span>Total Payment (৳)</span>
+    <strong id="totalPayment">0</strong>
   </div>
 
   <div class="summary-item">
-    <span>Average per Person (৳)</span>
-    <strong id="averageCost">0</strong>
+    <span>Total Due (৳)</span>
+    <strong id="totalDue">0</strong>
   </div>
 
 </div>
 
 <div class="card actions">
+
   <button onclick="addRow()">+ Add Item</button>
-  <button class="secondary" onclick="showView()">View</button>
-  <button class="secondary" onclick="showReport()">📊 Report</button>
-  <button class="light" onclick="backupData()">Backup</button>
-  <button class="light" onclick="document.getElementById('restoreFile').click()">Restore</button>
-  <button class="danger" onclick="clearAll()">Clear</button>
+
+  <button class="secondary" onclick="showView()">
+    View
+  </button>
+
+  <button class="secondary" onclick="showReport()">
+    📊 Report
+  </button>
+
+  <button class="light" onclick="backupData()">
+    Backup
+  </button>
+
+  <button class="light"
+    onclick="document.getElementById('restoreFile').click()">
+    Restore
+  </button>
+
+  <button class="danger" onclick="clearAll()">
+    Clear
+  </button>
 
   <input
     type="file"
@@ -175,6 +407,7 @@ td{font-size:16px}
     style="display:none"
     onchange="restoreData(event)"
   >
+
 </div>
 
 <div class="card table-wrap">
@@ -189,6 +422,8 @@ td{font-size:16px}
   <th>একক</th>
   <th>দর</th>
   <th>মোট</th>
+  <th>Payment</th>
+  <th>বকেয়া</th>
   <th>বাদ দিন</th>
 </tr>
 </thead>
@@ -208,8 +443,15 @@ td{font-size:16px}
 <div id="viewPage" class="view-page">
 
 <div class="view-header">
-  <button class="back" onclick="showMain()">← Back</button>
-  <h2 class="view-title">Total Shopping List</h2>
+
+  <button class="back" onclick="showMain()">
+    ← Back
+  </button>
+
+  <h2 class="view-title">
+    Total Shopping List
+  </h2>
+
 </div>
 
 <div class="card table-wrap">
@@ -223,6 +465,8 @@ td{font-size:16px}
   <th>একক</th>
   <th>দর</th>
   <th>মোট</th>
+  <th>Payment</th>
+  <th>বকেয়া</th>
 </tr>
 </thead>
 
@@ -230,12 +474,14 @@ td{font-size:16px}
 
 <tfoot>
 <tr>
-  <td colspan="4">সর্বমোট</td>
-  <td id="viewTotal">0</td>
+  <td colspan="5">সর্বমোট</td>
+  <td id="viewPayment">0</td>
+  <td id="viewDue">0</td>
 </tr>
 </tfoot>
 
 </table>
+
 </div>
 </div>
 
@@ -243,8 +489,15 @@ td{font-size:16px}
 <div id="reportPage" class="report-page">
 
 <div class="report-header">
-  <button class="back" onclick="showMain()">← Back</button>
-  <h2 class="report-title">খরচের ক্যাটাগরি রিপোর্ট</h2>
+
+  <button class="back" onclick="showMain()">
+    ← Back
+  </button>
+
+  <h2 class="report-title">
+    খরচের ক্যাটাগরি রিপোর্ট
+  </h2>
+
 </div>
 
 <div class="card table-wrap">
@@ -254,7 +507,8 @@ td{font-size:16px}
 <thead>
 <tr>
   <th>ক্যাটাগরি</th>
-  <th>মোট খরচ</th>
+  <th>মোট Payment</th>
+  <th>মোট বকেয়া</th>
 </tr>
 </thead>
 
@@ -263,11 +517,13 @@ td{font-size:16px}
 <tfoot>
 <tr>
   <td>সর্বমোট</td>
-  <td id="reportTotal">0</td>
+  <td id="reportPayment">0</td>
+  <td id="reportDue">0</td>
 </tr>
 </tfoot>
 
 </table>
+
 </div>
 </div>
 
@@ -495,14 +751,20 @@ function loadData(){
     if(data&&Array.isArray(data.rows)){
 
       return{
+
         rows:data.rows.map(r=>({
+
           item:r.item||"",
           category:r.category||"",
           qty:r.qty||"",
           unit:r.unit||"",
-          rate:r.rate||""
+          rate:r.rate||"",
+          payment:r.payment||""
+
         })),
+
         members:Number(data.members)||1
+
       };
 
     }
@@ -547,12 +809,13 @@ function setupMemberInput(){
 
     const raw=input.value;
 
-    // ঘর খালি থাকলে এখনই 1 বসাবে না
     if(raw.trim()===""){
+
       members=0;
       saveData();
       recalc();
       return;
+
     }
 
     const value=num(raw);
@@ -586,6 +849,7 @@ function setupMemberInput(){
 
 }
 
+
 /* =========================
    FOCUS
 ========================= */
@@ -597,10 +861,12 @@ function activateInput(input){
   input.focus();
 
   try{
+
     input.setSelectionRange(
       input.value.length,
       input.value.length
     );
+
   }catch(e){}
 
 }
@@ -711,6 +977,7 @@ function createRowElement(row,i){
 
     rows[i].qty=qtyInput.value;
     updateRowTotal(i);
+    updateRowDue(i);
     recalc();
 
   });
@@ -766,6 +1033,7 @@ function createRowElement(row,i){
 
     rows[i].rate=rateInput.value;
     updateRowTotal(i);
+    updateRowDue(i);
     recalc();
 
   });
@@ -787,6 +1055,50 @@ function createRowElement(row,i){
 
   tdTotal.textContent=money(
     num(row.qty)*num(row.rate)
+  );
+
+
+  /* PAYMENT */
+
+  const tdPayment=document.createElement("td");
+
+  const paymentInput=document.createElement("input");
+
+  paymentInput.type="text";
+  paymentInput.value=row.payment||"";
+  paymentInput.dataset.colIndex="5";
+  paymentInput.inputMode="decimal";
+  paymentInput.autocomplete="off";
+
+  paymentInput.addEventListener("input",()=>{
+
+    rows[i].payment=paymentInput.value;
+
+    updateRowDue(i);
+    recalc();
+
+  });
+
+  paymentInput.addEventListener("keydown",e=>{
+
+    handleEnter(e,i,5);
+
+  });
+
+  tdPayment.appendChild(paymentInput);
+
+
+  /* DUE */
+
+  const tdDue=document.createElement("td");
+
+  tdDue.id="rowDue-"+i;
+
+  tdDue.textContent=money(
+    Math.max(
+      0,
+      (num(row.qty)*num(row.rate))-num(row.payment)
+    )
   );
 
 
@@ -815,6 +1127,8 @@ function createRowElement(row,i){
   tr.appendChild(tdUnit);
   tr.appendChild(tdRate);
   tr.appendChild(tdTotal);
+  tr.appendChild(tdPayment);
+  tr.appendChild(tdDue);
   tr.appendChild(tdRemove);
 
   return tr;
@@ -872,7 +1186,8 @@ function addRow(){
     category:"",
     qty:"",
     unit:"",
-    rate:""
+    rate:"",
+    payment:""
   };
 
   rows.push(newRow);
@@ -916,7 +1231,8 @@ function removeRow(i){
       category:"",
       qty:"",
       unit:"",
-      rate:""
+      rate:"",
+      payment:""
     });
 
   }
@@ -951,18 +1267,59 @@ function updateRowTotal(i){
 
 
 /* =========================
+   UPDATE DUE
+========================= */
+
+function updateRowDue(i){
+
+  const el=document.getElementById(
+    "rowDue-"+i
+  );
+
+  if(!el)return;
+
+  const total=
+    num(rows[i].qty)*
+    num(rows[i].rate);
+
+  const payment=num(rows[i].payment);
+
+  const due=Math.max(
+    0,
+    total-payment
+  );
+
+  el.textContent=money(due);
+
+}
+
+
+/* =========================
    RECALCULATE
 ========================= */
 
 function recalc(){
 
   let total=0;
+  let totalPayment=0;
+  let totalDue=0;
 
   rows.forEach(row=>{
 
-    total+=
+    const rowTotal=
       num(row.qty)*
       num(row.rate);
+
+    const payment=num(row.payment);
+
+    const due=Math.max(
+      0,
+      rowTotal-payment
+    );
+
+    total+=rowTotal;
+    totalPayment+=payment;
+    totalDue+=due;
 
   });
 
@@ -983,14 +1340,12 @@ function recalc(){
   }
 
   document.getElementById(
-    "totalCost"
-  ).textContent=money(total);
+    "totalPayment"
+  ).textContent=money(totalPayment);
 
   document.getElementById(
-    "averageCost"
-  ).textContent=money(
-    members>0 ? total/members : 0
-  );
+    "totalDue"
+  ).textContent=money(totalDue);
 
   document.getElementById(
     "grandTotal"
@@ -999,6 +1354,8 @@ function recalc(){
   saveData();
 
 }
+
+
 /* =========================
    FOCUS EXISTING CELL
 ========================= */
@@ -1071,6 +1428,14 @@ function handleEnter(e,rowIndex,colIndex){
 
   if(colIndex===4){
 
+    focusCell(rowIndex,5);
+    return;
+
+  }
+
+
+  if(colIndex===5){
+
     if(rowIndex<rows.length-1){
 
       focusCell(rowIndex+1,0);
@@ -1109,12 +1474,15 @@ function renderView(){
   body.innerHTML="";
 
   let total=0;
+  let totalPayment=0;
+  let totalDue=0;
 
   const validRows=rows.filter(
     r=>
       String(r.item||"").trim()||
       num(r.qty)||
-      num(r.rate)
+      num(r.rate)||
+      num(r.payment)
   );
 
   if(validRows.length===0){
@@ -1122,7 +1490,7 @@ function renderView(){
     const tr=document.createElement("tr");
     const td=document.createElement("td");
 
-    td.colSpan=5;
+    td.colSpan=7;
     td.className="empty";
     td.textContent="কোনো Shopping List নেই";
 
@@ -1136,7 +1504,16 @@ function renderView(){
       const rowTotal=
         num(r.qty)*num(r.rate);
 
+      const payment=num(r.payment);
+
+      const due=Math.max(
+        0,
+        rowTotal-payment
+      );
+
       total+=rowTotal;
+      totalPayment+=payment;
+      totalDue+=due;
 
       const tr=document.createElement("tr");
 
@@ -1145,7 +1522,9 @@ function renderView(){
         r.qty||"",
         r.unit||"",
         money(num(r.rate)),
-        money(rowTotal)
+        money(rowTotal),
+        money(payment),
+        money(due)
       ].forEach(value=>{
 
         const td=document.createElement("td");
@@ -1163,8 +1542,12 @@ function renderView(){
   }
 
   document.getElementById(
-    "viewTotal"
-  ).textContent=money(total);
+    "viewPayment"
+  ).textContent=money(totalPayment);
+
+  document.getElementById(
+    "viewDue"
+  ).textContent=money(totalDue);
 
 }
 
@@ -1187,14 +1570,26 @@ function renderReport(){
 
   const totals={};
 
-  let grandTotal=0;
+  let grandPayment=0;
+  let grandDue=0;
 
   rows.forEach(r=>{
 
     const amount=
       num(r.qty)*num(r.rate);
 
-    if(amount<=0)return;
+    const payment=
+      num(r.payment);
+
+    const due=Math.max(
+      0,
+      amount-payment
+    );
+
+    if(
+      amount<=0 &&
+      payment<=0
+    )return;
 
     let category=
       String(r.category||"").trim();
@@ -1202,12 +1597,19 @@ function renderReport(){
     if(!category)category="অন্যান্য";
 
     if(!totals[category]){
-      totals[category]=0;
+
+      totals[category]={
+        payment:0,
+        due:0
+      };
+
     }
 
-    totals[category]+=amount;
+    totals[category].payment+=payment;
+    totals[category].due+=due;
 
-    grandTotal+=amount;
+    grandPayment+=payment;
+    grandDue+=due;
 
   });
 
@@ -1226,7 +1628,7 @@ function renderReport(){
     const tr=document.createElement("tr");
     const td=document.createElement("td");
 
-    td.colSpan=2;
+    td.colSpan=3;
     td.className="empty";
     td.textContent="কোনো খরচের তথ্য নেই";
 
@@ -1240,15 +1642,24 @@ function renderReport(){
       const tr=document.createElement("tr");
 
       const tdName=document.createElement("td");
+
       tdName.textContent=category;
 
-      const tdAmount=document.createElement("td");
-      tdAmount.textContent=money(
-        totals[category]
+      const tdPayment=document.createElement("td");
+
+      tdPayment.textContent=money(
+        totals[category].payment
+      );
+
+      const tdDue=document.createElement("td");
+
+      tdDue.textContent=money(
+        totals[category].due
       );
 
       tr.appendChild(tdName);
-      tr.appendChild(tdAmount);
+      tr.appendChild(tdPayment);
+      tr.appendChild(tdDue);
 
       body.appendChild(tr);
 
@@ -1257,8 +1668,12 @@ function renderReport(){
   }
 
   document.getElementById(
-    "reportTotal"
-  ).textContent=money(grandTotal);
+    "reportPayment"
+  ).textContent=money(grandPayment);
+
+  document.getElementById(
+    "reportDue"
+  ).textContent=money(grandDue);
 
 }
 
@@ -1285,8 +1700,9 @@ function showMain(){
 async function backupData(){
 
   const backup={
+
     app:"Shopping List",
-    version:5,
+    version:6,
     exportedAt:new Date().toISOString(),
 
     itemMaster:itemMaster,
@@ -1297,6 +1713,7 @@ async function backupData(){
       members:members,
       rows:rows
     }
+
   };
 
   const date=new Date()
@@ -1329,15 +1746,22 @@ async function backupData(){
     try{
 
       await navigator.share({
+
         title:"Shopping List Backup",
         text:"Shopping List Backup File",
         files:[file]
+
       });
 
     }catch(error){
 
       if(error.name!=="AbortError"){
-        console.log("Share failed:",error);
+
+        console.log(
+          "Share failed:",
+          error
+        );
+
       }
 
     }
@@ -1358,7 +1782,9 @@ async function backupData(){
     a.remove();
 
     setTimeout(()=>{
+
       URL.revokeObjectURL(url);
+
     },1000);
 
   }
@@ -1391,27 +1817,36 @@ function restoreData(event){
         !Array.isArray(backup.data.rows)
       ){
 
-        alert("Backup file সঠিক নয়।");
+        alert(
+          "Backup file সঠিক নয়।"
+        );
+
         return;
 
       }
 
       rows=backup.data.rows.map(r=>({
+
         item:r.item||"",
         category:r.category||"",
         qty:r.qty||"",
         unit:r.unit||"",
-        rate:r.rate||""
+        rate:r.rate||"",
+        payment:r.payment||""
+
       }));
 
       if(rows.length===0){
 
         rows.push({
+
           item:"",
           category:"",
           qty:"",
           unit:"",
-          rate:""
+          rate:"",
+          payment:""
+
         });
 
       }
@@ -1420,11 +1855,15 @@ function restoreData(event){
         Number(backup.data.members)||1;
 
       if(Array.isArray(backup.itemMaster)){
+
         itemMaster=backup.itemMaster;
+
       }
 
       if(Array.isArray(backup.categoryMaster)){
+
         categoryMaster=backup.categoryMaster;
+
       }
 
       categoryMaster=[
@@ -1473,11 +1912,14 @@ function clearAll(){
   if(!ok)return;
 
   rows=[{
+
     item:"",
     category:"",
     qty:"",
     unit:"",
-    rate:""
+    rate:"",
+    payment:""
+
   }];
 
   members=1;
@@ -1506,11 +1948,14 @@ function clearAll(){
 if(rows.length===0){
 
   rows.push({
+
     item:"",
     category:"",
     qty:"",
     unit:"",
-    rate:""
+    rate:"",
+    payment:""
+
   });
 
 }
@@ -1538,9 +1983,11 @@ if("serviceWorker" in navigator){
   window.addEventListener(
     "load",
     ()=>{
+
       navigator.serviceWorker.register(
         "./service-worker.js"
       );
+
     }
   );
 
