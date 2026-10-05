@@ -364,6 +364,16 @@ td{font-size:16px}
   </div>
 
   <div class="summary-item">
+    <span>Total Cost (৳)</span>
+    <strong id="totalCost">0</strong>
+  </div>
+
+  <div class="summary-item">
+    <span>Average per Person (৳)</span>
+    <strong id="averageCost">0</strong>
+  </div>
+
+  <div class="summary-item">
     <span>Total Payment (৳)</span>
     <strong id="totalPayment">0</strong>
   </div>
@@ -1067,7 +1077,6 @@ function createRowElement(row,i){
   paymentInput.type="text";
   paymentInput.value=row.payment||"";
   paymentInput.dataset.colIndex="5";
-  paymentInput.inputMode="decimal";
   paymentInput.autocomplete="off";
 
   paymentInput.addEventListener("input",()=>{
@@ -1320,6 +1329,27 @@ function recalc(){
     total+=rowTotal;
     totalPayment+=payment;
     totalDue+=due;
+    document.getElementById(
+  "totalCost"
+).textContent=money(total);
+
+document.getElementById(
+  "averageCost"
+).textContent=money(
+  members>0 ? total/members : 0
+);
+
+document.getElementById(
+  "totalPayment"
+).textContent=money(totalPayment);
+
+document.getElementById(
+  "totalDue"
+).textContent=money(totalDue);
+
+document.getElementById(
+  "grandTotal"
+).textContent=money(total);
 
   });
 
