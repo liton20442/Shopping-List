@@ -247,13 +247,16 @@ td{font-size:16px}
 }
 
 .report-table th:nth-child(1),
-.report-table td:nth-child(1){width:40%}
+.report-table td:nth-child(1){width:30%}
 
 .report-table th:nth-child(2),
-.report-table td:nth-child(2){width:30%;text-align:right}
+.report-table td:nth-child(2){width:23%;text-align:right}
 
 .report-table th:nth-child(3),
-.report-table td:nth-child(3){width:30%;text-align:right}
+.report-table td:nth-child(3){width:23%;text-align:right}
+
+.report-table th:nth-child(4),
+.report-table td:nth-child(4){width:24%;text-align:right}
 
 .report-table th,
 .report-table td{
@@ -517,8 +520,9 @@ td{font-size:16px}
 <thead>
 <tr>
   <th>ক্যাটাগরি</th>
-  <th>মোট Payment</th>
-  <th>মোট বকেয়া</th>
+  <th>মোট</th>
+  <th>Payment</th>
+  <th>বকেয়া</th>
 </tr>
 </thead>
 
@@ -527,6 +531,7 @@ td{font-size:16px}
 <tfoot>
 <tr>
   <td>সর্বমোট</td>
+  <td id="reportTotal">0</td>
   <td id="reportPayment">0</td>
   <td id="reportDue">0</td>
 </tr>
@@ -1329,27 +1334,6 @@ function recalc(){
     total+=rowTotal;
     totalPayment+=payment;
     totalDue+=due;
-    document.getElementById(
-  "totalCost"
-).textContent=money(total);
-
-document.getElementById(
-  "averageCost"
-).textContent=money(
-  members>0 ? total/members : 0
-);
-
-document.getElementById(
-  "totalPayment"
-).textContent=money(totalPayment);
-
-document.getElementById(
-  "totalDue"
-).textContent=money(totalDue);
-
-document.getElementById(
-  "grandTotal"
-).textContent=money(total);
 
   });
 
@@ -1368,6 +1352,16 @@ document.getElementById(
     }
 
   }
+
+  document.getElementById(
+    "totalCost"
+  ).textContent=money(total);
+
+  document.getElementById(
+    "averageCost"
+  ).textContent=money(
+    members>0 ? total/members : 0
+  );
 
   document.getElementById(
     "totalPayment"
@@ -1600,6 +1594,7 @@ function renderReport(){
 
   const totals={};
 
+  let grandTotal=0;
   let grandPayment=0;
   let grandDue=0;
 
@@ -1629,15 +1624,18 @@ function renderReport(){
     if(!totals[category]){
 
       totals[category]={
+        total:0,
         payment:0,
         due:0
       };
 
     }
 
+    totals[category].total+=amount;
     totals[category].payment+=payment;
     totals[category].due+=due;
 
+    grandTotal+=amount;
     grandPayment+=payment;
     grandDue+=due;
 
@@ -1658,7 +1656,7 @@ function renderReport(){
     const tr=document.createElement("tr");
     const td=document.createElement("td");
 
-    td.colSpan=3;
+    td.colSpan=4;
     td.className="empty";
     td.textContent="কোনো খরচের তথ্য নেই";
 
@@ -1675,6 +1673,12 @@ function renderReport(){
 
       tdName.textContent=category;
 
+      const tdTotal=document.createElement("td");
+
+      tdTotal.textContent=money(
+        totals[category].total
+      );
+
       const tdPayment=document.createElement("td");
 
       tdPayment.textContent=money(
@@ -1688,6 +1692,7 @@ function renderReport(){
       );
 
       tr.appendChild(tdName);
+      tr.appendChild(tdTotal);
       tr.appendChild(tdPayment);
       tr.appendChild(tdDue);
 
@@ -1696,6 +1701,10 @@ function renderReport(){
     });
 
   }
+
+  document.getElementById(
+    "reportTotal"
+  ).textContent=money(grandTotal);
 
   document.getElementById(
     "reportPayment"
