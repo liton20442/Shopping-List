@@ -434,7 +434,9 @@ td{font-size:16px}
   <button class="secondary" onclick="showReport()">
     📊 Report
   </button>
-
+<button class="secondary" onclick="manageCategories()">
+  Manage Categories
+</button>
   <button class="light" onclick="backupData()">
     Backup
   </button>
@@ -789,7 +791,80 @@ function saveNewCategory(i){
 /* =========================
    DATA
 ========================= */
+/* =========================
+   MANAGE CATEGORIES
+========================= */
 
+function manageCategories(){
+
+  const customCategories = [
+    ...new Set(
+      categoryMaster.filter(category =>
+        !DEFAULT_CATEGORIES.includes(category)
+      )
+    )
+  ];
+
+  if(customCategories.length === 0){
+
+    alert("মুছে ফেলার মতো কোনো অতিরিক্ত ক্যাটাগরি নেই।");
+    return;
+
+  }
+
+  let message = "কোন ক্যাটাগরিটি মুছতে চান?\n\n";
+
+  customCategories.forEach((category, index)=>{
+
+    message += (index + 1) + ". " + category + "\n";
+
+  });
+
+  message += "\nযে ক্যাটাগরিটি মুছবেন, তার নম্বর লিখুন:";
+
+  const answer = prompt(message);
+
+  if(answer === null || answer.trim() === "") return;
+
+  const number = Number(
+    normalizeNumber(answer)
+  );
+
+  if(
+    !Number.isInteger(number) ||
+    number < 1 ||
+    number > customCategories.length
+  ){
+
+    alert("সঠিক নম্বর লিখুন।");
+    return;
+
+  }
+
+  const categoryToDelete = customCategories[number - 1];
+
+  const confirmed = confirm(
+    '"' + categoryToDelete +
+    '" ক্যাটাগরিটি ড্রপডাউন থেকে মুছে ফেলতে চান?\n\n' +
+    "আগের পণ্যের তথ্য অপরিবর্তিত থাকবে।"
+  );
+
+  if(!confirmed) return;
+
+  categoryMaster = categoryMaster.filter(
+    category => category !== categoryToDelete
+  );
+
+  saveCategories();
+
+  updateCategoryList();
+
+  alert(
+    '"' + categoryToDelete +
+    '" ক্যাটাগরিটি ড্রপডাউন থেকে মুছে ফেলা হয়েছে।'
+  );
+
+}
 function loadData(){
 
   try{
